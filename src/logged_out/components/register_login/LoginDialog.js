@@ -11,7 +11,7 @@ import VisibilityPasswordTextField from "../../../shared/components/VisibilityPa
 const styles = (theme) => ({
 	forgotPassword: {
 		marginTop: theme.spacing(2),
-		color: theme.palette.primary.main,
+		color: theme.palette.link.main,
 		cursor: "pointer",
 		"&:enabled:hover": {
 			color: theme.palette.primary.dark,
@@ -115,6 +115,7 @@ function LoginDialog(props) {
 							control={<Checkbox color="primary" />}
 							label={<Typography variant="body1">记住信息</Typography>}
 						/>
+						
 						{status === "verificationEmailSend" ? (
 							<HighlightedInformation>
 								We have send instructions on how to reset your password to your
@@ -132,7 +133,7 @@ function LoginDialog(props) {
 				actions={
 					<Fragment>
 						<Button type="submit" fullWidth variant="contained" color="secondary" disabled={isLoading} size="large">
-							登&nbsp;&nbsp;&nbsp;&nbsp;录
+							<Typography variant="h6">登&nbsp;&nbsp;&nbsp;&nbsp;录</Typography>
 							{isLoading && <ButtonCircularProgress />}
 						</Button>
 						<Typography

@@ -195,7 +195,7 @@ function RegisterDialog(props) {
 					color="secondary"
 					disabled={isLoading}
 				>
-					注&nbsp;&nbsp;&nbsp;&nbsp;册
+					<Typography variant="h6">注&nbsp;&nbsp;&nbsp;&nbsp;册</Typography>
 					{isLoading && <ButtonCircularProgress />}
 				</Button>
 			}
