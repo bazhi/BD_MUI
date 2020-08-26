@@ -94,7 +94,7 @@ function NavBar(props) {
 									if (element.link) {
 										return (
 											<Link key={element.name} to={element.link} className={classes.noDecoration} onClick={handleMobileDrawerClose}>
-												<Button color="secondary" size="large" classes={{text: classes.menuButtonText}}>
+												<Button color="default" size="large" classes={{text: classes.menuButtonText}}>
 													{element.iconPC}
 													{element.name}
 												</Button>
@@ -102,7 +102,7 @@ function NavBar(props) {
 										);
 									}
 									return (
-										<Button color="secondary" size="large" onClick={element.onClick} classes={{text: classes.menuButtonText}} key={element.name}>
+										<Button color="default" size="large" onClick={element.onClick} classes={{text: classes.menuButtonText}} key={element.name}>
 											{element.iconPC}
 											{element.name}
 										</Button>
