@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { AppBar, Button, Hidden, IconButton, Toolbar, Typography, withStyles } from "@material-ui/core";
@@ -8,6 +9,7 @@ import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
+import LanguageSelector from "../../../shared/components/LanguageSelector";
 
 const styles = theme => ({
 	appBar: {
@@ -31,6 +33,7 @@ const styles = theme => ({
 	}
 });
 
+
 function NavBar(props) {
 	const {
 		classes,
@@ -44,24 +47,24 @@ function NavBar(props) {
 	const menuItems = [
 		{
 			link: "/",
-			name: "主页",
+			name: intl.get("Home"),
 			icon: <HomeIcon className="text-white" />,
 			iconPC: <HomeIcon className="" />
 		},
 		{
 			link: "/blog",
-			name: "博客",
+			name: intl.get("Blog"),
 			icon: <BookIcon className="text-white" />,
 			iconPC: <BookIcon className="" />
 		},
 		{
-			name: "注册",
+			name: intl.get("Register"),
 			onClick: openRegisterDialog,
 			icon: <HowToRegIcon className="text-white" />,
 			iconPC: <HowToRegIcon className="" />
 		},
 		{
-			name: "登录",
+			name: intl.get("SignIn"),
 			onClick: openLoginDialog,
 			icon: <LockOpenIcon className="text-white" />,
 			iconPC: <LockOpenIcon className="" />
@@ -83,6 +86,7 @@ function NavBar(props) {
 						</Typography>
 					</div>
 					<div>
+						<LanguageSelector className={""} />
 						<Hidden mdUp>
 							<IconButton className={classes.menuButton} onClick={handleMobileDrawerOpen} aria-label="Open Navigation">
 								<MenuIcon color="primary" />
@@ -113,6 +117,7 @@ function NavBar(props) {
 					</div>
 				</Toolbar>
 			</AppBar>
+			
 			<NavigationDrawer menuItems={menuItems} anchor="right" open={mobileDrawerOpen} selectedItem={selectedTab} onClose={handleMobileDrawerClose} />
 		</div>
 	);

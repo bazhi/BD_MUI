@@ -1,4 +1,5 @@
 import React, { Fragment, useCallback, useRef, useState } from "react";
+import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withRouter } from "react-router-dom";
@@ -74,10 +75,10 @@ function LoginDialog(props) {
 					login();
 				}}
 				hideBackdrop
-				headline="用户登录"
+				headline= {intl.get("SignIn")}
 				content={
 					<Fragment>
-						<TextField variant="outlined" margin="normal" error={status === "invalidEmail"} required fullWidth label="邮件地址" inputRef={loginEmail} autoFocus autoComplete="off" type="email"
+						<TextField variant="outlined" margin="normal" error={status === "invalidEmail"} required fullWidth label={intl.get("EmailAddress")} inputRef={loginEmail} autoFocus autoComplete="off" type="email"
 						           onChange={() => {
 							           if (status === "invalidEmail") {
 								           setStatus(null);
@@ -85,12 +86,12 @@ function LoginDialog(props) {
 						           }}
 						           helperText={
 							           status === "invalidEmail" &&
-							           "邮件地址错误"
+							           intl.get("InvalidEmail")
 						           }
 						           FormHelperTextProps={{error: true}}
 						/>
 						<VisibilityPasswordTextField
-							variant="outlined" margin="normal" required fullWidth error={status === "invalidPassword"} label="密码" inputRef={loginPassword} autoComplete="off"
+							variant="outlined" margin="normal" required fullWidth error={status === "invalidPassword"} label={intl.get("Password")}  inputRef={loginPassword} autoComplete="off"
 							onChange={() => {
 								if (status === "invalidPassword") {
 									setStatus(null);
@@ -98,10 +99,7 @@ function LoginDialog(props) {
 							}}
 							helperText={
 								status === "invalidPassword" ? (
-									<span>密码错误, 点击{" "}
-										<b>&quot;忘记密码?&quot;</b>
-									      进行重置.
-									</span>
+									intl.getHTML("PasswordError")
 								) : (
 									""
 								)
@@ -113,13 +111,12 @@ function LoginDialog(props) {
 						<FormControlLabel
 							className={classes.formControlLabel}
 							control={<Checkbox color="primary" />}
-							label={<Typography variant="body1">记住信息</Typography>}
+							label={<Typography variant="body1"> {intl.get("RememberMe")}</Typography>}
 						/>
 						
 						{status === "verificationEmailSend" ? (
 							<HighlightedInformation>
-								We have send instructions on how to reset your password to your
-								email address
+								{intl.get("VerificationEmailSend")}
 							</HighlightedInformation>
 						) : (
 							<HighlightedInformation>
@@ -133,7 +130,7 @@ function LoginDialog(props) {
 				actions={
 					<Fragment>
 						<Button type="submit" fullWidth variant="contained" color="secondary" disabled={isLoading} size="large">
-							<Typography variant="h6">登&nbsp;&nbsp;&nbsp;&nbsp;录</Typography>
+							<Typography variant="h6"> {intl.getHTML("SignIn_Width")} </Typography>
 							{isLoading && <ButtonCircularProgress />}
 						</Button>
 						<Typography
@@ -150,7 +147,7 @@ function LoginDialog(props) {
 								openChangePasswordDialog();
 							}
 						}}>
-							忘记密码?
+							{intl.getHTML("ForgetPassword")}?
 						</Typography>
 					</Fragment>
 				}

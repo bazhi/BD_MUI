@@ -1,0 +1,16 @@
+{
+  "Home" : "Home",
+  "Blog" : "Blog",
+  "Register": "Register",
+  "SignIn" : "Sign In",
+  "SignIn_Width" : "Sign In",
+  "HomeTitle" : "B&D - Free web to publish activities",
+  "Language" : "English",
+  "RememberMe": "Remember Me",
+  "ForgetPassword": "Forget Password",
+  "EmailAddress" : "Email Address",
+  "Password" : "Password",
+  "PasswordError": "<span>password error, click<b>&nbsp;&quot;Forget password?&quot;&nbsp;</b>reset password.</span>",
+  "verificationEmailSend": "We have send instructions on how to reset your password to your email address",
+  "InvalidEmail": "Invalid Email"
+}

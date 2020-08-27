@@ -1,4 +1,5 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
+import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import AOS from "aos/dist/aos";
 import { withStyles } from "@material-ui/core";
@@ -31,8 +32,7 @@ function Main(props) {
 
   const selectHome = useCallback(() => {
     smoothScrollTop();
-    document.title =
-      "WaVer - Free template for building an SaaS or admin application";
+    document.title = intl.get("HomeTitle");
     setSelectedTab("Home");
   }, [setSelectedTab]);
 
