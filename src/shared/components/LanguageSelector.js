@@ -11,17 +11,29 @@ class LanguageSelector extends React.Component {
 	};
 	
 	render() {
+		let item = intl.get("Language");
+		if(!item){
+			item = "null";
+		}
 		return (
 			<NativeSelect onChange={this.onSelectLocale}>
 				<option value="" hidden={true}>
-					{intl.get("Language")}
+					{item}
 				</option>
 				{
-					SUPPORT_LOCALES.map(locale => (
-						<option key={locale.value} value={locale.value}>
-							{locale.name}
-						</option>
-					))
+					SUPPORT_LOCALES.map(locale => {
+						if(locale.name !== item){
+							return (
+								<option key={locale.value} value={locale.value}>
+									{locale.name}
+								</option>
+							)
+						}else{
+							return (
+								<div/>
+							)
+						}
+					})
 				}
 			</NativeSelect>
 		);
