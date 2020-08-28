@@ -26,27 +26,24 @@ class App extends Component {
 			urlLocaleKey: 'lang',
 			cookieLocaleKey: 'lang'
 		});
-
+		
 		if (!lodash.find(SUPPORT_LOCALES, {value: currentLocale})) {
 			currentLocale = 'zh-CN';
 		}
-		
-		axios
-			.get(`locales/${currentLocale}.json`)
-			.then(res => {
-				console.log('App locale data', res.data);
-				// init 方法将根据 currentLocale 来加载当前语言环境的数据
-				return intl.init({
-					currentLocale,
-					locales: {
-						[currentLocale]: res.data
-					}
-				});
-			})
-			.then(() => {
-				// After loading CLDR locale data, start to render
-				this.setState({initDone: true});
+		const url = `/locales/${currentLocale}.json`;
+		let self = this;
+		axios.get(url).then(function (res) {
+			return intl.init({
+				currentLocale,
+				locales: {
+					[currentLocale]: res.data
+				}
 			});
+		}).then(function () {
+			self.setState({initDone: true});
+		}).catch(function (error) {
+			console.log(error);
+		});
 	}
 	
 	render() {

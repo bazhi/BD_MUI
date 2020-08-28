@@ -20,6 +20,7 @@ class LanguageSelector extends React.Component {
 		if(!item){
 			item = "null";
 		}
+		
 		return (
 			<NativeSelect onChange={this.onSelectLocale}>
 				<option value="" hidden={true}>
@@ -33,6 +34,8 @@ class LanguageSelector extends React.Component {
 									{locale.name}
 								</option>
 							)
+						}else{
+							return null;
 						}
 					})
 				}
