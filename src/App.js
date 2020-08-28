@@ -7,16 +7,16 @@ import * as serviceWorker from "./serviceWorker";
 import Pace from "./shared/components/Pace";
 import intl from 'react-intl-universal';
 import axios from 'axios';
-import _ from 'lodash';
+import lodash from 'lodash';
 
 import SUPPORT_LOCALES from "./shared/components/SupportLocales"
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
-
-
 class App extends Component {
+	state = {initDone: false}
+	
 	componentDidMount() {
 		this.loadLocales();
 	}
@@ -26,9 +26,8 @@ class App extends Component {
 			urlLocaleKey: 'lang',
 			cookieLocaleKey: 'lang'
 		});
-		
-		// 如果没找到，则默认为汉语
-		if (!_.find(SUPPORT_LOCALES, {value: currentLocale})) {
+
+		if (!lodash.find(SUPPORT_LOCALES, {value: currentLocale})) {
 			currentLocale = 'zh-CN';
 		}
 		
@@ -52,6 +51,7 @@ class App extends Component {
 	
 	render() {
 		return (
+			this.state.initDone &&
 			<WebRouter>
 				<MuiThemeProvider theme={theme}>
 					<CssBaseline />
