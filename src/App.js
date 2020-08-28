@@ -1,6 +1,6 @@
 import React, { Component, Fragment, lazy, Suspense } from "react";
 import { CssBaseline, MuiThemeProvider } from "@material-ui/core";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as WebRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import * as serviceWorker from "./serviceWorker";
@@ -8,6 +8,7 @@ import Pace from "./shared/components/Pace";
 import intl from 'react-intl-universal';
 import axios from 'axios';
 import _ from 'lodash';
+
 import SUPPORT_LOCALES from "./shared/components/SupportLocales"
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
@@ -51,7 +52,7 @@ class App extends Component {
 	
 	render() {
 		return (
-			<BrowserRouter>
+			<WebRouter>
 				<MuiThemeProvider theme={theme}>
 					<CssBaseline />
 					<GlobalStyles />
@@ -67,7 +68,7 @@ class App extends Component {
 						</Switch>
 					</Suspense>
 				</MuiThemeProvider>
-			</BrowserRouter>
+			</WebRouter>
 		);
 	}
 }

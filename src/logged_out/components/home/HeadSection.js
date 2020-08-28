@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import intl from 'react-intl-universal';
+// import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Box, Button, Card, Grid, Hidden, isWidthUp, Typography, withStyles, withWidth, } from "@material-ui/core";

@@ -47,24 +47,24 @@ function NavBar(props) {
 	const menuItems = [
 		{
 			link: "/",
-			name: intl.get("Home"),
+			key: "Home",
 			icon: <HomeIcon className="text-white" />,
-			iconPC: <HomeIcon className="" />
+			iconPC: <HomeIcon className="" />,
 		},
 		{
 			link: "/blog",
-			name: intl.get("Blog"),
+			key: "Blog",
 			icon: <BookIcon className="text-white" />,
 			iconPC: <BookIcon className="" />
 		},
 		{
-			name: intl.get("Register"),
+			key: "Register",
 			onClick: openRegisterDialog,
 			icon: <HowToRegIcon className="text-white" />,
 			iconPC: <HowToRegIcon className="" />
 		},
 		{
-			name: intl.get("SignIn"),
+			key: "SignIn",
 			onClick: openLoginDialog,
 			icon: <LockOpenIcon className="text-white" />,
 			iconPC: <LockOpenIcon className="" />
@@ -97,18 +97,18 @@ function NavBar(props) {
 								menuItems.map(element => {
 									if (element.link) {
 										return (
-											<Link key={element.name} to={element.link} className={classes.noDecoration} onClick={handleMobileDrawerClose}>
+											<Link key={element.key} to={element.link} className={classes.noDecoration} onClick={handleMobileDrawerClose}>
 												<Button color="default" size="large" classes={{text: classes.menuButtonText}}>
 													{element.iconPC}
-													{element.name}
+													{intl.get(element.key)}
 												</Button>
 											</Link>
 										);
 									}
 									return (
-										<Button color="default" size="large" onClick={element.onClick} classes={{text: classes.menuButtonText}} key={element.name}>
+										<Button color="default" size="large" onClick={element.onClick} classes={{text: classes.menuButtonText}} key={element.key}>
 											{element.iconPC}
-											{element.name}
+											{intl.get(element.key)}
 										</Button>
 									);
 								})

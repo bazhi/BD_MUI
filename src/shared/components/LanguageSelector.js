@@ -1,6 +1,6 @@
 import React from "react";
 import intl from "react-intl-universal";
-import { MenuItem, NativeSelect } from "@material-ui/core";
+import { NativeSelect } from "@material-ui/core";
 
 import SUPPORT_LOCALES from "./SupportLocales";
 
@@ -13,14 +13,14 @@ class LanguageSelector extends React.Component {
 	render() {
 		return (
 			<NativeSelect onChange={this.onSelectLocale}>
-				<option value="" hidden = {true}>
+				<option value="" hidden={true}>
 					{intl.get("Language")}
 				</option>
 				{
 					SUPPORT_LOCALES.map(locale => (
-						<option  key={locale.value} value={locale.value}>
+						<option key={locale.value} value={locale.value}>
 							{locale.name}
-						</option >
+						</option>
 					))
 				}
 			</NativeSelect>

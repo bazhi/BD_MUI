@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -76,14 +77,14 @@ function NavigationDrawer(props) {
           if (element.link) {
             return (
               <Link
-                key={element.name}
+                key={element.key}
                 to={element.link}
                 className={classes.noDecoration}
                 onClick={onClose}
               >
                 <ListItem
                   button
-                  selected={selectedItem === element.name}
+                  selected={selectedItem === element.key}
                   /**
                    * We disable ripple as it will make a weird animation
                    * with primary and secondary color
@@ -95,7 +96,7 @@ function NavigationDrawer(props) {
                   <ListItemText
                     primary={
                       <Typography variant="subtitle1" className="text-white">
-                        {element.name}
+                        {intl.get(element.key)}
                       </Typography>
                     }
                   />
@@ -104,12 +105,12 @@ function NavigationDrawer(props) {
             );
           }
           return (
-            <ListItem button key={element.name} onClick={element.onClick}>
+            <ListItem button key={element.key} onClick={element.onClick}>
               <ListItemIcon>{element.icon}</ListItemIcon>
               <ListItemText
                 primary={
                   <Typography variant="subtitle1" className="text-white">
-                    {element.name}
+                    {intl.get(element.key)}
                   </Typography>
                 }
               />
