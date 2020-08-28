@@ -30,9 +30,9 @@ class App extends Component {
 		if (!lodash.find(SUPPORT_LOCALES, {value: currentLocale})) {
 			currentLocale = 'zh-CN';
 		}
-		
+
 		axios
-			.get(`locales/${currentLocale}.json`)
+			.get(`/locales/${currentLocale}.json`)
 			.then(res => {
 				console.log('App locale data', res.data);
 				// init 方法将根据 currentLocale 来加载当前语言环境的数据

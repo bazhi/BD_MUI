@@ -153,7 +153,7 @@ function NavBar(props) {
   const menuItems = [
     {
       link: "/c/dashboard",
-      name: "Dashboard",
+      key: "Dashboard",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
@@ -169,7 +169,7 @@ function NavBar(props) {
     },
     {
       link: "/c/posts",
-      name: "Posts",
+      key: "Posts",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
@@ -185,7 +185,7 @@ function NavBar(props) {
     },
     {
       link: "/c/subscription",
-      name: "Subscription",
+      key: "Subscription",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
@@ -203,7 +203,7 @@ function NavBar(props) {
     },
     {
       link: "/",
-      name: "Logout",
+      key: "Logout",
       icon: {
         desktop: (
           <PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -311,12 +311,12 @@ function NavBar(props) {
                 }}
               >
                 <Tooltip
-                  title={element.name}
+                  title={element.key}
                   placement="right"
-                  key={element.name}
+                  key={element.key}
                 >
                   <ListItem
-                    selected={selectedTab === element.name}
+                    selected={selectedTab === element.key}
                     button
                     divider={index !== menuItems.length - 1}
                     className={classes.permanentDrawerListItem}
@@ -324,9 +324,9 @@ function NavBar(props) {
                       links.current[index].click();
                     }}
                     aria-label={
-                      element.name === "Logout"
+                      element.key === "Logout"
                         ? "Logout"
-                        : `Go to ${element.name}`
+                        : `Go to ${element.key}`
                     }
                   >
                     <ListItemIcon className={classes.justifyCenter}>
@@ -342,7 +342,7 @@ function NavBar(props) {
       <NavigationDrawer
         menuItems={menuItems.map((element) => ({
           link: element.link,
-          name: element.name,
+          key: element.key,
           icon: element.icon.mobile,
           onClick: element.onClick,
         }))}
