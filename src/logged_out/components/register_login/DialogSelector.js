@@ -18,7 +18,7 @@ function DialogSelector(props) {
   const [loginStatus, setLoginStatus] = useState(null);
   const [registerStatus, setRegisterStatus] = useState(null);
 
-  const _onClose = useCallback(() => {
+  const onCloseDialog = useCallback(() => {
     setLoginStatus(null);
     setRegisterStatus(null);
     onClose();
@@ -29,7 +29,7 @@ function DialogSelector(props) {
       case "register":
         return (
           <RegisterDialog
-            onClose={_onClose}
+            onClose={onCloseDialog}
             openTermsDialog={openTermsDialog}
             status={registerStatus}
             setStatus={setRegisterStatus}
@@ -40,7 +40,7 @@ function DialogSelector(props) {
       case "login":
         return (
           <LoginDialog
-            onClose={_onClose}
+            onClose={onCloseDialog}
             status={loginStatus}
             setStatus={setLoginStatus}
             openChangePasswordDialog={openChangePasswordDialog}
@@ -61,7 +61,7 @@ function DialogSelector(props) {
     openLoginDialog,
     openRegisterDialog,
     openTermsDialog,
-    _onClose,
+    onCloseDialog,
     loginStatus,
     registerStatus,
     setLoginStatus,
