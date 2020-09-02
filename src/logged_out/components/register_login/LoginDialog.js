@@ -8,6 +8,7 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
+import {ST_Login} from "../../../shared/Constants/StatusCommon"
 
 const styles = (theme) => ({
 	forgotPassword: {
@@ -30,6 +31,11 @@ const styles = (theme) => ({
 	},
 });
 
+
+const URL = {
+	Dashboard : "/c/dashboard",
+}
+
 function LoginDialog(props) {
 	const {
 		setStatus,
@@ -47,19 +53,19 @@ function LoginDialog(props) {
 	const login = useCallback(() => {
 		setIsLoading(true);
 		setStatus(null);
-		if (loginEmail.current.value !== "test@web.com") {
+		if (loginEmail.current.value !== "bazhicc@163.com") {
 			setTimeout(() => {
-				setStatus("invalidEmail");
+				setStatus(ST_Login.invalidEmail);
 				setIsLoading(false);
 			}, 1500);
-		} else if (loginPassword.current.value !== "HaRzwc") {
+		} else if (loginPassword.current.value !== "12345678") {
 			setTimeout(() => {
-				setStatus("invalidPassword");
+				setStatus(ST_Login.invalidPassword);
 				setIsLoading(false);
 			}, 1500);
 		} else {
 			setTimeout(() => {
-				history.push("/c/dashboard");
+				history.push(URL.Dashboard);
 			}, 150);
 		}
 	}, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
@@ -75,56 +81,48 @@ function LoginDialog(props) {
 					login();
 				}}
 				hideBackdrop
-				headline= {intl.get("SignIn")}
+				headline={intl.get("SignIn")}
 				content={
 					<Fragment>
-						<TextField variant="outlined" margin="normal" error={status === "invalidEmail"} required fullWidth label={intl.get("EmailAddress")} inputRef={loginEmail} autoFocus autoComplete="off" type="email"
+						<TextField variant="outlined" margin="normal" error={status === ST_Login.invalidEmail} required fullWidth
+						           label={intl.get("EmailAddress")} inputRef={loginEmail} autoFocus autoComplete="off" type="email"
 						           onChange={() => {
-							           if (status === "invalidEmail") {
+							           if (status === ST_Login.invalidEmail) {
 								           setStatus(null);
 							           }
 						           }}
 						           helperText={
-							           status === "invalidEmail" &&
-							           intl.get("InvalidEmail")
+							           status === ST_Login.invalidEmail && intl.get("InvalidEmail")
 						           }
 						           FormHelperTextProps={{error: true}}
 						/>
 						<VisibilityPasswordTextField
-							variant="outlined" margin="normal" required fullWidth error={status === "invalidPassword"} label={intl.get("Password")}  inputRef={loginPassword} autoComplete="off"
+							variant="outlined" margin="normal" required fullWidth error={status === ST_Login.invalidPassword}
+							label={intl.get("Password")} inputRef={loginPassword} autoComplete="off"
 							onChange={() => {
-								if (status === "invalidPassword") {
+								if (status === ST_Login.invalidPassword) {
 									setStatus(null);
 								}
 							}}
 							helperText={
-								status === "invalidPassword" ? (
-									intl.getHTML("PasswordError")
-								) : (
-									""
-								)
+								status === ST_Login.invalidPassword && intl.getHTML("PasswordError")
 							}
 							FormHelperTextProps={{error: true}}
 							onVisibilityChange={setIsPasswordVisible}
 							isVisible={isPasswordVisible}
 						/>
+						
 						<FormControlLabel
 							className={classes.formControlLabel}
 							control={<Checkbox color="primary" />}
 							label={<Typography variant="body1"> {intl.get("RememberMe")}</Typography>}
 						/>
 						
-						{status === "verificationEmailSend" ? (
+						{status === ST_Login.verificationEmailSend &&
 							<HighlightedInformation>
 								{intl.get("VerificationEmailSend")}
 							</HighlightedInformation>
-						) : (
-							<HighlightedInformation>
-								Email is: <b>test@web.com</b>
-								<br />
-								Password is: <b>HaRzwc</b>
-							</HighlightedInformation>
-						)}
+						}
 					</Fragment>
 				}
 				actions={

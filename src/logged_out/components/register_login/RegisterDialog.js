@@ -1,10 +1,12 @@
 import React, { Fragment, useCallback, useRef, useState } from "react";
+import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import { Button, Checkbox, FormControlLabel, FormHelperText, TextField, Typography, withStyles, } from "@material-ui/core";
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
+import {ST_Register} from "../../../shared/Constants/StatusCommon"
 
 const styles = (theme) => ({
 	link: {
@@ -40,7 +42,7 @@ function RegisterDialog(props) {
 		if (
 			registerPassword.current.value !== registerPasswordRepeat.current.value
 		) {
-			setStatus("passwordsDontMatch");
+			setStatus(ST_Register.passwordsDontMatch);
 			return;
 		}
 		setStatus(null);
@@ -62,7 +64,7 @@ function RegisterDialog(props) {
 			loading={isLoading}
 			onClose={onClose}
 			open
-			headline="用户注册"
+			headline={intl.get("Register")}
 			onFormSubmit={(e) => {
 				e.preventDefault();
 				register();
@@ -72,10 +74,10 @@ function RegisterDialog(props) {
 			content={
 				<Fragment>
 					<TextField
-						variant="outlined" margin="normal" required fullWidth error={status === "invalidEmail"}
-						label="邮件地址" autoFocus autoComplete="off" type="email"
+						variant="outlined" margin="normal" required fullWidth error={status === ST_Register.invalidEmail}
+						label={intl.get("EmailAddress")} autoFocus autoComplete="off" type="email"
 						onChange={() => {
-							if (status === "invalidEmail") {
+							if (status === ST_Register.invalidEmail) {
 								setStatus(null);
 							}
 						}} FormHelperTextProps={{error: true}}
@@ -83,22 +85,22 @@ function RegisterDialog(props) {
 					<VisibilityPasswordTextField
 						variant="outlined" margin="normal" required fullWidth
 						error={
-							status === "passwordTooShort" || status === "passwordsDontMatch"
+							status === ST_Register.passwordTooShort || status === ST_Register.passwordsDontMatch
 						}
-						label="密码" inputRef={registerPassword} autoComplete="off"
+						label={intl.get("Password")} inputRef={registerPassword} autoComplete="off"
 						onChange={() => {
 							if (
-								status === "passwordTooShort" ||
-								status === "passwordsDontMatch"
+								status === ST_Register.passwordTooShort ||
+								status === ST_Register.passwordsDontMatch
 							) {
 								setStatus(null);
 							}
 						}}
 						helperText={(() => {
-							if (status === "passwordTooShort") {
+							if (status === ST_Register.passwordTooShort) {
 								return "Create a password at least 6 characters long.";
 							}
-							if (status === "passwordsDontMatch") {
+							if (status ===  ST_Register.passwordsDontMatch) {
 								return "Your passwords dont match.";
 							}
 							return null;
@@ -108,22 +110,22 @@ function RegisterDialog(props) {
 					<VisibilityPasswordTextField
 						variant="outlined" margin="normal" required fullWidth
 						error={
-							status === "passwordTooShort" || status === "passwordsDontMatch"
+							status === ST_Register.passwordTooShort || status ===  ST_Register.passwordsDontMatch
 						}
-						label="重复密码" inputRef={registerPasswordRepeat} autoComplete="off"
+						label={intl.get("RepeatPwd")} inputRef={registerPasswordRepeat} autoComplete="off"
 						onChange={() => {
 							if (
-								status === "passwordTooShort" ||
-								status === "passwordsDontMatch"
+								status === ST_Register.passwordTooShort ||
+								status === ST_Register.passwordsDontMatch
 							) {
 								setStatus(null);
 							}
 						}}
 						helperText={(() => {
-							if (status === "passwordTooShort") {
+							if (status === ST_Register.passwordTooShort) {
 								return "Create a password at least 6 characters long.";
 							}
-							if (status === "passwordsDontMatch") {
+							if (status === ST_Register.passwordsDontMatch) {
 								return "Your passwords dont match.";
 							}
 						})()}
@@ -142,23 +144,18 @@ function RegisterDialog(props) {
 						}
 						label={
 							<Typography variant="body1">
-								我同意
-								<span
-									className={classes.link}
-									onClick={isLoading ? null : openTermsDialog}
-									tabIndex={0}
-									role="button"
-									onKeyDown={(event) => {
-										// For screen readers listen to space and enter events
-										if (
-											(!isLoading && event.keyCode === 13) ||
-											event.keyCode === 32
-										) {
-											openTermsDialog();
-										}
-									}}>
+								{intl.get("IAgree")}
+								<span className={classes.link} onClick={isLoading ? null : openTermsDialog}
+								      tabIndex={0} role="button" onKeyDown={(event) => {
+									if (
+										(!isLoading && event.keyCode === 13) ||
+										event.keyCode === 32
+									) {
+										openTermsDialog();
+									}
+								}}>
                                     {" "}
-									用户协议
+									{intl.get("TermsService")}
                                  </span>
 							</Typography>
 						}
@@ -170,8 +167,7 @@ function RegisterDialog(props) {
 								display: "block",
 								marginTop: theme.spacing(-1),
 							}}>
-							In order to create an account, you have to accept our terms of
-							service.
+							{intl.get("AgreeTips")}
 						</FormHelperText>
 					)}
 					{status === "accountCreated" ? (
@@ -181,7 +177,7 @@ function RegisterDialog(props) {
 						</HighlightedInformation>
 					) : (
 						<HighlightedInformation>
-							同意用户协议之后才允许注册
+							{intl.get("AgreeTipsContent")}
 						</HighlightedInformation>
 					)}
 				</Fragment>

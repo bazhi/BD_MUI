@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import {
   TextField,
@@ -10,6 +11,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
+import {ST_Login} from "../../../shared/Constants/StatusCommon"
 
 const styles = (theme) => ({
   dialogContent: {
@@ -29,7 +31,7 @@ function ChangePassword(props) {
   const sendPasswordEmail = useCallback(() => {
     setIsLoading(true);
     setTimeout(() => {
-      setLoginStatus("verificationEmailSend");
+      setLoginStatus(ST_Login.verificationEmailSend);
       setIsLoading(false);
       onClose();
     }, 1500);
@@ -52,14 +54,14 @@ function ChangePassword(props) {
       >
         <DialogContent className={classes.dialogContent}>
           <Typography paragraph>
-            请在下面输入您的电子邮件地址，我们将向您发送说明，如何重置密码。
+            {intl.get("ForgetPwdContent")}
           </Typography>
           <TextField
             variant="outlined"
             margin="dense"
             required
             fullWidth
-            label="邮件地址"
+            label={intl.get("EmailAddress")}
             autoFocus
             type="email"
             autoComplete="off"
@@ -67,7 +69,7 @@ function ChangePassword(props) {
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
           <Button onClick={onClose} disabled={isLoading}>
-            取消
+            {intl.get("Cancel")}
           </Button>
           <Button
             type="submit"
@@ -75,7 +77,7 @@ function ChangePassword(props) {
             color="secondary"
             disabled={isLoading}
           >
-            重置密码
+            {intl.get("ResetPwd")}
             {isLoading && <ButtonCircularProgress />}
           </Button>
         </DialogActions>
