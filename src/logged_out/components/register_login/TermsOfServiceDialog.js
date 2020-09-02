@@ -37,7 +37,7 @@ const VariantList = [
 ]
 
 class TermsOfServiceDialog extends Component {
-	state = {Service: null}
+	state = {service: null}
 	
 	componentDidMount() {
 		this.loadLocales();
@@ -54,7 +54,7 @@ class TermsOfServiceDialog extends Component {
 		const url = `/locales/${currentLocale}-service.json`;
 		let self = this;
 		axios.get(url).then(function (res) {
-			self.setState({Service: res.data})
+			self.setState({service: res.data})
 		}).catch(function (error) {
 			console.log(error);
 		});
@@ -85,11 +85,11 @@ class TermsOfServiceDialog extends Component {
 	
 	render() {
         let Info;
-        if(this.state.Service){
-          Info = this.state.Service;
+        if(this.state.service){
+          Info = this.state.service;
         }
 		return (
-            this.state.Service &&
+            this.state.service &&
 			<Dialog open scroll="paper" onClose={this.props.onClose} hideBackdrop>
 				<DialogTitle>
 					{Info && Info.Head}
@@ -115,59 +115,6 @@ class TermsOfServiceDialog extends Component {
 		);
 	}
 }
-
-/*
- function TermsOfServiceDialog(props) {
- const { classes, onClose, theme } = props;
- function ShowItem(Item, Index, Deep)
- {
- return (
- <div key={Index + "_" + Deep}>
- {
- Item.Head && <Typography variant={VariantList[Deep]} color="primary" paragraph>
- {Item.Head}
- </Typography>
- }
- {
- Item.Text && <Typography className={classes.termsConditionsItem} paragraph>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- {Item.Text}
- </Typography>
- }
- {
- Item.List && Item.List.map((Item, Index) =>{
- return  ShowItem(Item, Index, Deep + 1)
- })
- }
- </div>
- );
- }
- const Info = intl.get("TermsServiceContent");
- return (
- <Dialog open scroll="paper" onClose={onClose} hideBackdrop>
- <DialogTitle>
- {Info && Info.Head}
- </DialogTitle>
- <DialogContent>
- {
- Info.List && Info.List.map((Item, Index) =>{
- return  ShowItem(Item, Index, 0)
- })
- }
- </DialogContent>
- <DialogActions className={classes.dialogActions}>
- <ColoredButton
- onClick={onClose}
- variant="contained"
- color={theme.palette.common.black}
- >
- <ArrowBackIcon className={classes.backIcon} />
- Back
- </ColoredButton>
- </DialogActions>
- </Dialog>
- );
- }*/
 
 TermsOfServiceDialog.propTypes = {
 	classes: PropTypes.object.isRequired,
