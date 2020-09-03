@@ -31,6 +31,7 @@ import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
+import LanguageSelector from "../../../shared/components/LanguageSelector";
 
 const styles = (theme) => ({
   appBar: {
@@ -219,58 +220,33 @@ function NavBar(props) {
           <Box display="flex" alignItems="center">
             <Hidden smUp>
               <Box mr={1}>
-                <IconButton
-                  aria-label="Open Navigation"
-                  onClick={openMobileDrawer}
-                  color="primary"
-                >
+                <IconButton aria-label="Open Navigation" onClick={openMobileDrawer} color="primary">
                   <MenuIcon />
                 </IconButton>
               </Box>
             </Hidden>
             <Hidden xsDown>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-                color="primary"
-              >
-                Wa
+              <Typography variant="h4" className={classes.brandText} display="inline" color="primary">
+                B
               </Typography>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-                color="secondary"
-              >
-                Ver
+              <Typography variant="h5" className={classes.brandText} display="inline" color="textSecondary">
+                &
+              </Typography>
+              <Typography variant="h4" className={classes.brandText} display="inline" color="secondary">
+                D
               </Typography>
             </Hidden>
           </Box>
-          <Box
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="center"
-            width="100%"
-          >
+          <Box display="flex" justifyContent="flex-end" alignItems="center" width="100%">
+            <LanguageSelector className={""} />
             {isWidthUp("sm", width) && (
-              <Box mr={3}>
-                <Balance
-                  balance={2573}
-                  openAddBalanceDialog={openAddBalanceDialog}
-                />
+              <Box ml={1} mr={2}>
+                <Balance balance={2573} openAddBalanceDialog={openAddBalanceDialog} />
               </Box>
             )}
             <MessagePopperButton messages={messages} />
-            <ListItem
-              disableGutters
-              className={classNames(classes.iconListItem, classes.smBordered)}
-            >
-              <Avatar
-                alt="profile picture"
-                src={profilePicture}
-                className={classNames(classes.accountAvatar)}
-              />
+            <ListItem disableGutters className={classNames(classes.iconListItem, classes.smBordered)}>
+              <Avatar alt="profile picture" src={profilePicture} className={classNames(classes.accountAvatar)} />
               {isWidthUp("sm", width) && (
                 <ListItemText
                   className={classes.username}
