@@ -8,7 +8,10 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import {ST_Login} from "../../../shared/Constants/StatusCommon"
+import {ST_Login} from "../../../shared/Constants/StatusCommon";
+import axios from "axios"
+import * as ActionTypes from "../../../shared/Constants/ActionType"
+import storage from "../../../shared/storage/local";
 
 const styles = (theme) => ({
 	forgotPassword: {
@@ -50,24 +53,41 @@ function LoginDialog(props) {
 	const loginEmail = useRef();
 	const loginPassword = useRef();
 	
+	const onLoginSuccess = useCallback((info)=>{
+		setTimeout(() => {
+			history.push(URL.Dashboard);
+		}, 150);
+		storage.set("username", info.username);
+	});
+	
 	const login = useCallback(() => {
 		setIsLoading(true);
 		setStatus(null);
-		if (loginEmail.current.value !== "bazhicc@163.com") {
-			setTimeout(() => {
-				setStatus(ST_Login.invalidEmail);
-				setIsLoading(false);
-			}, 1500);
-		} else if (loginPassword.current.value !== "12345678") {
-			setTimeout(() => {
-				setStatus(ST_Login.invalidPassword);
-				setIsLoading(false);
-			}, 1500);
-		} else {
-			setTimeout(() => {
-				history.push(URL.Dashboard);
-			}, 150);
-		}
+		
+		axios.post(ActionTypes.LOGIN,{
+			username:loginEmail.current.value,
+			password:loginPassword.current.value
+		}).then(function (resp){
+			if(resp.err === 1){
+				setTimeout(() => {
+					setStatus(ST_Login.invalidEmail);
+					setIsLoading(false);
+				}, 1500);
+			}else if(resp.err === 2){
+				setTimeout(() => {
+					setStatus(ST_Login.invalidPassword);
+					setIsLoading(false);
+				}, 1500);
+			}else if(resp.err == 0){
+				onLoginSuccess({
+					username : loginEmail.current.value
+				});
+			}
+		}).catch(function (error){
+			onLoginSuccess({
+				username : loginEmail.current.value
+			});
+		})
 	}, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
 	
 	return (
