@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-// import intl from 'react-intl-universal';
+import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Box, Button, Card, Grid, Hidden, isWidthUp, Typography, withStyles, withWidth, } from "@material-ui/core";
@@ -104,26 +104,25 @@ function HeadSection(props) {
 										<Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
 											<Box mb={4}>
 												<Typography variant={isWidthUp("lg", width) ? "h3" : "h4"}>
-													Free Template for building an SaaS app using
-													Material-UI
+													{intl.get("HeadTitle")}
 												</Typography>
 											</Box>
 											<div>
 												<Box mb={2}>
 													<Typography variant={isWidthUp("lg", width) ? "h6" : "body1"} color="textSecondary">
-														Lorem ipsum dolor sit amet, consetetur sadipscing
-														elitr, sed diam nonumy eirmod tempor invidunt
+														{intl.get("HeadContent")}
 													</Typography>
 												</Box>
-												<Button variant="contained" color="secondary" fullWidth className={classes.extraLargeButton} classes={{label: classes.extraLargeButtonLabel}} href="https://github.com/dunky11/react-saas-template">
-													Download from GitHub
+												<Button variant="contained" color="secondary" fullWidth className={classes.extraLargeButton}
+												        classes={{label: classes.extraLargeButtonLabel}} href="">
+													{intl.get("HeadButton")}
 												</Button>
 											</div>
 										</Box>
 									</Grid>
 									<Hidden smDown>
 										<Grid item md={6}>
-											<ZoomImage src={headerImage} className={classes.image} alt="header example" />
+											<ZoomImage src={headerImage} className={classes.image} alt="header image" />
 										</Grid>
 									</Hidden>
 								</Box>

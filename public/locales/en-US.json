@@ -21,5 +21,8 @@
   "SignIn": "Sign In",
   "SignIn_Width": "Sign In",
   "TermsService": "terms of service",
-  "verificationEmailSend": "We have send instructions on how to reset your password to your email address"
+  "verificationEmailSend": "We have send instructions on how to reset your password to your email address",
+  "HeadTitle": "B&D free service for you",
+  "HeadContent": "B&D free service for you",
+  "HeadButton": "contact us"
 }
