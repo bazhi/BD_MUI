@@ -13,8 +13,6 @@ class LanguageSelector extends React.Component {
 	}
 	
 	onSelectLocale(e) {
-/*		let lang = e.target.value;
-		window.location.search = `?lang=${lang}`;*/
 		let lang = e.target.value;
 		GEventEmitter.emit(ETypes.ET_CHANGE_LANGUAGE, lang);
 	};
