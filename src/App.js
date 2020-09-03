@@ -6,10 +6,10 @@ import GlobalStyles from "./GlobalStyles";
 import * as serviceWorker from "./serviceWorker";
 import Pace from "./shared/components/Pace";
 import intl from 'react-intl-universal';
-import axios from 'axios';
 import lodash from 'lodash';
 
 import SUPPORT_LOCALES from "./shared/components/SupportLocales"
+import AxiosCache from "./shared/components/AxiosCache";
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
@@ -30,9 +30,12 @@ class App extends Component {
 		if (!lodash.find(SUPPORT_LOCALES, {value: currentLocale})) {
 			currentLocale = 'zh-CN';
 		}
-		const url = `/locales/${currentLocale}.json`;
+		
 		let self = this;
-		axios.get(url).then(function (res) {
+		AxiosCache({
+			url:`/locales/${currentLocale}.json`,
+			method : 'get'
+		}).then(function (res) {
 			return intl.init({
 				currentLocale,
 				locales: {

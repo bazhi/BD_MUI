@@ -6,7 +6,8 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ColoredButton from "../../../shared/components/ColoredButton";
 import lodash from "lodash";
 import SUPPORT_LOCALES from "../../../shared/components/SupportLocales";
-import axios from "axios";
+
+import AxiosCache from "../../../shared/components/AxiosCache"
 
 const styles = theme => ({
 	termsConditionsItem: {
@@ -51,9 +52,11 @@ class TermsOfServiceDialog extends Component {
 		if (!lodash.find(SUPPORT_LOCALES, {value: currentLocale})) {
 			currentLocale = 'zh-CN';
 		}
-		const url = `/locales/${currentLocale}-service.json`;
 		let self = this;
-		axios.get(url).then(function (res) {
+		AxiosCache({
+			url: `/locales/${currentLocale}-service.json`,
+			method : 'get'
+		}).then(function (res) {
 			self.setState({service: res.data})
 		}).catch(function (error) {
 			console.log(error);
