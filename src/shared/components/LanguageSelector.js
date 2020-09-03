@@ -3,6 +3,8 @@ import intl from "react-intl-universal";
 import { NativeSelect } from "@material-ui/core";
 
 import SUPPORT_LOCALES from "./SupportLocales";
+import GEventEmitter from "./Events/GEventEmitter"
+import * as ETypes from "./Events/EventTypes"
 
 class LanguageSelector extends React.Component {
 	constructor(props) {
@@ -11,8 +13,10 @@ class LanguageSelector extends React.Component {
 	}
 	
 	onSelectLocale(e) {
+/*		let lang = e.target.value;
+		window.location.search = `?lang=${lang}`;*/
 		let lang = e.target.value;
-		window.location.search = `?lang=${lang}`;
+		GEventEmitter.emit(ETypes.ET_CHANGE_LANGUAGE, lang);
 	};
 	
 	render() {

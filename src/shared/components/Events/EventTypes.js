@@ -1,0 +1,1 @@
+export const ET_CHANGE_LANGUAGE = "language_change";

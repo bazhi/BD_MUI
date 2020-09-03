@@ -7,6 +7,8 @@ import * as serviceWorker from "./serviceWorker";
 import Pace from "./shared/components/Pace";
 import intl from 'react-intl-universal';
 import lodash from 'lodash';
+import GEventEmitter from "./shared/components/Events/GEventEmitter"
+import * as ETypes from "./shared/components/Events/EventTypes"
 
 import SUPPORT_LOCALES from "./shared/components/SupportLocales"
 import AxiosCache from "./shared/components/AxiosCache";
@@ -19,14 +21,27 @@ class App extends Component {
 	
 	componentDidMount() {
 		this.loadLocales();
+		let self = this;
+		this.eventEmitter=GEventEmitter.addListener(ETypes.ET_CHANGE_LANGUAGE, function (lang){
+			self.loadLocales(lang);
+		})
 	}
 	
-	loadLocales() {
-		let currentLocale = intl.determineLocale({
-			urlLocaleKey: 'lang',
-			cookieLocaleKey: 'lang'
-		});
-		
+	componentWillUnmount() {
+		this.eventEmitter.remove();
+	}
+	
+	loadLocales(lang) {
+		this.setState({initDone: false});
+		let currentLocale =lang;
+		if(!lang){
+			currentLocale = intl.determineLocale({
+				localStorageLocaleKey: 'lang'
+			});
+		}else{
+			localStorage.setItem('lang', lang);
+		}
+
 		if (!lodash.find(SUPPORT_LOCALES, {value: currentLocale})) {
 			currentLocale = 'zh-CN';
 		}
