@@ -4,14 +4,14 @@ import { BrowserRouter as WebRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import * as serviceWorker from "./serviceWorker";
-import Pace from "./shared/components/Pace";
+import Pace from "shared/components/Pace";
 import intl from 'react-intl-universal';
 import lodash from 'lodash';
-import GEventEmitter from "./shared/components/Events/GEventEmitter"
-import * as ETypes from "./shared/components/Events/EventTypes"
+import GEventEmitter from "shared/components/Events/GEventEmitter"
+import * as ETypes from "shared/components/Events/EventTypes"
 
-import SUPPORT_LOCALES from "./shared/components/SupportLocales"
-import AxiosCache from "./shared/components/AxiosCache";
+import SUPPORT_LOCALES from "shared/components/SupportLocales"
+import AxiosCache from "shared/components/AxiosCache";
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));

@@ -12,10 +12,10 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
-import NavigationDrawer from "../../../shared/components/NavigationDrawer";
+import NavigationDrawer from "shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
-import LanguageSelector from "../../../shared/components/LanguageSelector";
-import storage from "../../../shared/storage/local";
+import LanguageSelector from "shared/components/LanguageSelector";
+import storage from "shared/storage/local";
 
 const styles = (theme) => ({
 	appBar: {

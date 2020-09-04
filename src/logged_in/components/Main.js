@@ -4,8 +4,8 @@ import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
-import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
-import smoothScrollTop from "../../shared/functions/smoothScrollTop";
+import ConsecutiveSnackbarMessages from "shared/components/ConsecutiveSnackbarMessages";
+import smoothScrollTop from "shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 

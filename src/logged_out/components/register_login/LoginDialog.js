@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withRouter } from "react-router-dom";
 import { Button, Checkbox, FormControlLabel, TextField, Typography, withStyles, } from "@material-ui/core";
-import FormDialog from "../../../shared/components/FormDialog";
-import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import {ST_Login} from "../../../shared/Constants/StatusCommon";
+import FormDialog from "shared/components/FormDialog";
+import HighlightedInformation from "shared/components/HighlightedInformation";
+import ButtonCircularProgress from "shared/components/ButtonCircularProgress";
+import VisibilityPasswordTextField from "shared/components/VisibilityPasswordTextField";
+import {ST_Login} from "shared/Constants/StatusCommon";
 import axios from "axios"
-import * as ActionTypes from "../../../shared/Constants/ActionType"
-import storage from "../../../shared/storage/local";
+import * as ActionTypes from "shared/Constants/ActionType"
+import storage from "shared/storage/local";
 
 const styles = (theme) => ({
 	forgotPassword: {
@@ -58,7 +58,7 @@ function LoginDialog(props) {
 			history.push(URL.Dashboard);
 		}, 150);
 		storage.set("username", info.username);
-	});
+	}, [history]);
 	
 	const login = useCallback(() => {
 		setIsLoading(true);
@@ -78,7 +78,7 @@ function LoginDialog(props) {
 					setStatus(ST_Login.invalidPassword);
 					setIsLoading(false);
 				}, 1500);
-			}else if(resp.err == 0){
+			}else if(resp.err === 0){
 				onLoginSuccess({
 					username : loginEmail.current.value
 				});
@@ -88,7 +88,7 @@ function LoginDialog(props) {
 				username : loginEmail.current.value
 			});
 		})
-	}, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
+	}, [setIsLoading, loginEmail, loginPassword, setStatus, onLoginSuccess]);
 	
 	return (
 		<Fragment>
