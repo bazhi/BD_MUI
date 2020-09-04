@@ -6,7 +6,7 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import {ST_Register} from "../../../shared/Constants/StatusCommon"
+import {ST_Register} from "../../../shared/constants/StatusCommon"
 
 const styles = (theme) => ({
 	link: {

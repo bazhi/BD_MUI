@@ -8,9 +8,11 @@ import FormDialog from "shared/components/FormDialog";
 import HighlightedInformation from "shared/components/HighlightedInformation";
 import ButtonCircularProgress from "shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "shared/components/VisibilityPasswordTextField";
-import {ST_Login} from "shared/Constants/StatusCommon";
-import axios from "axios"
-import * as ActionTypes from "shared/Constants/ActionType"
+import {ST_Login} from "shared/constants/StatusCommon";
+import axios from "axios";
+import * as ActionTypes from "shared/constants/ActionType";
+import * as URL from "shared/constants/Url";
+import * as Key from "shared/constants/Keyword"
 import storage from "shared/storage/local";
 
 const styles = (theme) => ({
@@ -34,11 +36,6 @@ const styles = (theme) => ({
 	},
 });
 
-
-const URL = {
-	Dashboard : "/c/dashboard",
-}
-
 function LoginDialog(props) {
 	const {
 		setStatus,
@@ -57,7 +54,7 @@ function LoginDialog(props) {
 		setTimeout(() => {
 			history.push(URL.Dashboard);
 		}, 150);
-		storage.set("username", info.username);
+		storage.set(Key.UserName, info.username);
 	}, [history]);
 	
 	const login = useCallback(() => {

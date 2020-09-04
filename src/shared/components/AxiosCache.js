@@ -1,6 +1,6 @@
 import axios from "axios"
 import {setupCache} from "axios-cache-adapter";
-import Config from "../Constants/Config";
+import Config from "../constants/Config";
 
 const cache = setupCache({
 	maxAge : Config.MaxAge

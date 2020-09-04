@@ -11,7 +11,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-import {ST_Login} from "../../../shared/Constants/StatusCommon"
+import {ST_Login} from "../../../shared/constants/StatusCommon"
 
 const styles = (theme) => ({
   dialogContent: {
