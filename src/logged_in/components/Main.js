@@ -9,7 +9,7 @@ import smoothScrollTop from "shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 import intl from 'react-intl-universal';
-import * as TabPage from "../constants/TabPage"
+import * as TabPage from "../constants/TabPage";
 
 const styles = (theme) => ({
 	main: {
