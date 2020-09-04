@@ -1,4 +1,5 @@
 import React, { Fragment, useCallback, useRef, useState } from "react";
+import intl from 'react-intl-universal';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -126,6 +127,7 @@ function NavBar(props) {
 	
 	const closeMobileDrawer = useCallback(() => {
 		setIsMobileOpen(false);
+		storage.set(Key.RememberMe, false);
 	}, [setIsMobileOpen]);
 	
 	const openDrawer = useCallback(() => {
@@ -138,7 +140,7 @@ function NavBar(props) {
 	
 	const onLogout = useCallback(()=>{
 		storage.set(Key.RememberMe, false);
-	});
+	}, []);
 	
 	const menuItems = [
 		{
@@ -254,33 +256,20 @@ function NavBar(props) {
 					>
 						<SupervisorAccountIcon />
 					</IconButton>
-					<SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
+					<SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} title={intl.get("UserInfo")} />
 				</Toolbar>
 			</AppBar>
 			<Hidden xsDown>
-				<Drawer //  both drawers can be combined into one for performance
-					variant="permanent"
-					classes={{
-						paper: classes.drawerPaper,
-					}}
-					open={false}
-				>
+				{/*both drawers can be combined into one for performance*/}
+				<Drawer variant="permanent" classes={{paper: classes.drawerPaper,}} open={false}>
 					<List>
 						{menuItems.map((element, index) => (
-							<Link
-								to={element.link}
-								className={classes.menuLink}
-								onClick={element.onClick}
-								key={index}
-								ref={(node) => {
+							<Link to={element.link} className={classes.menuLink} onClick={element.onClick} key={index}
+							      ref={(node) => {
 									links.current[index] = node;
 								}}
 							>
-								<Tooltip
-									title={element.key}
-									placement="right"
-									key={element.key}
-								>
+								<Tooltip title={intl.get(element.key)} placement="right" key={element.key}>
 									<ListItem
 										selected={selectedTab === element.key}
 										button

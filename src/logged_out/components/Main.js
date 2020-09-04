@@ -56,7 +56,7 @@ function Main(props) {
       setDialogOpen("login");
       setIsMobileDrawerOpen(false);
     }
-  }, [setDialogOpen, setIsMobileDrawerOpen]);
+  }, [setDialogOpen, setIsMobileDrawerOpen, history]);
 
   const closeDialog = useCallback(() => {
     setDialogOpen(null);

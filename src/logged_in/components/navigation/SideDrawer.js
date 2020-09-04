@@ -20,7 +20,7 @@ const styles = {
 };
 
 function SideDrawer(props) {
-  const { classes, onClose, open } = props;
+  const { classes, onClose, open, title } = props;
   return (
     <Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
       <Toolbar disableGutters className={classes.toolbar}>
@@ -32,7 +32,7 @@ function SideDrawer(props) {
           width="100%"
           alignItems="center"
         >
-          <Typography variant="h6">A Sidedrawer</Typography>
+          <Typography variant="h6">{title}</Typography>
           <IconButton
             onClick={onClose}
             color="primary"
@@ -50,7 +50,8 @@ function SideDrawer(props) {
 SideDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  title : PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SideDrawer);

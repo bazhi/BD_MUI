@@ -24,5 +24,10 @@
   "verificationEmailSend": "We have send instructions on how to reset your password to your email address",
   "HeadTitle": "B&D free service for you",
   "HeadContent": "B&D free service for you",
-  "HeadButton": "contact us"
+  "HeadButton": "contact us",
+  "Dashboard" : "指示板",
+  "Posts" : "活动中心",
+  "Subscription" : "订阅信息",
+  "Logout" : "退出",
+  "UserInfo": "个人信息"
 }

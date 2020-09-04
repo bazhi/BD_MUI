@@ -24,5 +24,9 @@
   "VerificationEmailSend": "我们已经将如何重置密码的说明发送到到您的电子邮件地址",
   "HeadTitle": "B&D 免费为您提供最优的服务",
   "HeadContent": "B&D 免费为您提供最优的服务",
-  "HeadButton": "联系我们"
+  "HeadButton": "联系我们",
+  "Dashboard" : "指示板",
+  "Posts" : "活动中心",
+  "Logout" : "退出",
+  "UserInfo": "个人信息"
 }
