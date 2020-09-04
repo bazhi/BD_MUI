@@ -16,6 +16,7 @@ import NavigationDrawer from "shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 import LanguageSelector from "shared/components/LanguageSelector";
 import storage from "shared/storage/local";
+import * as Key from "shared/constants/Keyword"
 
 const styles = (theme) => ({
 	appBar: {
@@ -135,6 +136,10 @@ function NavBar(props) {
 		setIsSideDrawerOpen(false);
 	}, [setIsSideDrawerOpen]);
 	
+	const onLogout = useCallback(()=>{
+		storage.set(Key.RememberMe, false);
+	});
+	
 	const menuItems = [
 		{
 			link: "/c/dashboard",
@@ -189,6 +194,7 @@ function NavBar(props) {
 		{
 			link: "/",
 			key: "Logout",
+			onClick : onLogout,
 			icon: {
 				desktop: (
 					<PowerSettingsNewIcon className="text-white" fontSize="small" />

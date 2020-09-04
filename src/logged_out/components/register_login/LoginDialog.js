@@ -49,12 +49,15 @@ function LoginDialog(props) {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const loginEmail = useRef();
 	const loginPassword = useRef();
+	const rememberMe = useRef();
 	
-	const onLoginSuccess = useCallback((info)=>{
+	const onLoginSuccess = useCallback((info, remember)=>{
 		setTimeout(() => {
 			history.push(URL.Dashboard);
 		}, 150);
 		storage.set(Key.UserName, info.username);
+		storage.set(Key.Session, "1111111");
+		storage.set(Key.RememberMe, remember);
 	}, [history]);
 	
 	const login = useCallback(() => {
@@ -78,14 +81,14 @@ function LoginDialog(props) {
 			}else if(resp.err === 0){
 				onLoginSuccess({
 					username : loginEmail.current.value
-				});
+				}, rememberMe.current.checked);
 			}
 		}).catch(function (error){
 			onLoginSuccess({
 				username : loginEmail.current.value
-			});
+			}, rememberMe.current.checked);
 		})
-	}, [setIsLoading, loginEmail, loginPassword, setStatus, onLoginSuccess]);
+	}, [setIsLoading, loginEmail, loginPassword, rememberMe, setStatus, onLoginSuccess]);
 	
 	return (
 		<Fragment>
@@ -132,7 +135,12 @@ function LoginDialog(props) {
 						<FormControlLabel
 							className={classes.formControlLabel}
 							control={<Checkbox color="primary" />}
-							label={<Typography variant="body1"> {intl.get("RememberMe")}</Typography>}
+							inputRef={rememberMe}
+							label={
+								<Typography variant="body1">
+									{intl.get("RememberMe")}
+								</Typography>
+							}
 						/>
 						
 						{status === ST_Login.verificationEmailSend &&

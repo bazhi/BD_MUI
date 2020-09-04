@@ -11,7 +11,11 @@ import CookieConsent from "./cookies/CookieConsent";
 import dummyBlogPosts from "../dummy_data/blogPosts";
 import DialogSelector from "./register_login/DialogSelector";
 import Routing from "./Routing";
-import smoothScrollTop from "../../shared/functions/smoothScrollTop";
+import smoothScrollTop from "shared/functions/smoothScrollTop";
+import * as URL from "shared/constants/Url";
+import * as Key from "shared/constants/Keyword"
+import storage from "shared/storage/local";
+import { withRouter } from "react-router-dom";
 
 AOS.init({ once: true });
 
@@ -23,7 +27,7 @@ const styles = (theme) => ({
 });
 
 function Main(props) {
-  const { classes } = props;
+  const { classes, history} = props;
   const [selectedTab, setSelectedTab] = useState(null);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [blogPosts, setBlogPosts] = useState([]);
@@ -43,8 +47,15 @@ function Main(props) {
   }, [setSelectedTab]);
 
   const openLoginDialog = useCallback(() => {
-    setDialogOpen("login");
-    setIsMobileDrawerOpen(false);
+    var rememberMe = storage.get(Key.RememberMe);
+    if(rememberMe){
+      setTimeout(() => {
+        history.push(URL.Dashboard);
+      }, 150);
+    }else{
+      setDialogOpen("login");
+      setIsMobileDrawerOpen(false);
+    }
   }, [setDialogOpen, setIsMobileDrawerOpen]);
 
   const closeDialog = useCallback(() => {
@@ -141,4 +152,6 @@ Main.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(memo(Main));
+export default withRouter(withStyles(styles, { withTheme: true })(memo(Main)));
+
+
