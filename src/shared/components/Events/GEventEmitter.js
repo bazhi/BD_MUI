@@ -1,4 +1,4 @@
-import {EventEmitter} from "fbemitter"
+import { EventEmitter } from "fbemitter"
 
 let GEventEmitter = new EventEmitter();
 

@@ -1,28 +1,28 @@
-var storage = (function(){
+var storage = (function () {
 	return {
-		set: function(key, value, expireSeconds){
-			if(expireSeconds){
+		set: function (key, value, expireSeconds) {
+			if (expireSeconds) {
 				localStorage.setItem(key, JSON.stringify({
 					value: value,
-					expired: Date.now() + 1000*expireSeconds
+					expired: Date.now() + 1000 * expireSeconds
 				}))
-			}else{
+			} else {
 				localStorage.setItem(key, JSON.stringify({
 					value: value,
 				}))
 			}
 		},
-		get: function(key){
+		get: function (key) {
 			var item = localStorage.getItem(key);
-			if(item){
+			if (item) {
 				var o = JSON.parse(item)
-				if(!o.expired || Date.now() < o.expired){
+				if (!o.expired || Date.now() < o.expired) {
 					return o.value
-				}else{
+				} else {
 					localStorage.removeItem(key)
 				}
 			}
-			return;
+			
 		}
 	}
 })()

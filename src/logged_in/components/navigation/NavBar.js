@@ -140,7 +140,7 @@ function NavBar(props) {
 		setIsSideDrawerOpen(false);
 	}, [setIsSideDrawerOpen]);
 	
-	const onLogout = useCallback(()=>{
+	const onLogout = useCallback(() => {
 		storage.set(Key.RememberMe, false);
 	}, []);
 	
@@ -178,8 +178,8 @@ function NavBar(props) {
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<AccountBalanceIcon className={ selectedTab === LeftTab.Subscription ? classes.textPrimary : "text-white"}
-						fontSize="small"
+					<AccountBalanceIcon className={selectedTab === LeftTab.Subscription ? classes.textPrimary : "text-white"}
+					                    fontSize="small"
 					/>
 				),
 				mobile: <AccountBalanceIcon className="text-white" />,
@@ -188,7 +188,7 @@ function NavBar(props) {
 		{
 			link: URL.Home,
 			key: LeftTab.Logout,
-			onClick : onLogout,
+			onClick: onLogout,
 			icon: {
 				desktop: (
 					<PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -258,8 +258,8 @@ function NavBar(props) {
 						{menuItems.map((element, index) => (
 							<Link to={element.link} className={classes.menuLink} onClick={element.onClick} key={index}
 							      ref={(node) => {
-									links.current[index] = node;
-								}}
+								      links.current[index] = node;
+							      }}
 							>
 								<Tooltip title={intl.get(element.key)} placement="right" key={element.key}>
 									<ListItem

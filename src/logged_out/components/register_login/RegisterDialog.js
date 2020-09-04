@@ -6,7 +6,7 @@ import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
-import {ST_Register} from "../../../shared/constants/StatusCommon"
+import { ST_Register } from "../../../shared/constants/StatusCommon"
 
 const styles = (theme) => ({
 	link: {
@@ -100,7 +100,7 @@ function RegisterDialog(props) {
 							if (status === ST_Register.passwordTooShort) {
 								return "Create a password at least 6 characters long.";
 							}
-							if (status ===  ST_Register.passwordsDontMatch) {
+							if (status === ST_Register.passwordsDontMatch) {
 								return "Your passwords dont match.";
 							}
 							return null;
@@ -110,7 +110,7 @@ function RegisterDialog(props) {
 					<VisibilityPasswordTextField
 						variant="outlined" margin="normal" required fullWidth
 						error={
-							status === ST_Register.passwordTooShort || status ===  ST_Register.passwordsDontMatch
+							status === ST_Register.passwordTooShort || status === ST_Register.passwordsDontMatch
 						}
 						label={intl.get("RepeatPwd")} inputRef={registerPasswordRepeat} autoComplete="off"
 						onChange={() => {

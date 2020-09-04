@@ -19,7 +19,7 @@ class LanguageSelector extends React.Component {
 	
 	render() {
 		let item = intl.get("Language");
-		if(!item){
+		if (!item) {
 			item = "null";
 		}
 		
@@ -30,13 +30,13 @@ class LanguageSelector extends React.Component {
 				</option>
 				{
 					SUPPORT_LOCALES.map(locale => {
-						if(locale.name !== item){
+						if (locale.name !== item) {
 							return (
 								<option key={locale.value} value={locale.value}>
 									{locale.name}
 								</option>
 							)
-						}else{
+						} else {
 							return null;
 						}
 					})

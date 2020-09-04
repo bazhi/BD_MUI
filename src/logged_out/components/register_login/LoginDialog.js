@@ -8,7 +8,7 @@ import FormDialog from "shared/components/FormDialog";
 import HighlightedInformation from "shared/components/HighlightedInformation";
 import ButtonCircularProgress from "shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "shared/components/VisibilityPasswordTextField";
-import {ST_Login} from "shared/constants/StatusCommon";
+import { ST_Login } from "shared/constants/StatusCommon";
 import axios from "axios";
 import * as ActionTypes from "shared/constants/ActionType";
 import * as URL from "shared/constants/Url";
@@ -51,7 +51,7 @@ function LoginDialog(props) {
 	const loginPassword = useRef();
 	const rememberMe = useRef();
 	
-	const onLoginSuccess = useCallback((info, remember)=>{
+	const onLoginSuccess = useCallback((info, remember) => {
 		setTimeout(() => {
 			history.push(URL.Dashboard);
 		}, 150);
@@ -64,28 +64,28 @@ function LoginDialog(props) {
 		setIsLoading(true);
 		setStatus(null);
 		
-		axios.post(ActionTypes.LOGIN,{
-			username:loginEmail.current.value,
-			password:loginPassword.current.value
-		}).then(function (resp){
-			if(resp.err === 1){
+		axios.post(ActionTypes.LOGIN, {
+			username: loginEmail.current.value,
+			password: loginPassword.current.value
+		}).then(function (resp) {
+			if (resp.err === 1) {
 				setTimeout(() => {
 					setStatus(ST_Login.invalidEmail);
 					setIsLoading(false);
 				}, 1500);
-			}else if(resp.err === 2){
+			} else if (resp.err === 2) {
 				setTimeout(() => {
 					setStatus(ST_Login.invalidPassword);
 					setIsLoading(false);
 				}, 1500);
-			}else if(resp.err === 0){
+			} else if (resp.err === 0) {
 				onLoginSuccess({
-					username : loginEmail.current.value
+					username: loginEmail.current.value
 				}, rememberMe.current.checked);
 			}
-		}).catch(function (error){
+		}).catch(function (error) {
 			onLoginSuccess({
-				username : loginEmail.current.value
+				username: loginEmail.current.value
 			}, rememberMe.current.checked);
 		})
 	}, [setIsLoading, loginEmail, loginPassword, rememberMe, setStatus, onLoginSuccess]);
@@ -144,9 +144,9 @@ function LoginDialog(props) {
 						/>
 						
 						{status === ST_Login.verificationEmailSend &&
-							<HighlightedInformation>
-								{intl.get("VerificationEmailSend")}
-							</HighlightedInformation>
+						<HighlightedInformation>
+							{intl.get("VerificationEmailSend")}
+						</HighlightedInformation>
 						}
 					</Fragment>
 				}

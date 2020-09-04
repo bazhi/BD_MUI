@@ -1,57 +1,49 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Drawer,
-  IconButton,
-  Toolbar,
-  Divider,
-  Typography,
-  Box,
-  withStyles
-} from "@material-ui/core";
+import { Box, Divider, Drawer, IconButton, Toolbar, Typography, withStyles } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
 const drawerWidth = 240;
 
 const styles = {
-  toolbar: {
-    minWidth: drawerWidth
-  }
+	toolbar: {
+		minWidth: drawerWidth
+	}
 };
 
 function SideDrawer(props) {
-  const { classes, onClose, open, title } = props;
-  return (
-      <Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
-        <Toolbar disableGutters className={classes.toolbar}>
-          <Box
-              pl={3}
-              pr={3}
-              display="flex"
-              justifyContent="space-between"
-              width="100%"
-              alignItems="center"
-          >
-            <Typography variant="h6">{title}</Typography>
-            <IconButton
-                onClick={onClose}
-                color="primary"
-                aria-label="Close Side drawer"
-            >
-              <CloseIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-        <Divider />
-      </Drawer>
-  );
+	const {classes, onClose, open, title} = props;
+	return (
+		<Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
+			<Toolbar disableGutters className={classes.toolbar}>
+				<Box
+					pl={3}
+					pr={3}
+					display="flex"
+					justifyContent="space-between"
+					width="100%"
+					alignItems="center"
+				>
+					<Typography variant="h6">{title}</Typography>
+					<IconButton
+						onClick={onClose}
+						color="primary"
+						aria-label="Close Side drawer"
+					>
+						<CloseIcon />
+					</IconButton>
+				</Box>
+			</Toolbar>
+			<Divider />
+		</Drawer>
+	);
 }
 
 SideDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  title : PropTypes.string.isRequired
+	classes: PropTypes.object.isRequired,
+	open: PropTypes.bool.isRequired,
+	onClose: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(SideDrawer);

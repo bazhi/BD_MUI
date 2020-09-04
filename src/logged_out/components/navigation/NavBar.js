@@ -24,7 +24,7 @@ const styles = theme => ({
 		fontSize: theme.typography.body1.fontSize,
 		fontWeight: theme.typography.h6.fontWeight
 	},
-
+	
 	noDecoration: {
 		textDecoration: "none !important"
 	},

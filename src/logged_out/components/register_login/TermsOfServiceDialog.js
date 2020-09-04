@@ -43,6 +43,7 @@ class TermsOfServiceDialog extends Component {
 	componentDidMount() {
 		this.loadLocales();
 	}
+	
 	loadLocales() {
 		let currentLocale = intl.determineLocale({
 			urlLocaleKey: 'lang',
@@ -55,7 +56,7 @@ class TermsOfServiceDialog extends Component {
 		let self = this;
 		AxiosCache({
 			url: `/locales/${currentLocale}-service.json`,
-			method : 'get'
+			method: 'get'
 		}).then(function (res) {
 			self.setState({service: res.data})
 		}).catch(function (error) {
@@ -87,12 +88,12 @@ class TermsOfServiceDialog extends Component {
 	}
 	
 	render() {
-        let Info;
-        if(this.state.service){
-          Info = this.state.service;
-        }
+		let Info;
+		if (this.state.service) {
+			Info = this.state.service;
+		}
 		return (
-            this.state.service &&
+			this.state.service &&
 			<Dialog open scroll="paper" onClose={this.props.onClose} hideBackdrop>
 				<DialogTitle>
 					{Info && Info.Head}

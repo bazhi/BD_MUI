@@ -7,7 +7,7 @@ import toArray from "./toArray";
  * @return {number} The number of characters in the string.
  */
 function countWithEmojis(str) {
-  return toArray(str).length;
+	return toArray(str).length;
 }
 
 export default countWithEmojis;

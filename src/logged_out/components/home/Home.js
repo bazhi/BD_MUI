@@ -5,21 +5,21 @@ import FeatureSection from "./FeatureSection";
 import PricingSection from "./PricingSection";
 
 function Home(props) {
-  const { selectHome } = props;
-  useEffect(() => {
-    selectHome();
-  }, [selectHome]);
-  return (
-    <Fragment>
-      <HeadSection />
-      <FeatureSection />
-      <PricingSection />
-    </Fragment>
-  );
+	const {selectHome} = props;
+	useEffect(() => {
+		selectHome();
+	}, [selectHome]);
+	return (
+		<Fragment>
+			<HeadSection />
+			<FeatureSection />
+			<PricingSection />
+		</Fragment>
+	);
 }
 
 Home.propTypes = {
-  selectHome: PropTypes.func.isRequired
+	selectHome: PropTypes.func.isRequired
 };
 
 export default Home;

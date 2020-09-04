@@ -22,7 +22,7 @@ class App extends Component {
 	componentDidMount() {
 		this.loadLocales();
 		let self = this;
-		this.eventEmitter=GEventEmitter.addListener(ETypes.ET_CHANGE_LANGUAGE, function (lang){
+		this.eventEmitter = GEventEmitter.addListener(ETypes.ET_CHANGE_LANGUAGE, function (lang) {
 			self.loadLocales(lang);
 		})
 	}
@@ -33,23 +33,23 @@ class App extends Component {
 	
 	loadLocales(lang) {
 		this.setState({initDone: false});
-		let currentLocale =lang;
-		if(!lang){
+		let currentLocale = lang;
+		if (!lang) {
 			currentLocale = intl.determineLocale({
 				localStorageLocaleKey: 'lang'
 			});
-		}else{
+		} else {
 			localStorage.setItem('lang', lang);
 		}
-
+		
 		if (!lodash.find(SUPPORT_LOCALES, {value: currentLocale})) {
 			currentLocale = 'zh-CN';
 		}
 		
 		let self = this;
 		AxiosCache({
-			url:`/locales/${currentLocale}.json`,
-			method : 'get'
+			url: `/locales/${currentLocale}.json`,
+			method: 'get'
 		}).then(function (res) {
 			return intl.init({
 				currentLocale,
