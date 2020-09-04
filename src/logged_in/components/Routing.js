@@ -6,6 +6,7 @@ import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
 import PropsRoute from "shared/components/PropsRoute";
+import * as URL from "shared/constants/Url"
 
 const styles = (theme) => ({
   wrapper: {
@@ -68,7 +69,7 @@ function Routing(props) {
     <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
-          path="/c/posts"
+          path={URL.Posts}
           component={Posts}
           EmojiTextArea={EmojiTextArea}
           ImageCropper={ImageCropper}
@@ -80,7 +81,7 @@ function Routing(props) {
           selectPosts={selectPosts}
         />
         <PropsRoute
-          path="/c/subscription"
+          path={URL.Subscription}
           component={Subscription}
           transactions={transactions}
           pushMessageToSnackbar={pushMessageToSnackbar}
@@ -88,7 +89,7 @@ function Routing(props) {
           openAddBalanceDialog={openAddBalanceDialog}
         />
         <PropsRoute
-          path=""
+          path={URL.Home}
           component={Dashboard}
           toggleAccountActivation={toggleAccountActivation}
           pushMessageToSnackbar={pushMessageToSnackbar}

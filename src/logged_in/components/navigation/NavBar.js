@@ -18,6 +18,7 @@ import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 import LanguageSelector from "shared/components/LanguageSelector";
 import storage from "shared/storage/local";
 import * as Key from "shared/constants/Keyword"
+import * as URL from "shared/constants/Url"
 
 const styles = (theme) => ({
 	appBar: {
@@ -142,16 +143,23 @@ function NavBar(props) {
 		storage.set(Key.RememberMe, false);
 	}, []);
 	
+	const LeftTab = {
+		Dashboard : "Dashboard",
+		Posts : "Posts",
+		Subscription : "Subscription",
+		Logout : "Logout",
+	}
+	
 	const menuItems = [
 		{
-			link: "/c/dashboard",
-			key: "Dashboard",
+			link: URL.Dashboard,
+			key: LeftTab.Dashboard,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
 					<DashboardIcon
 						className={
-							selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
+							selectedTab === LeftTab.Dashboard ? classes.textPrimary : "text-white"
 						}
 						fontSize="small"
 					/>
@@ -160,33 +168,23 @@ function NavBar(props) {
 			},
 		},
 		{
-			link: "/c/posts",
-			key: "Posts",
+			link: URL.Posts,
+			key: LeftTab.Posts,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<ImageIcon
-						className={
-							selectedTab === "Posts" ? classes.textPrimary : "text-white"
-						}
-						fontSize="small"
-					/>
+					<ImageIcon className={selectedTab === LeftTab.Posts ? classes.textPrimary : "text-white"} fontSize="small" />
 				),
 				mobile: <ImageIcon className="text-white" />,
 			},
 		},
 		{
-			link: "/c/subscription",
-			key: "Subscription",
+			link: URL.Subscription,
+			key: LeftTab.Subscription,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<AccountBalanceIcon
-						className={
-							selectedTab === "Subscription"
-								? classes.textPrimary
-								: "text-white"
-						}
+					<AccountBalanceIcon className={ selectedTab === LeftTab.Subscription ? classes.textPrimary : "text-white"}
 						fontSize="small"
 					/>
 				),
@@ -194,8 +192,8 @@ function NavBar(props) {
 			},
 		},
 		{
-			link: "/",
-			key: "Logout",
+			link: URL.Home,
+			key: LeftTab.Logout,
 			onClick : onLogout,
 			icon: {
 				desktop: (
@@ -252,7 +250,7 @@ function NavBar(props) {
 					<IconButton
 						onClick={openDrawer}
 						color="primary"
-						aria-label="Open Sidedrawer"
+						aria-label="Open Side drawer"
 					>
 						<SupervisorAccountIcon />
 					</IconButton>
@@ -278,11 +276,7 @@ function NavBar(props) {
 										onClick={() => {
 											links.current[index].click();
 										}}
-										aria-label={
-											element.key === "Logout"
-												? "Logout"
-												: `Go to ${element.key}`
-										}
+										aria-label={element.key}
 									>
 										<ListItemIcon className={classes.justifyCenter}>
 											{element.icon.desktop}

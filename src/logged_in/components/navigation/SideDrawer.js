@@ -36,7 +36,7 @@ function SideDrawer(props) {
           <IconButton
             onClick={onClose}
             color="primary"
-            aria-label="Close Sidedrawer"
+            aria-label="Close Side drawer"
           >
             <CloseIcon />
           </IconButton>

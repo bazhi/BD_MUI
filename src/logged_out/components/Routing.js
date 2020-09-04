@@ -5,6 +5,7 @@ import PropsRoute from "../../shared/components/PropsRoute";
 import Home from "./home/Home";
 import Blog from "./blog/Blog";
 import BlogPost from "./blog/BlogPost";
+import * as URL from "shared/constants/Url"
 
 function Routing(props) {
   const { blogPosts, selectBlog, selectHome } = props;
@@ -25,13 +26,13 @@ function Routing(props) {
       ))}
       <PropsRoute
         exact
-        path="/blog"
+        path={URL.Blog}
         component={Blog}
         selectBlog={selectBlog}
         blogPosts={blogPosts}
       />
       )
-      <PropsRoute path="/" component={Home} selectHome={selectHome} />)
+      <PropsRoute path={URL.Home} component={Home} selectHome={selectHome} />)
     </Switch>
   );
 }
