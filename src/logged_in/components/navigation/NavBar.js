@@ -19,6 +19,7 @@ import LanguageSelector from "shared/components/LanguageSelector";
 import storage from "shared/storage/local";
 import * as Key from "shared/constants/Keyword"
 import * as URL from "shared/constants/Url"
+import * as LeftTab from "../../constants/TabPage"
 
 const styles = (theme) => ({
 	appBar: {
@@ -142,13 +143,6 @@ function NavBar(props) {
 	const onLogout = useCallback(()=>{
 		storage.set(Key.RememberMe, false);
 	}, []);
-	
-	const LeftTab = {
-		Dashboard : "Dashboard",
-		Posts : "Posts",
-		Subscription : "Subscription",
-		Logout : "Logout",
-	}
 	
 	const menuItems = [
 		{

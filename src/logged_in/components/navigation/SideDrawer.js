@@ -22,28 +22,28 @@ const styles = {
 function SideDrawer(props) {
   const { classes, onClose, open, title } = props;
   return (
-    <Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
-      <Toolbar disableGutters className={classes.toolbar}>
-        <Box
-          pl={3}
-          pr={3}
-          display="flex"
-          justifyContent="space-between"
-          width="100%"
-          alignItems="center"
-        >
-          <Typography variant="h6">{title}</Typography>
-          <IconButton
-            onClick={onClose}
-            color="primary"
-            aria-label="Close Side drawer"
+      <Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
+        <Toolbar disableGutters className={classes.toolbar}>
+          <Box
+              pl={3}
+              pr={3}
+              display="flex"
+              justifyContent="space-between"
+              width="100%"
+              alignItems="center"
           >
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      </Toolbar>
-      <Divider />
-    </Drawer>
+            <Typography variant="h6">{title}</Typography>
+            <IconButton
+                onClick={onClose}
+                color="primary"
+                aria-label="Close Side drawer"
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </Toolbar>
+        <Divider />
+      </Drawer>
   );
 }
 

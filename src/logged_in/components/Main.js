@@ -8,6 +8,8 @@ import ConsecutiveSnackbarMessages from "shared/components/ConsecutiveSnackbarMe
 import smoothScrollTop from "shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
+import intl from 'react-intl-universal';
+import * as TabPage from "../constants/TabPage"
 
 const styles = (theme) => ({
 	main: {
@@ -231,8 +233,8 @@ function Main(props) {
 	
 	const selectDashboard = useCallback(() => {
 		smoothScrollTop();
-		document.title = "WaVer - Dashboard";
-		setSelectedTab("Dashboard");
+		document.title = intl.get("WebName") + " " + intl.get(TabPage.Dashboard)
+		setSelectedTab(TabPage.Dashboard);
 		if (!hasFetchedCardChart) {
 			setHasFetchedCardChart(true);
 			import("../../shared/components/CardChart").then((Component) => {
@@ -248,8 +250,8 @@ function Main(props) {
 	
 	const selectPosts = useCallback(() => {
 		smoothScrollTop();
-		document.title = "WaVer - Posts";
-		setSelectedTab("Posts");
+		document.title = intl.get("WebName") + " " + intl.get(TabPage.Posts)
+		setSelectedTab(TabPage.Posts);
 		if (!hasFetchedEmojiTextArea) {
 			setHasFetchedEmojiTextArea(true);
 			import("../../shared/components/EmojiTextArea").then((Component) => {
@@ -292,8 +294,8 @@ function Main(props) {
 	
 	const selectSubscription = useCallback(() => {
 		smoothScrollTop();
-		document.title = "WaVer - Subscription";
-		setSelectedTab("Subscription");
+		document.title = intl.get("WebName") + " " + intl.get(TabPage.Subscription)
+		setSelectedTab(TabPage.Subscription);
 	}, [setSelectedTab]);
 	
 	const getPushMessageFromChild = useCallback(
