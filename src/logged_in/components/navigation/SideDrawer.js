@@ -51,7 +51,7 @@ SideDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  title : PropTypes.object.isRequired
+  title : PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(SideDrawer);
