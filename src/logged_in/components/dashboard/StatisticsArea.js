@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, withTheme } from "@material-ui/core";
+import CardChart from "shared/components/CardChart";
 
 function StatisticsArea(props) {
-	const {theme, CardChart, data} = props;
+	const {theme, data} = props;
 	return (
-		CardChart &&
 		data.profit.length >= 2 &&
 		data.views.length >= 2 && (
 			<Grid container spacing={3}>
@@ -33,7 +33,6 @@ function StatisticsArea(props) {
 StatisticsArea.propTypes = {
 	theme: PropTypes.object.isRequired,
 	data: PropTypes.object.isRequired,
-	CardChart: PropTypes.elementType
 };
 
 export default withTheme(StatisticsArea);

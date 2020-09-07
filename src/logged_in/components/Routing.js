@@ -56,7 +56,6 @@ function Routing(props) {
 		posts,
 		transactions,
 		toggleAccountActivation,
-		CardChart,
 		statistics,
 		targets,
 		setTargets,
@@ -105,7 +104,6 @@ function Routing(props) {
 					component={Dashboard}
 					toggleAccountActivation={toggleAccountActivation}
 					pushMessageToSnackbar={pushMessageToSnackbar}
-					CardChart={CardChart}
 					statistics={statistics}
 					targets={targets}
 					setTargets={setTargets}
@@ -129,7 +127,6 @@ Routing.propTypes = {
 	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 	transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
 	toggleAccountActivation: PropTypes.func,
-	CardChart: PropTypes.elementType,
 	statistics: PropTypes.object.isRequired,
 	targets: PropTypes.arrayOf(PropTypes.object).isRequired,
 	isAccountActivated: PropTypes.bool.isRequired,

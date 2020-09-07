@@ -1,11 +1,12 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, lazy, Suspense, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@material-ui/core";
 import SettingsArea from "./SettingsArea";
 import UserDataArea from "./UserDataArea";
 import AccountInformationArea from "./AccountInformationArea";
-import StatisticsArea from "./StatisticsArea";
 import {Dashboard as TabDashboard } from "../../constants/TabPage";
+
+const StatisticsArea = lazy(() => import("./StatisticsArea"));
 
 function Dashboard(props) {
 	const {
@@ -27,7 +28,9 @@ function Dashboard(props) {
 	
 	return (
 		<Fragment>
-			<StatisticsArea CardChart={CardChart} data={statistics} />
+			<Suspense fallback={<Fragment> Loading </Fragment>}>
+				<StatisticsArea CardChart={CardChart} data={statistics} />
+			</Suspense>
 			<Box mt={4}>
 				<Typography variant="subtitle1" gutterBottom>
 					Your Account

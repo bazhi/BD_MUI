@@ -34,7 +34,6 @@ function shuffle(array) {
 function Main(props) {
 	const {classes} = props;
 	const [selectedTab, setSelectedTab] = useState(null);
-	const [CardChart, setCardChart] = useState(null);
 	const [hasFetchedCardChart, setHasFetchedCardChart] = useState(false);
 	const [EmojiTextArea, setEmojiTextArea] = useState(null);
 	const [hasFetchedEmojiTextArea, setHasFetchedEmojiTextArea] = useState(false);
@@ -232,12 +231,8 @@ function Main(props) {
 	const selectDashboard = useCallback(() => {
 		if (!hasFetchedCardChart) {
 			setHasFetchedCardChart(true);
-			import("shared/components/CardChart").then((Component) => {
-				setCardChart(Component.default);
-			});
 		}
 	}, [
-		setCardChart,
 		hasFetchedCardChart,
 		setHasFetchedCardChart,
 	]);
@@ -334,7 +329,6 @@ function Main(props) {
 					isAccountActivated={isAccountActivated}
 					ImageCropper={ImageCropper}
 					EmojiTextArea={EmojiTextArea}
-					CardChart={CardChart}
 					Dropzone={Dropzone}
 					DateTimePicker={DateTimePicker}
 					toggleAccountActivation={toggleAccountActivation}
