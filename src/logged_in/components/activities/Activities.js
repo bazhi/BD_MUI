@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import PostContent from "./PostContent";
-import AddPost from "./AddPost";
-import { Posts as TabPosts } from "logged_in/constants/TabPage";
+import PostContent from "./Content";
+import AddPost from "./AddAction";
 
-function Posts(props) {
+function Activities(props) {
 	const {
-		selectPage,
+		selectPosts,
 		EmojiTextArea,
 		ImageCropper,
 		Dropzone,
@@ -25,11 +24,9 @@ function Posts(props) {
 		setIsAddPostPaperOpen(false);
 	}, [setIsAddPostPaperOpen]);
 	
-	useEffect(()=>{
-		if(selectPage){
-			selectPage(TabPosts);
-		}
-	}, [selectPage]);
+	useEffect(() => {
+		selectPosts();
+	}, [selectPosts]);
 	
 	if (isAddPostPaperOpen) {
 		return <AddPost
@@ -49,7 +46,7 @@ function Posts(props) {
 	/>
 }
 
-Posts.propTypes = {
+Activities.propTypes = {
 	EmojiTextArea: PropTypes.elementType,
 	ImageCropper: PropTypes.elementType,
 	Dropzone: PropTypes.elementType,
@@ -57,7 +54,7 @@ Posts.propTypes = {
 	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 	setPosts: PropTypes.func.isRequired,
 	pushMessageToSnackbar: PropTypes.func,
-	selectPage: PropTypes.func.isRequired,
+	selectPosts: PropTypes.func.isRequired,
 };
 
-export default Posts;
+export default Activities;

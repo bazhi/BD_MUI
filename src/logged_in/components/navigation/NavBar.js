@@ -147,13 +147,13 @@ function NavBar(props) {
 	const menuItems = [
 		{
 			link: URL.Dashboard,
-			key: LeftTab.Dashboard,
+			key: LeftTab.Dashboard.Name,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
 					<DashboardIcon
 						className={
-							selectedTab === LeftTab.Dashboard ? classes.textPrimary : "text-white"
+							selectedTab === LeftTab.Dashboard.Name ? classes.textPrimary : "text-white"
 						}
 						fontSize="small"
 					/>
@@ -163,22 +163,22 @@ function NavBar(props) {
 		},
 		{
 			link: URL.Posts,
-			key: LeftTab.Posts,
+			key: LeftTab.Posts.Name,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<ImageIcon className={selectedTab === LeftTab.Posts ? classes.textPrimary : "text-white"} fontSize="small" />
+					<ImageIcon className={selectedTab === LeftTab.Posts.Name ? classes.textPrimary : "text-white"} fontSize="small" />
 				),
 				mobile: <ImageIcon className="text-white" />,
 			},
 		},
 		{
 			link: URL.Subscription,
-			key: LeftTab.Subscription,
+			key: LeftTab.Subscription.Name,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<AccountBalanceIcon className={selectedTab === LeftTab.Subscription ? classes.textPrimary : "text-white"}
+					<AccountBalanceIcon className={selectedTab === LeftTab.Subscription.Name ? classes.textPrimary : "text-white"}
 					                    fontSize="small"
 					/>
 				),
@@ -187,7 +187,7 @@ function NavBar(props) {
 		},
 		{
 			link: URL.Home,
-			key: LeftTab.Logout,
+			key: LeftTab.Logout.Name,
 			onClick: onLogout,
 			icon: {
 				desktop: (

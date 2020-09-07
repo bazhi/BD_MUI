@@ -2,11 +2,13 @@ import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
+import PropsRoute from "shared/components/PropsRoute";
+import * as URL from "shared/constants/Url"
+
 import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
-import PropsRoute from "shared/components/PropsRoute";
-import * as URL from "shared/constants/Url"
+import Activities from "logged_in/components/activities/Activities";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -60,9 +62,7 @@ function Routing(props) {
 		setTargets,
 		setPosts,
 		isAccountActivated,
-		selectDashboard,
-		selectPosts,
-		selectSubscription,
+		selectPage,
 		openAddBalanceDialog,
 	} = props;
 	return (
@@ -78,14 +78,26 @@ function Routing(props) {
 					pushMessageToSnackbar={pushMessageToSnackbar}
 					posts={posts}
 					setPosts={setPosts}
-					selectPosts={selectPosts}
+					selectPage={selectPage}
+				/>
+				<PropsRoute
+					path={URL.Activity}
+					component={Activities}
+					EmojiTextArea={EmojiTextArea}
+					ImageCropper={ImageCropper}
+					Dropzone={Dropzone}
+					DateTimePicker={DateTimePicker}
+					pushMessageToSnackbar={pushMessageToSnackbar}
+					posts={posts}
+					setPosts={setPosts}
+					selectPage={selectPage}
 				/>
 				<PropsRoute
 					path={URL.Subscription}
 					component={Subscription}
 					transactions={transactions}
 					pushMessageToSnackbar={pushMessageToSnackbar}
-					selectSubscription={selectSubscription}
+					selectPage={selectPage}
 					openAddBalanceDialog={openAddBalanceDialog}
 				/>
 				<PropsRoute
@@ -98,7 +110,7 @@ function Routing(props) {
 					targets={targets}
 					setTargets={setTargets}
 					isAccountActivated={isAccountActivated}
-					selectDashboard={selectDashboard}
+					selectPage={selectPage}
 				/>
 			</Switch>
 		</div>
@@ -121,9 +133,7 @@ Routing.propTypes = {
 	statistics: PropTypes.object.isRequired,
 	targets: PropTypes.arrayOf(PropTypes.object).isRequired,
 	isAccountActivated: PropTypes.bool.isRequired,
-	selectDashboard: PropTypes.func.isRequired,
-	selectPosts: PropTypes.func.isRequired,
-	selectSubscription: PropTypes.func.isRequired,
+	selectPage: PropTypes.func.isRequired,
 	openAddBalanceDialog: PropTypes.func.isRequired,
 };
 

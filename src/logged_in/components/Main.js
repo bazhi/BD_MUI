@@ -43,9 +43,7 @@ function Main(props) {
 	const [Dropzone, setDropzone] = useState(null);
 	const [hasFetchedDropzone, setHasFetchedDropzone] = useState(false);
 	const [DateTimePicker, setDateTimePicker] = useState(null);
-	const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] = useState(
-		false
-	);
+	const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] = useState(false);
 	const [transactions, setTransactions] = useState([]);
 	const [statistics, setStatistics] = useState({views: [], profit: []});
 	const [posts, setPosts] = useState([]);
@@ -232,52 +230,44 @@ function Main(props) {
 	}, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
 	
 	const selectDashboard = useCallback(() => {
-		smoothScrollTop();
-		document.title = intl.get("WebName") + " " + intl.get(TabPage.Dashboard)
-		setSelectedTab(TabPage.Dashboard);
 		if (!hasFetchedCardChart) {
 			setHasFetchedCardChart(true);
-			import("../../shared/components/CardChart").then((Component) => {
+			import("shared/components/CardChart").then((Component) => {
 				setCardChart(Component.default);
 			});
 		}
 	}, [
-		setSelectedTab,
 		setCardChart,
 		hasFetchedCardChart,
 		setHasFetchedCardChart,
 	]);
 	
 	const selectPosts = useCallback(() => {
-		smoothScrollTop();
-		document.title = intl.get("WebName") + " " + intl.get(TabPage.Posts)
-		setSelectedTab(TabPage.Posts);
 		if (!hasFetchedEmojiTextArea) {
 			setHasFetchedEmojiTextArea(true);
-			import("../../shared/components/EmojiTextArea").then((Component) => {
+			import("shared/components/EmojiTextArea").then((Component) => {
 				setEmojiTextArea(Component.default);
 			});
 		}
 		if (!hasFetchedImageCropper) {
 			setHasFetchedImageCropper(true);
-			import("../../shared/components/ImageCropper").then((Component) => {
+			import("shared/components/ImageCropper").then((Component) => {
 				setImageCropper(Component.default);
 			});
 		}
 		if (!hasFetchedDropzone) {
 			setHasFetchedDropzone(true);
-			import("../../shared/components/Dropzone").then((Component) => {
+			import("shared/components/Dropzone").then((Component) => {
 				setDropzone(Component.default);
 			});
 		}
 		if (!hasFetchedDateTimePicker) {
 			setHasFetchedDateTimePicker(true);
-			import("../../shared/components/DateTimePicker").then((Component) => {
+			import("shared/components/DateTimePicker").then((Component) => {
 				setDateTimePicker(Component.default);
 			});
 		}
 	}, [
-		setSelectedTab,
 		setEmojiTextArea,
 		setImageCropper,
 		setDropzone,
@@ -292,11 +282,16 @@ function Main(props) {
 		setHasFetchedDateTimePicker,
 	]);
 	
-	const selectSubscription = useCallback(() => {
+	const selectPage = useCallback((PageInfo)=>{
 		smoothScrollTop();
-		document.title = intl.get("WebName") + " " + intl.get(TabPage.Subscription)
-		setSelectedTab(TabPage.Subscription);
-	}, [setSelectedTab]);
+		document.title = intl.get("WebName") + " " + intl.get(PageInfo.Name);
+		setSelectedTab(PageInfo.Name);
+		if(PageInfo.Name === TabPage.Dashboard.Name){
+			selectDashboard();
+		}else if(PageInfo.Name === TabPage.Posts.Name){
+			selectPosts();
+		}
+	}, [setSelectedTab, selectDashboard, selectPosts]);
 	
 	const getPushMessageFromChild = useCallback(
 		(pushMessage) => {
@@ -348,9 +343,7 @@ function Main(props) {
 					statistics={statistics}
 					posts={posts}
 					targets={targets}
-					selectDashboard={selectDashboard}
-					selectPosts={selectPosts}
-					selectSubscription={selectSubscription}
+					selectPage={selectPage}
 					openAddBalanceDialog={openAddBalanceDialog}
 					setTargets={setTargets}
 					setPosts={setPosts}

@@ -5,10 +5,11 @@ import SettingsArea from "./SettingsArea";
 import UserDataArea from "./UserDataArea";
 import AccountInformationArea from "./AccountInformationArea";
 import StatisticsArea from "./StatisticsArea";
+import {Dashboard as TabDashboard } from "../../constants/TabPage";
 
 function Dashboard(props) {
 	const {
-		selectDashboard,
+		selectPage,
 		CardChart,
 		statistics,
 		toggleAccountActivation,
@@ -18,7 +19,11 @@ function Dashboard(props) {
 		isAccountActivated,
 	} = props;
 	
-	useEffect(selectDashboard, [selectDashboard]);
+	useEffect(()=>{
+		if(selectPage){
+			selectPage(TabDashboard);
+		}
+	}, [selectPage]);
 	
 	return (
 		<Fragment>
@@ -55,7 +60,7 @@ Dashboard.propTypes = {
 	targets: PropTypes.arrayOf(PropTypes.object).isRequired,
 	setTargets: PropTypes.func.isRequired,
 	isAccountActivated: PropTypes.bool.isRequired,
-	selectDashboard: PropTypes.func.isRequired,
+	selectPage: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
