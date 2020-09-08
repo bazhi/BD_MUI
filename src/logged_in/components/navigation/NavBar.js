@@ -166,7 +166,7 @@ function NavBar(props) {
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<ImageIcon className={selectedTab === Pages.Posts.Name ? classes.textPrimary : "text-white"} fontSize="small" />
+					<ImageIcon className={selectedTab === Pages.Activity.Name ? classes.textPrimary : "text-white"} fontSize="small" />
 				),
 				mobile: <ImageIcon className="text-white" />,
 			},
