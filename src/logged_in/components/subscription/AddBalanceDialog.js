@@ -5,10 +5,10 @@ import { CardElement, Elements, IbanElement, useElements, useStripe } from "@str
 import { Box, Button, Grid, withTheme } from "@material-ui/core";
 import StripeCardForm from "./stripe/StripeCardForm";
 import StripeIbanForm from "./stripe/StripeIBANForm";
-import FormDialog from "../../../shared/components/FormDialog";
-import ColoredButton from "../../../shared/components/ColoredButton";
-import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
+import FormDialog from "shared/components/FormDialog";
+import ColoredButton from "shared/components/ColoredButton";
+import HighlightedInformation from "shared/components/HighlightedInformation";
+import ButtonCircularProgress from "shared/components/ButtonCircularProgress";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 

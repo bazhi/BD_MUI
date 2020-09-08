@@ -8,7 +8,6 @@ import ConsecutiveSnackbarMessages from "shared/components/ConsecutiveSnackbarMe
 import smoothScrollTop from "shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import intl from 'react-intl-universal';
-import * as TabPage from "../constants/TabPage";
 
 const AddBalanceDialog = lazy(() => import("./subscription/AddBalanceDialog"));
 
