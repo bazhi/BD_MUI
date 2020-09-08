@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Box, Button, Divider, Grid, Paper, TablePagination, Toolbar, Typography, withStyles, } from "@material-ui/core";
 import HighlightedInformation from "shared/components/HighlightedInformation";
 import ConfirmationDialog from "shared/components/ConfirmationDialog";
-import LoadPostImage from "./LoadPostImage";
+import LoadImage from "logged_in/components/activities/LoadImage";
 
 const styles = {
 	dBlock: {display: "block"},
@@ -15,7 +15,7 @@ const styles = {
 
 const rowsPerPage = 25;
 
-function PostContent(props) {
+function Content(props) {
 	const {
 		pushMessageToSnackbar,
 		setPosts,
@@ -74,7 +74,7 @@ function PostContent(props) {
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((post) => (
 								<Grid item xs={6} sm={4} md={3} key={post.id}>
-									<LoadPostImage
+									<LoadImage
 										post={post}
 										onDelete={() => {
 											onDelete(post);
@@ -142,7 +142,7 @@ function PostContent(props) {
 	);
 }
 
-PostContent.propTypes = {
+Content.propTypes = {
 	openAddPostModal: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
 	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -150,4 +150,4 @@ PostContent.propTypes = {
 	pushMessageToSnackbar: PropTypes.func,
 };
 
-export default withStyles(styles)(PostContent);
+export default withStyles(styles)(Content);

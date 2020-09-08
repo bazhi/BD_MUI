@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 
-function LoadPostImage(props) {
+function LoadImage(props) {
 	const {post, onDelete} = props;
 	const [src, setSrc] = useState("");
 	
@@ -33,9 +33,9 @@ function LoadPostImage(props) {
 	);
 }
 
-LoadPostImage.propTypes = {
+LoadImage.propTypes = {
 	post: PropTypes.object.isRequired,
 	onDelete: PropTypes.func.isRequired,
 };
 
-export default LoadPostImage;
+export default LoadImage;

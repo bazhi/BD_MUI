@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Box, Button } from "@material-ui/core";
 import ActionPaper from "shared/components/ActionPaper";
 import ButtonCircularProgress from "shared/components/ButtonCircularProgress";
-import AddPostOptions from "./AddPostOptions";
+import AddOptions from "logged_in/components/activities/AddOptions";
 
-function AddPost(props) {
+function Add(props) {
 	const {
 		pushMessageToSnackbar,
 		onClose,
@@ -80,7 +80,7 @@ function AddPost(props) {
 				helpPadding
 				maxWidth="md"
 				content={
-					<AddPostOptions
+					<AddOptions
 						files={files}
 						onDrop={onDrop}
 						deleteItem={deleteItem}
@@ -113,9 +113,9 @@ function AddPost(props) {
 	);
 }
 
-AddPost.propTypes = {
+Add.propTypes = {
 	pushMessageToSnackbar: PropTypes.func,
 	onClose: PropTypes.func,
 };
 
-export default AddPost;
+export default Add;

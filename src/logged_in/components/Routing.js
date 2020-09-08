@@ -6,7 +6,7 @@ import PropsRoute from "shared/components/PropsRoute";
 import * as URL from "shared/constants/Url"
 
 import Dashboard from "./dashboard/Dashboard";
-import Posts from "./posts/Posts";
+import Main from "logged_in/components/activities/Main";
 import Subscription from "./subscription/Subscription";
 
 const styles = (theme) => ({
@@ -64,7 +64,7 @@ function Routing(props) {
 			<Switch>
 				<PropsRoute
 					path={URL.Posts}
-					component={Posts}
+					component={Main}
 					pushMessageToSnackbar={pushMessageToSnackbar}
 					posts={posts}
 					setPosts={setPosts}

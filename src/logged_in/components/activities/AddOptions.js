@@ -70,7 +70,7 @@ const styles = (theme) => ({
 
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
-function AddPostOptions(props) {
+function AddOptions(props) {
 	const {
 		classes,
 		files,
@@ -248,7 +248,7 @@ function AddPostOptions(props) {
 	);
 }
 
-AddPostOptions.propTypes = {
+AddOptions.propTypes = {
 	onEmojiTextareaChange: PropTypes.func,
 	classes: PropTypes.object,
 	cropperFile: PropTypes.object,
@@ -263,4 +263,4 @@ AddPostOptions.propTypes = {
 	onChangeUploadAt: PropTypes.func,
 };
 
-export default withStyles(styles, {withTheme: true})(AddPostOptions);
+export default withStyles(styles, {withTheme: true})(AddOptions);

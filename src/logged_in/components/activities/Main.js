@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import PostContent from "./PostContent";
-import AddPost from "./AddPost";
+import PostContent from "logged_in/components/activities/Content";
+import Add from "logged_in/components/activities/Add";
 import { Posts as TabPosts } from "logged_in/constants/TabPage";
 
-function Posts(props) {
+function Main(props) {
 	const {
 		selectPage,
 		pushMessageToSnackbar,
@@ -28,7 +28,7 @@ function Posts(props) {
 	}, [selectPage]);
 	
 	if (isAddPostPaperOpen) {
-		return <AddPost
+		return <Add
 			onClose={closeAddPostModal}
 			pushMessageToSnackbar={pushMessageToSnackbar}
 		/>
@@ -42,11 +42,11 @@ function Posts(props) {
 	}
 }
 
-Posts.propTypes = {
+Main.propTypes = {
 	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 	setPosts: PropTypes.func.isRequired,
 	pushMessageToSnackbar: PropTypes.func,
 	selectPage: PropTypes.func.isRequired,
 };
 
-export default Posts;
+export default Main;
