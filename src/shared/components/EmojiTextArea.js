@@ -46,11 +46,6 @@ const styles = theme => ({
 	}
 });
 
-/**
- * Emojis whose unified is greater than 5 sometimes
- * are not displayed correcty in the browser.
- * We won't display them.
- */
 const emojisToShowFilter = emoji => {
 	if (emoji.unified.length > 5) {
 		return false;
@@ -62,7 +57,7 @@ function EmojiTextarea(props) {
 	const {
 		theme,
 		classes,
-		rightContent,
+		topContent,
 		placeholder,
 		maxCharacters,
 		emojiSet,
@@ -118,23 +113,15 @@ function EmojiTextarea(props) {
 	
 	return (
 		<Fragment>
-			<Grid spacing={0} container>
-				<Grid
-					item
-					xs={rightContent ? 8 : 12}
-					sm={rightContent ? 9 : 12}
-					lg={rightContent ? 10 : 12}
-					className={classes.relative}
-				>
-					<TextField
-						fullWidth
-						multiline
-						variant="outlined"
-						rows={6}
-						onInput={handleTextFieldChange}
-						value={value}
-						placeholder={placeholder}
-						InputProps={{
+			<Grid spacing={1}  container justify={"flex-end"}>
+				{topContent && (
+					<Grid item xs={12} sm={12} lg={12} >
+						{topContent}
+					</Grid>
+				)}
+				<Grid item xs={12} sm={12} lg={12} className={classes.relative}>
+					<TextField fullWidth multiline variant="outlined" rows={6} onInput={handleTextFieldChange} value={value} placeholder={placeholder}
+					           InputProps={{
 							classes: {
 								notchedOutline: inputClassName ? inputClassName : null
 							}
@@ -150,11 +137,6 @@ function EmojiTextarea(props) {
 						</IconButton>
 					</div>
 				</Grid>
-				{rightContent && (
-					<Grid item xs={4} sm={3} lg={2}>
-						{rightContent}
-					</Grid>
-				)}
 			</Grid>
 			{maxCharacters && (
 				<FormHelperText error={characters >= maxCharacters}>
@@ -180,7 +162,7 @@ EmojiTextarea.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
 	emojiSet: PropTypes.string.isRequired,
-	rightContent: PropTypes.element,
+	topContent: PropTypes.element,
 	placeholder: PropTypes.string,
 	maxCharacters: PropTypes.number,
 	onChange: PropTypes.func,

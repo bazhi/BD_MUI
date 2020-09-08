@@ -33,12 +33,7 @@ function ImageCropperDialog(props) {
 	);
 	
 	return (
-		<Dialog
-			open={open}
-			onEscapeKeyDown={onClose}
-			classes={{paper: classes.dialogPaper}}
-			style={{overflowX: "visible"}}
-		>
+		<Dialog open={open} onEscapeKeyDown={onClose} classes={{paper: classes.dialogPaper}} style={{overflowX: "visible"}}>
 			<DialogContent className={classes.dialogContent}>
 				<Suspense fallback={<Fragment />}>
 					<ImageCropper

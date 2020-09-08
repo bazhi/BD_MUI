@@ -4,6 +4,8 @@ import { useDropzone } from "react-dropzone";
 import classNames from "classnames";
 import { Box, withStyles } from "@material-ui/core";
 import ColoredButton from "./ColoredButton";
+import theme from "theme";
+import Container from "@material-ui/core/Container";
 
 const styles = {
 	button: {
@@ -13,7 +15,8 @@ const styles = {
 		borderBottomLeftRadius: 0
 	},
 	fullHeight: {
-		height: "100%"
+		height: theme.spacing(8),
+		// height: "100%",
 	}
 };
 
