@@ -172,7 +172,7 @@ function Main(props) {
 				id: i,
 				profilePicUrl: person.profilePicUrl,
 				date: curUnix,
-				text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed.",
+				text: "fetch random messages.",
 			};
 			curUnix += oneDaySeconds;
 			messages.push(message);
@@ -249,11 +249,15 @@ function Main(props) {
 	return (
 		<Fragment>
 			<Suspense fallback={<Fragment></Fragment>}>
-				<AddBalanceDialog
-					open={isAddBalanceDialogOpen}
-					onClose={closeAddBalanceDialog}
-					onSuccess={onPaymentSuccess}
-				/>
+				{
+					isAddBalanceDialogOpen && (
+						<AddBalanceDialog
+							open={isAddBalanceDialogOpen}
+							onClose={closeAddBalanceDialog}
+							onSuccess={onPaymentSuccess}
+						/>
+					)
+				}
 			</Suspense>
 			<NavBar
 				selectedTab={selectedTab}
