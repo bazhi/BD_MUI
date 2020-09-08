@@ -7,10 +7,6 @@ import { Posts as TabPosts } from "logged_in/constants/TabPage";
 function Posts(props) {
 	const {
 		selectPage,
-		EmojiTextArea,
-		ImageCropper,
-		Dropzone,
-		DateTimePicker,
 		pushMessageToSnackbar,
 		posts,
 		setPosts,
@@ -34,10 +30,6 @@ function Posts(props) {
 	if (isAddPostPaperOpen) {
 		return <AddPost
 			onClose={closeAddPostModal}
-			EmojiTextArea={EmojiTextArea}
-			ImageCropper={ImageCropper}
-			Dropzone={Dropzone}
-			DateTimePicker={DateTimePicker}
 			pushMessageToSnackbar={pushMessageToSnackbar}
 		/>
 	}
@@ -50,10 +42,6 @@ function Posts(props) {
 }
 
 Posts.propTypes = {
-	EmojiTextArea: PropTypes.elementType,
-	ImageCropper: PropTypes.elementType,
-	Dropzone: PropTypes.elementType,
-	DateTimePicker: PropTypes.elementType,
 	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 	setPosts: PropTypes.func.isRequired,
 	pushMessageToSnackbar: PropTypes.func,

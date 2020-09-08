@@ -8,7 +8,6 @@ import * as URL from "shared/constants/Url"
 import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
-import Activities from "logged_in/components/activities/Activities";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -48,10 +47,6 @@ const styles = (theme) => ({
 function Routing(props) {
 	const {
 		classes,
-		EmojiTextArea,
-		ImageCropper,
-		Dropzone,
-		DateTimePicker,
 		pushMessageToSnackbar,
 		posts,
 		transactions,
@@ -70,22 +65,6 @@ function Routing(props) {
 				<PropsRoute
 					path={URL.Posts}
 					component={Posts}
-					EmojiTextArea={EmojiTextArea}
-					ImageCropper={ImageCropper}
-					Dropzone={Dropzone}
-					DateTimePicker={DateTimePicker}
-					pushMessageToSnackbar={pushMessageToSnackbar}
-					posts={posts}
-					setPosts={setPosts}
-					selectPage={selectPage}
-				/>
-				<PropsRoute
-					path={URL.Activity}
-					component={Activities}
-					EmojiTextArea={EmojiTextArea}
-					ImageCropper={ImageCropper}
-					Dropzone={Dropzone}
-					DateTimePicker={DateTimePicker}
 					pushMessageToSnackbar={pushMessageToSnackbar}
 					posts={posts}
 					setPosts={setPosts}
@@ -117,10 +96,6 @@ function Routing(props) {
 
 Routing.propTypes = {
 	classes: PropTypes.object.isRequired,
-	EmojiTextArea: PropTypes.elementType,
-	ImageCropper: PropTypes.elementType,
-	Dropzone: PropTypes.elementType,
-	DateTimePicker: PropTypes.elementType,
 	pushMessageToSnackbar: PropTypes.func,
 	setTargets: PropTypes.func.isRequired,
 	setPosts: PropTypes.func.isRequired,

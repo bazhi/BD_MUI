@@ -34,15 +34,6 @@ function shuffle(array) {
 function Main(props) {
 	const {classes} = props;
 	const [selectedTab, setSelectedTab] = useState(null);
-	const [hasFetchedCardChart, setHasFetchedCardChart] = useState(false);
-	const [EmojiTextArea, setEmojiTextArea] = useState(null);
-	const [hasFetchedEmojiTextArea, setHasFetchedEmojiTextArea] = useState(false);
-	const [ImageCropper, setImageCropper] = useState(null);
-	const [hasFetchedImageCropper, setHasFetchedImageCropper] = useState(false);
-	const [Dropzone, setDropzone] = useState(null);
-	const [hasFetchedDropzone, setHasFetchedDropzone] = useState(false);
-	const [DateTimePicker, setDateTimePicker] = useState(null);
-	const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] = useState(false);
 	const [transactions, setTransactions] = useState([]);
 	const [statistics, setStatistics] = useState({views: [], profit: []});
 	const [posts, setPosts] = useState([]);
@@ -229,52 +220,13 @@ function Main(props) {
 	}, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
 	
 	const selectDashboard = useCallback(() => {
-		if (!hasFetchedCardChart) {
-			setHasFetchedCardChart(true);
-		}
+
 	}, [
-		hasFetchedCardChart,
-		setHasFetchedCardChart,
 	]);
 	
 	const selectPosts = useCallback(() => {
-		if (!hasFetchedEmojiTextArea) {
-			setHasFetchedEmojiTextArea(true);
-			import("shared/components/EmojiTextArea").then((Component) => {
-				setEmojiTextArea(Component.default);
-			});
-		}
-		if (!hasFetchedImageCropper) {
-			setHasFetchedImageCropper(true);
-			import("shared/components/ImageCropper").then((Component) => {
-				setImageCropper(Component.default);
-			});
-		}
-		if (!hasFetchedDropzone) {
-			setHasFetchedDropzone(true);
-			import("shared/components/Dropzone").then((Component) => {
-				setDropzone(Component.default);
-			});
-		}
-		if (!hasFetchedDateTimePicker) {
-			setHasFetchedDateTimePicker(true);
-			import("shared/components/DateTimePicker").then((Component) => {
-				setDateTimePicker(Component.default);
-			});
-		}
+
 	}, [
-		setEmojiTextArea,
-		setImageCropper,
-		setDropzone,
-		setDateTimePicker,
-		hasFetchedEmojiTextArea,
-		setHasFetchedEmojiTextArea,
-		hasFetchedImageCropper,
-		setHasFetchedImageCropper,
-		hasFetchedDropzone,
-		setHasFetchedDropzone,
-		hasFetchedDateTimePicker,
-		setHasFetchedDateTimePicker,
 	]);
 	
 	const selectPage = useCallback((PageInfo)=>{
@@ -327,10 +279,6 @@ function Main(props) {
 			<main className={classNames(classes.main)}>
 				<Routing
 					isAccountActivated={isAccountActivated}
-					ImageCropper={ImageCropper}
-					EmojiTextArea={EmojiTextArea}
-					Dropzone={Dropzone}
-					DateTimePicker={DateTimePicker}
 					toggleAccountActivation={toggleAccountActivation}
 					pushMessageToSnackbar={pushMessageToSnackbar}
 					transactions={transactions}

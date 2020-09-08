@@ -1,6 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { Fragment, lazy, Suspense, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Dialog, DialogActions, DialogContent, withStyles, } from "@material-ui/core";
+
+const ImageCropper = lazy(() => import("shared/components/ImageCropper"));
 
 const styles = (theme) => ({
 	dialogPaper: {maxWidth: `${theme.breakpoints.values.md}px !important`},
@@ -13,7 +15,6 @@ const styles = (theme) => ({
 
 function ImageCropperDialog(props) {
 	const {
-		ImageCropper,
 		classes,
 		onClose,
 		open,
@@ -39,13 +40,15 @@ function ImageCropperDialog(props) {
 			style={{overflowX: "visible"}}
 		>
 			<DialogContent className={classes.dialogContent}>
-				<ImageCropper
-					src={src}
-					setCropFunction={getCropFunctionFromChild}
-					onCrop={onCrop}
-					aspectRatio={aspectRatio}
-					color={theme.palette.primary.main}
-				/>
+				<Suspense fallback={<Fragment />}>
+					<ImageCropper
+						src={src}
+						setCropFunction={getCropFunctionFromChild}
+						onCrop={onCrop}
+						aspectRatio={aspectRatio}
+						color={theme.palette.primary.main}
+					/>
+				</Suspense>
 			</DialogContent>
 			<DialogActions>
 				<Box mr={1}>
@@ -60,7 +63,6 @@ function ImageCropperDialog(props) {
 }
 
 ImageCropperDialog.propTypes = {
-	ImageCropper: PropTypes.elementType,
 	classes: PropTypes.object.isRequired,
 	onClose: PropTypes.func.isRequired,
 	open: PropTypes.bool.isRequired,

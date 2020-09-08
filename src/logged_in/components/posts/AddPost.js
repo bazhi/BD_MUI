@@ -8,10 +8,6 @@ import AddPostOptions from "./AddPostOptions";
 function AddPost(props) {
 	const {
 		pushMessageToSnackbar,
-		Dropzone,
-		EmojiTextArea,
-		DateTimePicker,
-		ImageCropper,
 		onClose,
 	} = props;
 	
@@ -85,16 +81,12 @@ function AddPost(props) {
 				maxWidth="md"
 				content={
 					<AddPostOptions
-						EmojiTextArea={EmojiTextArea}
-						Dropzone={Dropzone}
 						files={files}
 						onDrop={onDrop}
 						deleteItem={deleteItem}
-						DateTimePicker={DateTimePicker}
 						uploadAt={uploadAt}
 						onChangeUploadAt={setUploadAt}
 						onCrop={onCrop}
-						ImageCropper={ImageCropper}
 						cropperFile={cropperFile}
 						onCropperClose={onCropperClose}
 					/>
@@ -124,10 +116,6 @@ function AddPost(props) {
 AddPost.propTypes = {
 	pushMessageToSnackbar: PropTypes.func,
 	onClose: PropTypes.func,
-	Dropzone: PropTypes.elementType,
-	EmojiTextArea: PropTypes.elementType,
-	DateTimePicker: PropTypes.elementType,
-	ImageCropper: PropTypes.elementType,
 };
 
 export default AddPost;

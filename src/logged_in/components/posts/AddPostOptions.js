@@ -1,9 +1,13 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment, lazy, Suspense, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, FormControl, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, MenuItem, OutlinedInput, Select, Typography, withStyles, } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import Bordered from "../../../shared/components/Bordered";
-import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
+import Bordered from "shared/components/Bordered";
+import ImageCropperDialog from "shared/components/ImageCropperDialog";
+
+const Dropzone = lazy(() => import("shared/components/Dropzone"));
+const EmojiTextArea  = lazy(() => import("shared/components/EmojiTextArea"));
+const DateTimePicker  = lazy(() => import("shared/components/DateTimePicker"));
 
 const styles = (theme) => ({
 	floatButtonWrapper: {
@@ -65,14 +69,10 @@ const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
 function AddPostOptions(props) {
 	const {
-		Dropzone,
 		classes,
 		files,
 		deleteItem,
 		onDrop,
-		EmojiTextArea,
-		ImageCropper,
-		DateTimePicker,
 		cropperFile,
 		onCrop,
 		onCropperClose,
@@ -126,11 +126,13 @@ function AddPostOptions(props) {
 			);
 		}
 		return (
-			<Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
-        <span className={classes.uploadText}>
-          Click / Drop file <br /> here
-        </span>
-			</Dropzone>
+			<Suspense fallback={<Fragment />}>
+				<Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
+			        <span className={classes.uploadText}>
+			          Click / Drop file <br /> here
+			        </span>
+				</Dropzone>
+			</Suspense>
 		);
 	}, [onDrop, files, classes, deleteItem]);
 	
@@ -162,28 +164,25 @@ function AddPostOptions(props) {
 	
 	return (
 		<Fragment>
-			{ImageCropper && (
-				<ImageCropperDialog
-					open={cropperFile ? true : false}
-					ImageCropper={ImageCropper}
-					src={cropperFile ? cropperFile.preview : ""}
-					onCrop={onCrop}
-					onClose={onCropperClose}
-					aspectRatio={4 / 3}
-				/>
-			)}
+			<ImageCropperDialog
+				open={cropperFile ? true : false}
+				src={cropperFile ? cropperFile.preview : ""}
+				onCrop={onCrop}
+				onClose={onCropperClose}
+				aspectRatio={4 / 3}
+			/>
 			<Typography paragraph variant="h6">
 				Upload Image
 			</Typography>
 			<Box mb={2}>
-				{EmojiTextArea && (
+				<Suspense fallback={<Fragment></Fragment>}>
 					<EmojiTextArea
 						inputClassName={classes.emojiTextArea}
 						maxCharacters={2200}
 						rightContent={printFile()}
 						emojiSet="google"
 					/>
-				)}
+				</Suspense>
 			</Box>
 			<Typography paragraph variant="h6">
 				Options
@@ -195,14 +194,14 @@ function AddPostOptions(props) {
 							<Typography variant="body2">Upload at</Typography>
 						</ListItemText>
 						<ListItemSecondaryAction>
-							{DateTimePicker && (
+							<Suspense fallback={<Fragment></Fragment>}>
 								<DateTimePicker
 									value={uploadAt}
 									format="yyyy/MM/dd hh:mm a"
 									onChange={onChangeUploadAt}
 									disablePast
 								/>
-							)}
+							</Suspense>
 						</ListItemSecondaryAction>
 					</ListItem>
 					{inputs.map((element, index) => (
@@ -248,10 +247,6 @@ function AddPostOptions(props) {
 
 AddPostOptions.propTypes = {
 	onEmojiTextareaChange: PropTypes.func,
-	DateTimePicker: PropTypes.elementType,
-	EmojiTextArea: PropTypes.elementType,
-	Dropzone: PropTypes.elementType,
-	ImageCropper: PropTypes.elementType,
 	classes: PropTypes.object,
 	cropperFile: PropTypes.object,
 	onCrop: PropTypes.func,
