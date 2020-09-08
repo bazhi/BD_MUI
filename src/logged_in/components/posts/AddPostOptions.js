@@ -35,7 +35,9 @@ const styles = (theme) => ({
 			easing: theme.transitions.easing.easeInOut,
 		}),
 	},
-	imgWrapper: {position: "relative"},
+	imgWrapper: {
+		position: "relative",
+	},
 	img: {
 		width: "100%",
 		border: "1px solid rgba(0, 0, 0, 0.23)",
@@ -59,6 +61,7 @@ const styles = (theme) => ({
 		borderTopRightRadius: 0,
 		borderBottomRightRadius: 0,
 		marginRight: -1,
+		width: "100%",
 	},
 	dNone: {
 		display: "none",
@@ -129,7 +132,7 @@ function AddPostOptions(props) {
 			<Suspense fallback={<Fragment />}>
 				<Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
 			        <span className={classes.uploadText}>
-			          Click / Drop file <br /> here
+			          Click / Drop file here
 			        </span>
 				</Dropzone>
 			</Suspense>
@@ -169,7 +172,7 @@ function AddPostOptions(props) {
 				src={cropperFile ? cropperFile.preview : ""}
 				onCrop={onCrop}
 				onClose={onCropperClose}
-				aspectRatio={4 / 3}
+				aspectRatio={3 / 2}
 			/>
 			<Typography paragraph variant="h6">
 				Upload Image
@@ -179,7 +182,7 @@ function AddPostOptions(props) {
 					<EmojiTextArea
 						inputClassName={classes.emojiTextArea}
 						maxCharacters={2200}
-						rightContent={printFile()}
+						topContent={printFile()}
 						emojiSet="google"
 					/>
 				</Suspense>
