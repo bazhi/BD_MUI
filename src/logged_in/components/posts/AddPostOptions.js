@@ -115,7 +115,7 @@ function AddPostOptions(props) {
 						alt="uploaded item"
 						src={files[0].preview}
 						className={classes.img}
-						style={{height: 148}}
+						// style={{height: 148}}
 					/>
 					<div className={classes.floatButtonWrapper}>
 						<IconButton onClick={deleteItem}>

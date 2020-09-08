@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Divider, Grid, Paper, TablePagination, Toolbar, Typography, withStyles, } from "@material-ui/core";
-import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
+import HighlightedInformation from "shared/components/HighlightedInformation";
+import ConfirmationDialog from "shared/components/ConfirmationDialog";
 import LoadPostImage from "./LoadPostImage";
 
 const styles = {

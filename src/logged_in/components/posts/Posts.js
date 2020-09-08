@@ -32,13 +32,14 @@ function Posts(props) {
 			onClose={closeAddPostModal}
 			pushMessageToSnackbar={pushMessageToSnackbar}
 		/>
+	}else{
+		return <PostContent
+			openAddPostModal={openAddPostModal}
+			posts={posts}
+			setPosts={setPosts}
+			pushMessageToSnackbar={pushMessageToSnackbar}
+		/>
 	}
-	return <PostContent
-		openAddPostModal={openAddPostModal}
-		posts={posts}
-		setPosts={setPosts}
-		pushMessageToSnackbar={pushMessageToSnackbar}
-	/>
 }
 
 Posts.propTypes = {

@@ -1,8 +1,8 @@
 import React, { Fragment, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button } from "@material-ui/core";
-import ActionPaper from "../../../shared/components/ActionPaper";
-import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
+import ActionPaper from "shared/components/ActionPaper";
+import ButtonCircularProgress from "shared/components/ButtonCircularProgress";
 import AddPostOptions from "./AddPostOptions";
 
 function AddPost(props) {

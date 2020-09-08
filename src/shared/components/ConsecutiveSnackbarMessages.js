@@ -36,8 +36,6 @@ function ConsecutiveSnackbars(props) {
 			key: new Date().getTime(),
 		});
 		if (isOpen) {
-			// immediately begin dismissing current message
-			// to start showing new one
 			setIsOpen(false);
 		} else {
 			processQueue();
