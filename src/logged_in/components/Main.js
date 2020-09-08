@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useCallback, useEffect, useState } from "react";
+import React, { Fragment, lazy, memo, Suspense, useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
@@ -7,9 +7,10 @@ import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "shared/components/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
-import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 import intl from 'react-intl-universal';
 import * as TabPage from "../constants/TabPage";
+
+const AddBalanceDialog = lazy(() => import("./subscription/AddBalanceDialog"));
 
 const styles = (theme) => ({
 	main: {
@@ -219,26 +220,11 @@ function Main(props) {
 		setIsAccountActivated(!isAccountActivated);
 	}, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
 	
-	const selectDashboard = useCallback(() => {
-
-	}, [
-	]);
-	
-	const selectPosts = useCallback(() => {
-
-	}, [
-	]);
-	
 	const selectPage = useCallback((PageInfo)=>{
 		smoothScrollTop();
 		document.title = intl.get("WebName") + " " + intl.get(PageInfo.Name);
 		setSelectedTab(PageInfo.Name);
-		if(PageInfo.Name === TabPage.Dashboard.Name){
-			selectDashboard();
-		}else if(PageInfo.Name === TabPage.Posts.Name){
-			selectPosts();
-		}
-	}, [setSelectedTab, selectDashboard, selectPosts]);
+	}, [setSelectedTab]);
 	
 	const getPushMessageFromChild = useCallback(
 		(pushMessage) => {
@@ -263,11 +249,13 @@ function Main(props) {
 	
 	return (
 		<Fragment>
-			<LazyLoadAddBalanceDialog
-				open={isAddBalanceDialogOpen}
-				onClose={closeAddBalanceDialog}
-				onSuccess={onPaymentSuccess}
-			/>
+			<Suspense fallback={<Fragment></Fragment>}>
+				<AddBalanceDialog
+					open={isAddBalanceDialogOpen}
+					onClose={closeAddBalanceDialog}
+					onSuccess={onPaymentSuccess}
+				/>
+			</Suspense>
 			<NavBar
 				selectedTab={selectedTab}
 				messages={messages}
