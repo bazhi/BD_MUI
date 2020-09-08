@@ -249,11 +249,15 @@ function Main(props) {
 	return (
 		<Fragment>
 			<Suspense fallback={<Fragment></Fragment>}>
-				<AddBalanceDialog
-					open={isAddBalanceDialogOpen}
-					onClose={closeAddBalanceDialog}
-					onSuccess={onPaymentSuccess}
-				/>
+				{
+					isAddBalanceDialogOpen && (
+						<AddBalanceDialog
+							open={isAddBalanceDialogOpen}
+							onClose={closeAddBalanceDialog}
+							onSuccess={onPaymentSuccess}
+						/>
+					)
+				}
 			</Suspense>
 			<NavBar
 				selectedTab={selectedTab}

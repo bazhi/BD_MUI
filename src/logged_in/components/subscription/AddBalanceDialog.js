@@ -181,7 +181,7 @@ const AddBalanceDialog = withTheme(function (props) {
 
 AddBalanceDialog.propTypes = {
 	open: PropTypes.bool.isRequired,
-	theme: PropTypes.object.isRequired,
+	theme: PropTypes.object,
 	onClose: PropTypes.func.isRequired,
 	onSuccess: PropTypes.func.isRequired
 };
@@ -190,15 +190,13 @@ function Wrapper(props) {
 	const {open, onClose, onSuccess} = props;
 	return (
 		<Elements stripe={stripePromise}>
-			{open && (
-				<AddBalanceDialog open={open} onClose={onClose} onSuccess={onSuccess} />
-			)}
+			<AddBalanceDialog open={open} onClose={onClose} onSuccess={onSuccess} />
 		</Elements>
 	);
 }
 
 
-AddBalanceDialog.propTypes = {
+Wrapper.propTypes = {
 	open: PropTypes.bool.isRequired,
 	onClose: PropTypes.func.isRequired,
 	onSuccess: PropTypes.func.isRequired
