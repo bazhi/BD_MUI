@@ -18,8 +18,7 @@ import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 import LanguageSelector from "shared/components/LanguageSelector";
 import storage from "shared/storage/local";
 import * as Key from "shared/constants/Keyword"
-import * as URL from "shared/constants/Url"
-import * as LeftTab from "../../constants/TabPage"
+import * as Pages from "../../constants/TabPage"
 
 const styles = (theme) => ({
 	appBar: {
@@ -146,14 +145,14 @@ function NavBar(props) {
 	
 	const menuItems = [
 		{
-			link: URL.Dashboard,
-			key: LeftTab.Dashboard.Name,
+			link: Pages.Dashboard.Path,
+			key: Pages.Dashboard.Name,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
 					<DashboardIcon
 						className={
-							selectedTab === LeftTab.Dashboard.Name ? classes.textPrimary : "text-white"
+							selectedTab === Pages.Dashboard.Name ? classes.textPrimary : "text-white"
 						}
 						fontSize="small"
 					/>
@@ -162,23 +161,23 @@ function NavBar(props) {
 			},
 		},
 		{
-			link: URL.Posts,
-			key: LeftTab.Posts.Name,
+			link: Pages.Activity.Path,
+			key: Pages.Activity.Name,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<ImageIcon className={selectedTab === LeftTab.Posts.Name ? classes.textPrimary : "text-white"} fontSize="small" />
+					<ImageIcon className={selectedTab === Pages.Posts.Name ? classes.textPrimary : "text-white"} fontSize="small" />
 				),
 				mobile: <ImageIcon className="text-white" />,
 			},
 		},
 		{
-			link: URL.Subscription,
-			key: LeftTab.Subscription.Name,
+			link: Pages.Subscription.Path,
+			key: Pages.Subscription.Name,
 			onClick: closeMobileDrawer,
 			icon: {
 				desktop: (
-					<AccountBalanceIcon className={selectedTab === LeftTab.Subscription.Name ? classes.textPrimary : "text-white"}
+					<AccountBalanceIcon className={selectedTab === Pages.Subscription.Name ? classes.textPrimary : "text-white"}
 					                    fontSize="small"
 					/>
 				),
@@ -186,8 +185,8 @@ function NavBar(props) {
 			},
 		},
 		{
-			link: URL.Home,
-			key: LeftTab.Logout.Name,
+			link: Pages.Logout.Path,
+			key: Pages.Logout.Name,
 			onClick: onLogout,
 			icon: {
 				desktop: (

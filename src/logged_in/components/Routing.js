@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import PropsRoute from "shared/components/PropsRoute";
-import * as URL from "shared/constants/Url"
 
 import Dashboard from "./dashboard/Dashboard";
-import Main from "logged_in/components/activities/Main";
+import Activity from "logged_in/components/activities/Main";
 import Subscription from "./subscription/Subscription";
+import * as Pages from "../constants/TabPage"
 
 const styles = (theme) => ({
 	wrapper: {
@@ -63,15 +63,15 @@ function Routing(props) {
 		<div className={classes.wrapper}>
 			<Switch>
 				<PropsRoute
-					path={URL.Posts}
-					component={Main}
+					path={Pages.Activity.Path}
+					component={Activity}
 					pushMessageToSnackbar={pushMessageToSnackbar}
 					posts={posts}
 					setPosts={setPosts}
 					selectPage={selectPage}
 				/>
 				<PropsRoute
-					path={URL.Subscription}
+					path={Pages.Subscription.Path}
 					component={Subscription}
 					transactions={transactions}
 					pushMessageToSnackbar={pushMessageToSnackbar}
@@ -79,7 +79,7 @@ function Routing(props) {
 					openAddBalanceDialog={openAddBalanceDialog}
 				/>
 				<PropsRoute
-					path={URL.Home}
+					path={Pages.Dashboard.Path}
 					component={Dashboard}
 					toggleAccountActivation={toggleAccountActivation}
 					pushMessageToSnackbar={pushMessageToSnackbar}

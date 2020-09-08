@@ -1,20 +1,20 @@
 export const Dashboard = {
 	Name : "Dashboard",
-	Url : "",
+	Path : "/c/dashboard",
 };
 export const Posts = {
 	Name :"Posts",
-	Url: "",
+	Path: "",
 };
 export const Subscription = {
 	Name : "Subscription",
-	Url : "",
+	Path : "/c/subscription",
 };
 export const Logout = {
 	Name : "Logout",
-	Url : ""
+	Path : "/"
 };
 export const Activity = {
 	Name : "Activity",
-	Url : "",
+	Path : "/c/activity",
 };
