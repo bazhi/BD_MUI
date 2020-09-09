@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
 import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from '@material-ui/icons/Edit';
+
 import SelfAligningImage from "shared/components/SelfAligningImage";
 
 function LoadImage(props) {
-	const {post, onDelete} = props;
+	const {post, onDelete, onEdit} = props;
 	const [src, setSrc] = useState("");
 	
 	const dynLoadImage = useCallback(() => {
@@ -25,6 +28,11 @@ function LoadImage(props) {
 			timeStamp={post.timestamp}
 			options={[
 				{
+					name: "Edit",
+					onClick: onEdit,
+					icon: <EditIcon />,
+				},
+				{
 					name: "Delete",
 					onClick: onDelete,
 					icon: <DeleteIcon />,
@@ -37,6 +45,7 @@ function LoadImage(props) {
 LoadImage.propTypes = {
 	post: PropTypes.object.isRequired,
 	onDelete: PropTypes.func.isRequired,
+	onEdit: PropTypes.func.isRequired,
 };
 
 export default LoadImage;

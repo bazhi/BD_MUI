@@ -38,5 +38,61 @@ export default [
 	{
 		importImage: import("./images/image10.jpg"),
 		name: "Leonie"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie1"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie2"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie3"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie4"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie5"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie6"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie7"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie8"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie9"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie10"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie7"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie8"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie9"
+	},
+	{
+		importImage: import("./images/image10.jpg"),
+		name: "Leonie10"
 	}
 ];

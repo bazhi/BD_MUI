@@ -5,6 +5,7 @@ import HighlightedInformation from "shared/components/HighlightedInformation";
 import ConfirmationDialog from "shared/components/ConfirmationDialog";
 import LoadImage from "logged_in/components/activities/LoadImage";
 import persons from "../../dummy_data/persons";
+import GridList from "@material-ui/core/GridList";
 
 const styles = {
 	dBlock: {display: "block"},
@@ -14,8 +15,6 @@ const styles = {
 	},
 };
 
-const rowsPerPage = 25;
-
 function Content(props) {
 	const {
 		pushMessageToSnackbar,
@@ -23,8 +22,9 @@ function Content(props) {
 		classes,
 	} = props;
 	const [page, setPage] = useState(0);
-	const [isDeletePostDialogOpen, setIsDeletePostDialogOpen] = useState(false);
-	const [isDeletePostDialogLoading, setIsDeletePostDialogLoading] = useState(
+	const [rowsPerPage, setRowsPerPage] = React.useState(12);
+	const [deleteId, setDeleteId] = useState(-1);
+	const [isDeleteDialogLoading, setIsDeleteDialogLoading] = useState(
 		false
 	);
 	const [posts, setPosts] = useState([]);
@@ -47,7 +47,6 @@ function Content(props) {
 			curUnix += oneDaySeconds;
 			posts.push(post);
 		}
-		// posts.reverse();
 		setPosts(posts);
 	}, [setPosts]);
 	
@@ -56,46 +55,56 @@ function Content(props) {
 	}, [fetchRandomPosts]);
 	
 	const closeDeletePostDialog = useCallback(() => {
-		setIsDeletePostDialogOpen(false);
-		setIsDeletePostDialogLoading(false);
-	}, [setIsDeletePostDialogOpen, setIsDeletePostDialogLoading]);
+		setDeleteId(-1);
+		setIsDeleteDialogLoading(false);
+	}, [setDeleteId, setIsDeleteDialogLoading]);
 	
 	const deletePost = useCallback(() => {
-		setIsDeletePostDialogLoading(true);
+		setIsDeleteDialogLoading(true);
 		setTimeout(() => {
-			const _posts = [...posts];
-			const index = _posts.find((element) => element.id === deletePost.id);
-			_posts.splice(index, 1);
-			setPosts(_posts);
+			const NewItems = [...posts];
+			const index = NewItems.findIndex((element) => element.id === deleteId);
+			NewItems.splice(index, 1);
+			setPosts(NewItems);
 			pushMessageToSnackbar({
-				text: "Your post has been deleted",
+				text: "Your post has been deleted:" + deleteId,
 			});
 			closeDeletePostDialog();
 		}, 1500);
 	}, [
 		posts,
 		setPosts,
-		setIsDeletePostDialogLoading,
+		setIsDeleteDialogLoading,
 		pushMessageToSnackbar,
 		closeDeletePostDialog,
+		deleteId,
 	]);
 	
-	const onDelete = useCallback(() => {
-		setIsDeletePostDialogOpen(true);
-	}, [setIsDeletePostDialogOpen]);
+	const onDelete = useCallback((post) => {
+		setDeleteId(post.id);
+	}, [setDeleteId]);
+	
+	const onEdit = useCallback((post) => {
+		console.log(post.id);
+	}, []);
 	
 	const handleChangePage = useCallback(
-		(__, page) => {
+		(event, page) => {
 			setPage(page);
 		},
 		[setPage]
 	);
 	
+	const handleChangePerPage = (event)=>{
+		setRowsPerPage(+event.target.value);
+		setPage(0);
+	}
+	
 	const printImageGrid = useCallback(() => {
 		if (posts.length > 0) {
 			return (
 				<Box p={1}>
-					<Grid container spacing={1}>
+					<GridList cellHeight={'auto'} spacing={4}>
 						{posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((post) => (
 								<Grid item xs={6} sm={4} md={3} key={post.id}>
@@ -104,10 +113,13 @@ function Content(props) {
 										onDelete={() => {
 											onDelete(post);
 										}}
+										onEdit={()=>{
+											onEdit(post);
+										}}
 									/>
 								</Grid>
 							))}
-					</Grid>
+					</GridList >
 				</Box>
 			);
 		}
@@ -118,7 +130,7 @@ function Content(props) {
 				</HighlightedInformation>
 			</Box>
 		);
-	}, [posts, onDelete, page]);
+	}, [posts, onDelete, page, rowsPerPage, onEdit]);
 	
 	return (
 		<Paper>
@@ -148,19 +160,21 @@ function Content(props) {
 				}}
 				onChangePage={handleChangePage}
 				classes={{
-					select: classes.dNone,
-					selectIcon: classes.dNone,
+					select: classes.dBlock,
+					selectIcon: classes.dBlock,
 					actions: posts.length > 0 ? classes.dBlock : classes.dNone,
 					caption: posts.length > 0 ? classes.dBlock : classes.dNone,
 				}}
 				labelRowsPerPage=""
+				rowsPerPageOptions = {[4, 8, 12, 24, 48]}
+				onChangeRowsPerPage={handleChangePerPage}
 			/>
 			<ConfirmationDialog
-				open={isDeletePostDialogOpen}
+				open={deleteId>=0}
 				title="Confirmation"
 				content="Do you really want to delete the post?"
 				onClose={closeDeletePostDialog}
-				loading={isDeletePostDialogLoading}
+				loading={isDeleteDialogLoading}
 				onConfirm={deletePost}
 			/>
 		</Paper>
