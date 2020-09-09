@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useRef, useState } from "react";
-import intl from 'react-intl-universal';
+import intl from 'shared/components/IntlHelper';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";

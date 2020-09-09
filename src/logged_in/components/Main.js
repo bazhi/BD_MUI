@@ -7,7 +7,7 @@ import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "shared/components/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
-import intl from 'react-intl-universal';
+import intl from 'shared/components/IntlHelper';
 
 const AddBalanceDialog = lazy(() => import("./subscription/AddBalanceDialog"));
 

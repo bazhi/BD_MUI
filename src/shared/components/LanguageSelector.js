@@ -1,5 +1,5 @@
 import React from "react";
-import intl from "react-intl-universal";
+import intl from "./IntlHelper";
 import { NativeSelect } from "@material-ui/core";
 
 import SUPPORT_LOCALES from "./SupportLocales";
@@ -22,7 +22,6 @@ class LanguageSelector extends React.Component {
 		if (!item) {
 			item = "null";
 		}
-		
 		return (
 			<NativeSelect onChange={this.onSelectLocale}>
 				<option value="" hidden={true}>
