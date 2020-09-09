@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Divider, Grid, Paper, TablePagination, Toolbar, Typography, withStyles, } from "@material-ui/core";
 import HighlightedInformation from "shared/components/HighlightedInformation";
 import ConfirmationDialog from "shared/components/ConfirmationDialog";
 import LoadImage from "logged_in/components/activities/LoadImage";
+import persons from "../../dummy_data/persons";
 
 const styles = {
 	dBlock: {display: "block"},
@@ -18,8 +19,6 @@ const rowsPerPage = 25;
 function Content(props) {
 	const {
 		pushMessageToSnackbar,
-		setPosts,
-		posts,
 		openAddPostModal,
 		classes,
 	} = props;
@@ -28,6 +27,33 @@ function Content(props) {
 	const [isDeletePostDialogLoading, setIsDeletePostDialogLoading] = useState(
 		false
 	);
+	const [posts, setPosts] = useState([]);
+	
+	const fetchRandomPosts = useCallback(() => {
+		const posts = [];
+		const iterations = persons.length;
+		const oneDaySeconds = 60 * 60 * 24;
+		let curUnix = Math.round(
+			new Date().getTime() / 1000 - iterations * oneDaySeconds
+		);
+		for (let i = 0; i < iterations; i += 1) {
+			const person = persons[i];
+			const post = {
+				id: i,
+				importImage: person.importImage,
+				timestamp: curUnix,
+				name: person.name,
+			};
+			curUnix += oneDaySeconds;
+			posts.push(post);
+		}
+		// posts.reverse();
+		setPosts(posts);
+	}, [setPosts]);
+	
+	useEffect(() => {
+		fetchRandomPosts();
+	}, [fetchRandomPosts]);
 	
 	const closeDeletePostDialog = useCallback(() => {
 		setIsDeletePostDialogOpen(false);
@@ -70,8 +96,7 @@ function Content(props) {
 			return (
 				<Box p={1}>
 					<Grid container spacing={1}>
-						{posts
-							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+						{posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((post) => (
 								<Grid item xs={6} sm={4} md={3} key={post.id}>
 									<LoadImage
@@ -145,8 +170,6 @@ function Content(props) {
 Content.propTypes = {
 	openAddPostModal: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
-	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-	setPosts: PropTypes.func.isRequired,
 	pushMessageToSnackbar: PropTypes.func,
 };
 

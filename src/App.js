@@ -5,7 +5,7 @@ import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import * as serviceWorker from "./serviceWorker";
 import Pace from "shared/components/Pace";
-import intl from 'react-intl-universal';
+import intl from 'shared/components/IntlHelper';
 import lodash from 'lodash';
 import GEventEmitter from "shared/components/Events/GEventEmitter"
 import * as ETypes from "shared/components/Events/EventTypes"

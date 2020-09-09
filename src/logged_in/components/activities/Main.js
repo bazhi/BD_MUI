@@ -8,8 +8,6 @@ function Main(props) {
 	const {
 		selectPage,
 		pushMessageToSnackbar,
-		posts,
-		setPosts,
 	} = props;
 	const [isAddPostPaperOpen, setIsAddPostPaperOpen] = useState(false);
 	
@@ -35,16 +33,12 @@ function Main(props) {
 	}else{
 		return <PostContent
 			openAddPostModal={openAddPostModal}
-			posts={posts}
-			setPosts={setPosts}
 			pushMessageToSnackbar={pushMessageToSnackbar}
 		/>
 	}
 }
 
 Main.propTypes = {
-	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-	setPosts: PropTypes.func.isRequired,
 	pushMessageToSnackbar: PropTypes.func,
 	selectPage: PropTypes.func.isRequired,
 };

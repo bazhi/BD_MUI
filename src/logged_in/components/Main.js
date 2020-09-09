@@ -7,7 +7,8 @@ import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "shared/components/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
-import intl from 'react-intl-universal';
+import intl from 'shared/components/IntlHelper';
+import * as Pages from "../constants/TabPage"
 
 const AddBalanceDialog = lazy(() => import("./subscription/AddBalanceDialog"));
 
@@ -24,19 +25,11 @@ const styles = (theme) => ({
 	},
 });
 
-function shuffle(array) {
-	for (let i = array.length - 1; i > 0; i--) {
-		let j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
-	}
-}
-
 function Main(props) {
 	const {classes} = props;
-	const [selectedTab, setSelectedTab] = useState(null);
+	const [selectedTab, setSelectedTab] = useState(Pages.Dashboard.Name);
 	const [transactions, setTransactions] = useState([]);
 	const [statistics, setStatistics] = useState({views: [], profit: []});
-	const [posts, setPosts] = useState([]);
 	const [targets, setTargets] = useState([]);
 	const [messages, setMessages] = useState([]);
 	const [isAccountActivated, setIsAccountActivated] = useState(false);
@@ -159,7 +152,6 @@ function Main(props) {
 	}, [setTransactions]);
 	
 	const fetchRandomMessages = useCallback(() => {
-		shuffle(persons);
 		const messages = [];
 		const iterations = persons.length;
 		const oneDaySeconds = 60 * 60 * 24;
@@ -181,29 +173,6 @@ function Main(props) {
 		setMessages(messages);
 	}, [setMessages]);
 	
-	const fetchRandomPosts = useCallback(() => {
-		shuffle(persons);
-		const posts = [];
-		const iterations = persons.length;
-		const oneDaySeconds = 60 * 60 * 24;
-		let curUnix = Math.round(
-			new Date().getTime() / 1000 - iterations * oneDaySeconds
-		);
-		for (let i = 0; i < iterations; i += 1) {
-			const person = persons[i];
-			const post = {
-				id: i,
-				importImage: person.importImage,
-				timestamp: curUnix,
-				name: person.name,
-			};
-			curUnix += oneDaySeconds;
-			posts.push(post);
-		}
-		posts.reverse();
-		setPosts(posts);
-	}, [setPosts]);
-	
 	const toggleAccountActivation = useCallback(() => {
 		if (pushMessageToSnackbar) {
 			if (isAccountActivated) {
@@ -219,7 +188,7 @@ function Main(props) {
 		setIsAccountActivated(!isAccountActivated);
 	}, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
 	
-	const selectPage = useCallback((PageInfo)=>{
+	const selectPage = useCallback((PageInfo) => {
 		smoothScrollTop();
 		document.title = intl.get("WebName") + " " + intl.get(PageInfo.Name);
 		setSelectedTab(PageInfo.Name);
@@ -237,13 +206,11 @@ function Main(props) {
 		fetchRandomStatistics();
 		fetchRandomTransactions();
 		fetchRandomMessages();
-		fetchRandomPosts();
 	}, [
 		fetchRandomTargets,
 		fetchRandomStatistics,
 		fetchRandomTransactions,
 		fetchRandomMessages,
-		fetchRandomPosts,
 	]);
 	
 	return (
@@ -274,12 +241,10 @@ function Main(props) {
 					pushMessageToSnackbar={pushMessageToSnackbar}
 					transactions={transactions}
 					statistics={statistics}
-					posts={posts}
 					targets={targets}
 					selectPage={selectPage}
 					openAddBalanceDialog={openAddBalanceDialog}
 					setTargets={setTargets}
-					setPosts={setPosts}
 				/>
 			</main>
 		</Fragment>

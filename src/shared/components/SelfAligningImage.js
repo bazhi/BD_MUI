@@ -19,6 +19,10 @@ const styles = {
 		right: 0,
 		margin: "auto",
 	},
+	titleBar: {
+		background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 100%)',
+		height: 24,
+	},
 };
 
 function SelfAligningImage(props) {
@@ -30,6 +34,7 @@ function SelfAligningImage(props) {
 		options,
 		roundedBorder,
 		theme,
+		id,
 	} = props;
 	const img = useRef();
 	const [hasMoreWidthThanHeight, setHasMoreWidthThanHeight] = useState(null);
@@ -59,6 +64,13 @@ function SelfAligningImage(props) {
 				src={src}
 				alt=""
 			/>
+			{id && (
+				<GridListTileBar
+					subtitle={"ID: " + id}
+					titlePosition={"top"}
+					className={classes.titleBar}
+				/>
+			)}
 			{title && (
 				<GridListTileBar
 					title={title}
@@ -82,6 +94,7 @@ SelfAligningImage.propTypes = {
 	theme: PropTypes.object.isRequired,
 	title: PropTypes.string,
 	timeStamp: PropTypes.number,
+	id: PropTypes.string,
 	roundedBorder: PropTypes.bool,
 	options: PropTypes.arrayOf(PropTypes.object),
 };

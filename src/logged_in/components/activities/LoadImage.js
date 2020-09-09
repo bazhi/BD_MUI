@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import DeleteIcon from "@material-ui/icons/Delete";
-import SelfAligningImage from "../../../shared/components/SelfAligningImage";
+import SelfAligningImage from "shared/components/SelfAligningImage";
 
 function LoadImage(props) {
 	const {post, onDelete} = props;
@@ -21,6 +21,7 @@ function LoadImage(props) {
 		<SelfAligningImage
 			src={src}
 			title={post.name}
+			id={""+post.id}
 			timeStamp={post.timestamp}
 			options={[
 				{

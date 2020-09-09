@@ -1,6 +1,6 @@
 export const Dashboard = {
 	Name : "Dashboard",
-	Path : "/c/dashboard",
+	Path : "/c/",
 };
 export const Subscription = {
 	Name : "Subscription",

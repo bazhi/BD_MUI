@@ -5,7 +5,6 @@ import classNames from "classnames";
 import { Box, withStyles } from "@material-ui/core";
 import ColoredButton from "./ColoredButton";
 import theme from "theme";
-import Container from "@material-ui/core/Container";
 
 const styles = {
 	button: {

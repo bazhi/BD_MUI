@@ -98,8 +98,6 @@ Routing.propTypes = {
 	classes: PropTypes.object.isRequired,
 	pushMessageToSnackbar: PropTypes.func,
 	setTargets: PropTypes.func.isRequired,
-	setPosts: PropTypes.func.isRequired,
-	posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 	transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
 	toggleAccountActivation: PropTypes.func,
 	statistics: PropTypes.object.isRequired,
