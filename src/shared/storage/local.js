@@ -12,7 +12,7 @@ var storage = (function () {
 				}))
 			}
 		},
-		get: function (key) {
+		get: function (key, defaultValue) {
 			var item = localStorage.getItem(key);
 			if (item) {
 				var o = JSON.parse(item)
@@ -22,7 +22,7 @@ var storage = (function () {
 					localStorage.removeItem(key)
 				}
 			}
-			
+			return defaultValue;
 		}
 	}
 })()

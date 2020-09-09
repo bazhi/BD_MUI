@@ -7,14 +7,14 @@ import EditIcon from '@material-ui/icons/Edit';
 import SelfAligningImage from "shared/components/SelfAligningImage";
 
 function LoadImage(props) {
-	const {post, onDelete, onEdit} = props;
+	const {item, onDelete, onEdit} = props;
 	const [src, setSrc] = useState("");
 	
 	const dynLoadImage = useCallback(() => {
-		post.importImage.then((mod) => {
+		item.importImage.then((mod) => {
 			setSrc(mod.default);
 		});
-	}, [post.importImage, setSrc]);
+	}, [item.importImage, setSrc]);
 	
 	useEffect(() => {
 		dynLoadImage();
@@ -23,9 +23,9 @@ function LoadImage(props) {
 	return (
 		<SelfAligningImage
 			src={src}
-			title={post.name}
-			id={""+post.id}
-			timeStamp={post.timestamp}
+			title={item.name}
+			id={""+item.id}
+			timeStamp={item.timestamp}
 			options={[
 				{
 					name: "Edit",
@@ -43,7 +43,7 @@ function LoadImage(props) {
 }
 
 LoadImage.propTypes = {
-	post: PropTypes.object.isRequired,
+	item: PropTypes.object.isRequired,
 	onDelete: PropTypes.func.isRequired,
 	onEdit: PropTypes.func.isRequired,
 };
