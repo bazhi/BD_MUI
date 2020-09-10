@@ -122,8 +122,6 @@ function NavBar(props) {
 	const [isMobileOpen, setIsMobileOpen] = useState(false);
 	const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
 	
-	const bgMusic = useRef();
-	
 	const openMobileDrawer = useCallback(() => {
 		setIsMobileOpen(true);
 	}, [setIsMobileOpen]);
@@ -199,18 +197,6 @@ function NavBar(props) {
 		},
 	];
 	
-	const autoPlay = useCallback(()=>{
-		if(bgMusic.current){
-			if(bgMusic.current.paused){
-				bgMusic.current.play();
-			}
-		}
-	},[]);
-	
-	useEffect(()=>{
-		autoPlay();
-	}, [autoPlay])
-	
 	return (
 		<Fragment>
 			<AppBar position="sticky" className={classes.appBar}>
@@ -234,10 +220,6 @@ function NavBar(props) {
 								D
 							</Typography>
 						</Hidden>
-						{/*<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={bgMusic}*/}
-						{/*       src="https://sharefs.yun.kugou.com/202009100954/5cfd42f23dcb5a7a9cb15e81aa9bb594/G192/M04/0F/19/oJQEAF5OQE-AKFxeAEbYgOmsMEw983.mp3">*/}
-						{/*	你的浏览器不支持audio标签*/}
-						{/*</audio>*/}
 					</Box>
 					<Box display="flex" justifyContent="flex-end" alignItems="center" width="100%">
 						<LanguageSelector className={""} />

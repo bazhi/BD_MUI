@@ -8,8 +8,8 @@ import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
-import NavigationDrawer from "../../../shared/components/NavigationDrawer";
-import LanguageSelector from "../../../shared/components/LanguageSelector";
+import NavigationDrawer from "shared/components/NavigationDrawer";
+import LanguageSelector from "shared/components/LanguageSelector";
 
 const styles = theme => ({
 	appBar: {

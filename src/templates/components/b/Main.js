@@ -21,7 +21,7 @@ const styles = (theme) => ({
 
 function Main(props) {
 	const {classes} = props;
-	console.log("Main b");
+
 	return (
 		<Box className={classes.wrapper}>
 			<NavBar />
