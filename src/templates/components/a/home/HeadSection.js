@@ -135,7 +135,7 @@ function HeadSection(props) {
 									</Grid>
 									<Hidden smDown>
 										<Grid item md={6}>
-											<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={bgMusic} controls={"controls"}
+											<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={bgMusic}
 											       src="https://sharefs.yun.kugou.com/202009100954/5cfd42f23dcb5a7a9cb15e81aa9bb594/G192/M04/0F/19/oJQEAF5OQE-AKFxeAEbYgOmsMEw983.mp3">
 												你的浏览器不支持audio标签
 											</audio>
