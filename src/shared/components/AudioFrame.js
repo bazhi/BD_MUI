@@ -7,19 +7,24 @@ import IconButton from "@material-ui/core/IconButton";
 function AudioFrame(props)
 {
 	const {src} = props;
-	const [playing, setPlaying] = useState(false);
+	const [playing, setPlaying] = useState(0);
 	const bgMusic = useRef();
 	
 	const OnAction = useCallback(() =>{
 		if (bgMusic.current) {
-			if (playing) {
-				bgMusic.current.pause();
-			}else{
+			if (bgMusic.current.paused) {
 				bgMusic.current.play();
+			}else{
+				bgMusic.current.pause();
 			}
 		}
-		setPlaying(!playing);
-	}, [setPlaying, bgMusic, playing]);
+		if(bgMusic.current.paused){
+			setPlaying(1);
+		}else{
+			setPlaying(2);
+		}
+
+	}, [setPlaying, bgMusic]);
 	
 	useEffect(()=>{
 		bgMusic.current.pause();
@@ -32,12 +37,12 @@ function AudioFrame(props)
 				你的浏览器不支持audio标签
 			</audio>
 			{
-				playing && <IconButton onClick={OnAction}>
+				playing > 1 && <IconButton onClick={OnAction}>
 					<MusicNoteIcon/>
 				</IconButton>
 			}
 			{
-				!playing && <IconButton onClick={OnAction}>
+				playing <= 1 && <IconButton onClick={OnAction}>
 					<MusicOffIcon/>
 				</IconButton>
 			}
