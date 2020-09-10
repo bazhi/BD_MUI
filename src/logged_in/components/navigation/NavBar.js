@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import React, { Fragment, useCallback, useRef, useState } from "react";
 import intl from 'shared/components/IntlHelper';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";

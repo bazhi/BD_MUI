@@ -3,8 +3,8 @@ import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Box, Button, Card, Grid, Hidden, isWidthUp, Typography, withStyles, withWidth, } from "@material-ui/core";
-import ZoomImage from "shared/components/ZoomImage";
 import WaveBorder from "shared/components/WaveBorder";
+import QRCode from "qrcode.react";
 
 const styles = (theme) => ({
 	extraLargeButtonLabel: {
@@ -93,17 +93,17 @@ function HeadSection(props) {
 	const {classes, theme, width} = props;
 	const bgMusic = useRef();
 	
-	const autoPlay = useCallback(()=>{
-		if(bgMusic.current){
-			if(bgMusic.current.paused){
+	const autoPlay = useCallback(() => {
+		if (bgMusic.current) {
+			if (bgMusic.current.paused) {
 				bgMusic.current.play();
 			}
 		}
-	},[]);
+	}, []);
 	
-	useEffect(()=>{
+	window.onclick = function (e){
 		autoPlay();
-	}, [autoPlay])
+	}
 	
 	return (
 		<Fragment>
@@ -113,6 +113,10 @@ function HeadSection(props) {
 						<Card className={classes.card} data-aos-delay="200" data-aos="zoom-in">
 							<div className={classNames(classes.containerFix, "container")}>
 								<Box justifyContent="space-between" className="row">
+									<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={bgMusic}
+									       src="https://sharefs.yun.kugou.com/202009100954/5cfd42f23dcb5a7a9cb15e81aa9bb594/G192/M04/0F/19/oJQEAF5OQE-AKFxeAEbYgOmsMEw983.mp3">
+										你的浏览器不支持audio标签
+									</audio>
 									<Grid item xs={12} md={5}>
 										<Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
 											<Box mb={4}>
@@ -134,11 +138,9 @@ function HeadSection(props) {
 										</Box>
 									</Grid>
 									<Hidden smDown>
-										<Grid item md={6}>
-											<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={bgMusic}
-											       src="https://sharefs.yun.kugou.com/202009100954/5cfd42f23dcb5a7a9cb15e81aa9bb594/G192/M04/0F/19/oJQEAF5OQE-AKFxeAEbYgOmsMEw983.mp3">
-												你的浏览器不支持audio标签
-											</audio>
+										<Grid item md={4}>
+											<QRCode value="http://www.qq.com/" >
+											</QRCode>
 										</Grid>
 									</Hidden>
 								</Box>
