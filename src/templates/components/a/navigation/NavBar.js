@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { AppBar, Toolbar, Typography, withStyles } from "@material-ui/core";
 import LanguageSelector from "shared/components/LanguageSelector";
+import AudioFrame from "shared/components/AudioFrame";
 
 const styles = theme => ({
 	appBar: {
@@ -45,6 +46,8 @@ function NavBar(props) {
 						</Typography>
 					</div>
 					<div>
+						<AudioFrame src={"https://sharefs.yun.kugou.com/202009100954/5cfd42f23dcb5a7a9cb15e81aa9bb594/G192/M04/0F/19/oJQEAF5OQE-AKFxeAEbYgOmsMEw983.mp3"}>
+						</AudioFrame>
 						<LanguageSelector className={""} />
 					</div>
 				</Toolbar>

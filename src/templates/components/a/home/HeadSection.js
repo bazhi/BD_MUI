@@ -1,8 +1,7 @@
-import React, { Fragment, useCallback, useEffect, useRef } from "react";
-import intl from 'react-intl-universal';
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Box, Button, Card, Grid, Hidden, isWidthUp, Typography, withStyles, withWidth, } from "@material-ui/core";
+import { Box, Card, Grid, Hidden, withStyles, withWidth, } from "@material-ui/core";
 import WaveBorder from "shared/components/WaveBorder";
 import QRCode from "qrcode.react";
 
@@ -90,20 +89,7 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-	const {classes, theme, width} = props;
-	const bgMusic = useRef();
-	
-	const autoPlay = useCallback(() => {
-		if (bgMusic.current) {
-			if (bgMusic.current.paused) {
-				bgMusic.current.play();
-			}
-		}
-	}, []);
-	
-	window.onclick = function (e){
-		autoPlay();
-	}
+	const {classes, theme} = props;
 	
 	return (
 		<Fragment>
@@ -113,34 +99,15 @@ function HeadSection(props) {
 						<Card className={classes.card} data-aos-delay="200" data-aos="zoom-in">
 							<div className={classNames(classes.containerFix, "container")}>
 								<Box justifyContent="space-between" className="row">
-									<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={bgMusic}
-									       src="https://sharefs.yun.kugou.com/202009100954/5cfd42f23dcb5a7a9cb15e81aa9bb594/G192/M04/0F/19/oJQEAF5OQE-AKFxeAEbYgOmsMEw983.mp3">
-										你的浏览器不支持audio标签
-									</audio>
 									<Grid item xs={12} md={5}>
 										<Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-											<Box mb={4}>
-												<Typography variant={isWidthUp("lg", width) ? "h3" : "h4"}>
-													{intl.get("HeadTitle")}
-												</Typography>
-											</Box>
-											<div>
-												<Box mb={2}>
-													<Typography variant={isWidthUp("lg", width) ? "h6" : "body1"} color="textSecondary">
-														{intl.get("HeadContent")}
-													</Typography>
-												</Box>
-												<Button variant="contained" color="secondary" fullWidth className={classes.extraLargeButton}
-												        classes={{label: classes.extraLargeButtonLabel}} href="">
-													{intl.get("HeadButton")}
-												</Button>
-											</div>
+											<QRCode value="http://www.qq.com/">
+											</QRCode>
 										</Box>
 									</Grid>
 									<Hidden smDown>
 										<Grid item md={4}>
-											<QRCode value="http://www.qq.com/" >
-											</QRCode>
+										
 										</Grid>
 									</Hidden>
 								</Box>
