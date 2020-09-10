@@ -88,7 +88,7 @@ const styles = theme => ({
 			[theme.breakpoints.down("xs")]: {
 				paddingTop: `${theme.spacing(14)}px !important`
 			}
-		}
+		},
 	}
 });
 

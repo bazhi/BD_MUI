@@ -9,12 +9,14 @@ import intl from 'shared/components/IntlHelper';
 import lodash from 'lodash';
 import GEventEmitter from "shared/components/Events/GEventEmitter"
 import * as ETypes from "shared/components/Events/EventTypes"
+import * as URL from "shared/constants/Url"
 
 import SUPPORT_LOCALES from "shared/components/SupportLocales"
 import AxiosCache from "shared/components/AxiosCache";
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
+const TemplateComponent = lazy(() => import("./templates/components/Main"));
 
 class App extends Component {
 	state = {initDone: false}
@@ -74,10 +76,13 @@ class App extends Component {
 					<Pace color={theme.palette.primary.light} />
 					<Suspense fallback={<Fragment />}>
 						<Switch>
-							<Route path="/c">
+							<Route path={URL.Dashboard}>
 								<LoggedInComponent />
 							</Route>
-							<Route>
+							<Route path={URL.Template}>
+								<TemplateComponent />
+							</Route>
+							<Route path={URL.Home}>
 								<LoggedOutComponent />
 							</Route>
 						</Switch>
