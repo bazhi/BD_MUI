@@ -4,7 +4,6 @@ import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import MusicOffIcon from '@material-ui/icons/MusicOff';
 import IconButton from "@material-ui/core/IconButton";
 
-
 class AudioFrame extends React.Component {
 	constructor(props) {
 		super(props);
@@ -15,15 +14,37 @@ class AudioFrame extends React.Component {
 		this.onAction = this.onAction.bind(this);
 		this.onAudioPlay = this.onAudioPlay.bind(this);
 		this.onAudioPause = this.onAudioPause.bind(this);
+		this.onTouchDocument = this.onTouchDocument.bind(this);
 		this.mounted = false;
+		this.autoPlay = true;
 	}
 	
 	onAction() {
-		if (this.bgMusic.current) {
-			if (this.bgMusic.current.paused) {
-				this.bgMusic.current.play();
+		this.autoPlay = false;
+		let audio = this.bgMusic.current;
+		if (audio) {
+			if(audio.error){
+				return ;
+			}
+			if (audio.paused) {
+				audio.play();
 			} else {
-				this.bgMusic.current.pause();
+				audio.pause();
+			}
+		}
+	}
+	
+	onTouchDocument(){
+		if(this.autoPlay){
+			this.autoPlay = false;
+			let audio = this.bgMusic.current;
+			if (audio) {
+				if(audio.error){
+					return ;
+				}
+				if (audio.paused) {
+					audio.play();
+				}
 			}
 		}
 	}
@@ -52,6 +73,8 @@ class AudioFrame extends React.Component {
 			this.bgMusic.current.addEventListener("pause", this.onAudioPause);
 			this.bgMusic.current.addEventListener("play", this.onAudioPlay)
 		}
+		
+		document.addEventListener("mousedown", this.onTouchDocument, true);
 	}
 	
 	componentWillUnmount() {
@@ -60,6 +83,7 @@ class AudioFrame extends React.Component {
 			this.bgMusic.current.removeEventListener("paused", this.onAudioPause);
 			this.bgMusic.current.removeEventListener("playing", this.onAudioPlay)
 		}
+		document.removeEventListener("mousedown", this.onTouchDocument);
 	}
 	
 	render() {
@@ -70,7 +94,7 @@ class AudioFrame extends React.Component {
 					你的浏览器不支持audio标签
 				</audio>
 				{
-					this.state.playing && <IconButton onClick={this.onAction}>
+					this.state.playing && <IconButton onClick={this.onAction} value = "111">
 						<MusicNoteIcon />
 					</IconButton>
 				}

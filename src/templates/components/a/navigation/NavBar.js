@@ -30,6 +30,7 @@ const styles = theme => ({
 
 function NavBar(props) {
 	const {classes,} = props;
+	const music = "/music/001.mp3";
 	return (
 		<div className={classes.root}>
 			<AppBar position="fixed" className={classes.appBar}>
@@ -46,7 +47,7 @@ function NavBar(props) {
 						</Typography>
 					</div>
 					<div>
-						<AudioFrame src={"https://sharefs.yun.kugou.com/202009100954/5cfd42f23dcb5a7a9cb15e81aa9bb594/G192/M04/0F/19/oJQEAF5OQE-AKFxeAEbYgOmsMEw983.mp3"}>
+						<AudioFrame src={music}>
 						</AudioFrame>
 						<LanguageSelector className={""} />
 					</div>
