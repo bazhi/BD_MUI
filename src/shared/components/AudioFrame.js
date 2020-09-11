@@ -15,6 +15,7 @@ class AudioFrame extends React.Component {
 		this.onAudioPlay = this.onAudioPlay.bind(this);
 		this.onAudioPause = this.onAudioPause.bind(this);
 		this.onTouchDocument = this.onTouchDocument.bind(this);
+		this.onAutoPlay = this.onAutoPlay.bind(this);
 		this.mounted = false;
 		this.autoPlay = true;
 	}
@@ -34,7 +35,7 @@ class AudioFrame extends React.Component {
 		}
 	}
 	
-	onTouchDocument(){
+	onAutoPlay(){
 		if(this.autoPlay){
 			this.autoPlay = false;
 			let audio = this.bgMusic.current;
@@ -46,6 +47,12 @@ class AudioFrame extends React.Component {
 					audio.play();
 				}
 			}
+		}
+	}
+	
+	onTouchDocument(){
+		if(this.autoPlay){
+			setTimeout(this.onAutoPlay, 100);
 		}
 	}
 	
@@ -74,7 +81,7 @@ class AudioFrame extends React.Component {
 			this.bgMusic.current.addEventListener("play", this.onAudioPlay)
 		}
 		
-		document.addEventListener("mousedown", this.onTouchDocument, true);
+		document.addEventListener("mousedown", this.onTouchDocument);
 	}
 	
 	componentWillUnmount() {
