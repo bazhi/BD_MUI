@@ -101,7 +101,7 @@ function HeadSection(props) {
 								<Box justifyContent="space-between" className="row">
 									<Grid item xs={12} md={5}>
 										<Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-											<QRCode value="http://www.qq.com/">
+											<QRCode value="http://192.168.137.1:8081/t/a">
 											</QRCode>
 										</Box>
 									</Grid>

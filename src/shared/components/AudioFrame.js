@@ -1,55 +1,87 @@
-import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import MusicOffIcon from '@material-ui/icons/MusicOff';
 import IconButton from "@material-ui/core/IconButton";
 
-function AudioFrame(props) {
-	const {src} = props;
-	const [playing, setPlaying] = useState(false);
-	const bgMusic = useRef();
+
+class AudioFrame extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			playing: false,
+		}
+		this.bgMusic = React.createRef();
+		this.onAction = this.onAction.bind(this);
+		this.onAudioPlay = this.onAudioPlay.bind(this);
+		this.onAudioPause = this.onAudioPause.bind(this);
+		this.mounted = false;
+	}
 	
-	const OnAction = useCallback(() => {
-		if (bgMusic.current) {
-			if (bgMusic.current.paused) {
-				bgMusic.current.play();
+	onAction() {
+		if (this.bgMusic.current) {
+			if (this.bgMusic.current.paused) {
+				this.bgMusic.current.play();
 			} else {
-				bgMusic.current.pause();
+				this.bgMusic.current.pause();
 			}
 		}
-	}, [bgMusic]);
+	}
 	
-	const OnMount = useCallback(() => {
-		if (bgMusic.current) {
-			bgMusic.current.addEventListener("play", function () {
-				setPlaying(true);
-			});
-			bgMusic.current.addEventListener("pause", function () {
-				setPlaying(false);
+	onAudioPause()
+	{
+		if(this.mounted ){
+			this.setState({
+				playing:false,
 			});
 		}
-	}, [bgMusic, setPlaying]);
+	}
 	
-	useEffect(OnMount);
+	onAudioPlay()
+	{
+		if(this.mounted ){
+			this.setState({
+				playing:true,
+			});
+		}
+	}
 	
-	return (
-		<Fragment>
-			<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={bgMusic}
-			       src={src}>
-				你的浏览器不支持audio标签
-			</audio>
-			{
-				playing && <IconButton onClick={OnAction}>
-					<MusicNoteIcon />
-				</IconButton>
-			}
-			{
-				!playing && <IconButton onClick={OnAction}>
-					<MusicOffIcon />
-				</IconButton>
-			}
-		</Fragment>
-	);
+	componentDidMount() {
+		this.mounted = true;
+		if (this.bgMusic.current) {
+			this.bgMusic.current.addEventListener("pause", this.onAudioPause);
+			this.bgMusic.current.addEventListener("play", this.onAudioPlay)
+		}
+	}
+	
+	componentWillUnmount() {
+		this.mounted = false;
+		if (this.bgMusic.current) {
+			this.bgMusic.current.removeEventListener("paused", this.onAudioPause);
+			this.bgMusic.current.removeEventListener("playing", this.onAudioPlay)
+		}
+	}
+	
+	render() {
+		return (
+			<Fragment>
+				<audio autoPlay={"autoplay"} loop={"loop"} preload={"auto"} ref={this.bgMusic}
+				       src={this.props.src}>
+					你的浏览器不支持audio标签
+				</audio>
+				{
+					this.state.playing && <IconButton onClick={this.onAction}>
+						<MusicNoteIcon />
+					</IconButton>
+				}
+				{
+					!this.state.playing && <IconButton onClick={this.onAction}>
+						<MusicOffIcon />
+					</IconButton>
+				}
+			</Fragment>
+		);
+	}
 }
 
 AudioFrame.propTypes = {
