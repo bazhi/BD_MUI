@@ -1,13 +1,9 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import AOS from "aos/dist/aos";
 import { withStyles, Box } from "@material-ui/core";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
 import Home from "./home/Home";
-import "aos/dist/aos.css";
-
-AOS.init({once: true});
 
 const styles = (theme) => ({
 	wrapper: {

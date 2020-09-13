@@ -96,12 +96,12 @@ function HeadSection(props) {
 			<div className={classNames("lg-p-top", classes.wrapper)}>
 				<div className={classNames("container-fluid", classes.container)}>
 					<Box display="flex" justifyContent="center" className="row">
-						<Card className={classes.card} data-aos-delay="200" data-aos="zoom-in">
+						<Card className={classes.card}>
 							<div className={classNames(classes.containerFix, "container")}>
 								<Box justifyContent="space-between" className="row">
 									<Grid item xs={12} md={5}>
 										<Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-											<QRCode value="http://192.168.137.1:8081/t/a">
+											<QRCode value="http://192.168.50.193:8081/t/a">
 											</QRCode>
 										</Box>
 									</Grid>

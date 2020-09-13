@@ -58,7 +58,6 @@ function PricingSection(props) {
 						sm={6}
 						lg={3}
 						className={classes.cardWrapper}
-						data-aos="zoom-in-up"
 					>
 						<PriceCard
 							title="Starter"
@@ -77,8 +76,6 @@ function PricingSection(props) {
 						xs={12}
 						sm={6}
 						lg={3}
-						data-aos="zoom-in-up"
-						data-aos-delay="200"
 					>
 						<PriceCard
 							highlighted
@@ -98,8 +95,6 @@ function PricingSection(props) {
 						xs={12}
 						sm={6}
 						lg={3}
-						data-aos="zoom-in-up"
-						data-aos-delay={isWidthUp("md", width) ? "400" : "0"}
 					>
 						<PriceCard
 							title="Business"
@@ -118,8 +113,6 @@ function PricingSection(props) {
 						xs={12}
 						sm={6}
 						lg={3}
-						data-aos="zoom-in-up"
-						data-aos-delay={isWidthUp("md", width) ? "600" : "200"}
 					>
 						<PriceCard
 							title="Tycoon"

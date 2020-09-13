@@ -1,11 +1,9 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
-import AOS from "aos/dist/aos";
 import { withStyles } from "@material-ui/core";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
-import "aos/dist/aos.css";
 import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
 import dummyBlogPosts from "../dummy_data/blogPosts";
@@ -16,8 +14,6 @@ import * as URL from "shared/constants/Url";
 import * as Key from "shared/constants/Keyword"
 import storage from "shared/storage/local";
 import { withRouter } from "react-router-dom";
-
-AOS.init({once: true});
 
 const styles = (theme) => ({
 	wrapper: {

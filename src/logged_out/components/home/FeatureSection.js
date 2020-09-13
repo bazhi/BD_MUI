@@ -114,10 +114,6 @@ function FeatureSection(props) {
 								item
 								xs={6}
 								md={4}
-								data-aos="zoom-in-up"
-								data-aos-delay={
-									isWidthUp("md", width) ? element.mdDelay : element.smDelay
-								}
 								key={element.headline}
 							>
 								<FeatureCard
