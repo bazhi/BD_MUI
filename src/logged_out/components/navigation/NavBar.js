@@ -10,6 +10,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "shared/components/NavigationDrawer";
 import LanguageSelector from "shared/components/LanguageSelector";
+import CompanyName from "shared/components/CompanyName";
 
 const styles = theme => ({
 	appBar: {
@@ -75,17 +76,7 @@ function NavBar(props) {
 		<div className={classes.root}>
 			<AppBar position="fixed" className={classes.appBar}>
 				<Toolbar className={classes.toolbar}>
-					<div>
-						<Typography variant="h4" className={classes.brandText} display="inline" color="primary">
-							B
-						</Typography>
-						<Typography variant="h5" className={classes.brandText} display="inline" color="textSecondary">
-							&
-						</Typography>
-						<Typography variant="h4" className={classes.brandText} display="inline" color="secondary">
-							D
-						</Typography>
-					</div>
+					<CompanyName></CompanyName>
 					<div>
 						<LanguageSelector className={""} />
 						<Hidden mdUp>

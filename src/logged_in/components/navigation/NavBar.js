@@ -19,6 +19,7 @@ import LanguageSelector from "shared/components/LanguageSelector";
 import storage from "shared/storage/local";
 import * as Key from "shared/constants/Keyword"
 import * as Pages from "../../constants/TabPage"
+import CompanyName from "shared/components/CompanyName";
 
 const styles = (theme) => ({
 	appBar: {
@@ -210,15 +211,7 @@ function NavBar(props) {
 							</Box>
 						</Hidden>
 						<Hidden xsDown>
-							<Typography variant="h4" className={classes.brandText} display="inline" color="primary">
-								B
-							</Typography>
-							<Typography variant="h5" className={classes.brandText} display="inline" color="textSecondary">
-								&
-							</Typography>
-							<Typography variant="h4" className={classes.brandText} display="inline" color="secondary">
-								D
-							</Typography>
+							<CompanyName></CompanyName>
 						</Hidden>
 					</Box>
 					<Box display="flex" justifyContent="flex-end" alignItems="center" width="100%">

@@ -14,6 +14,8 @@ import * as URL from "shared/constants/Url"
 import SUPPORT_LOCALES from "shared/components/SupportLocales"
 import AxiosCache from "shared/components/AxiosCache";
 
+import 'shared/css/transition.css'
+
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 const TemplateComponent = lazy(() => import("./templates/components/Main"));

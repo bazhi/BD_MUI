@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import { AppBar, Toolbar, Typography, withStyles } from "@material-ui/core";
+import { AppBar, Toolbar, withStyles } from "@material-ui/core";
 import LanguageSelector from "shared/components/LanguageSelector";
 import AudioFrame from "shared/components/AudioFrame";
+import CompanyName from "shared/components/CompanyName";
 
 const styles = theme => ({
 	appBar: {
@@ -35,17 +36,7 @@ function NavBar(props) {
 		<div className={classes.root}>
 			<AppBar position="fixed" className={classes.appBar}>
 				<Toolbar className={classes.toolbar}>
-					<div>
-						<Typography variant="h4" className={classes.brandText} display="inline" color="primary">
-							B
-						</Typography>
-						<Typography variant="h5" className={classes.brandText} display="inline" color="textSecondary">
-							&
-						</Typography>
-						<Typography variant="h4" className={classes.brandText} display="inline" color="secondary">
-							D
-						</Typography>
-					</div>
+					<CompanyName></CompanyName>
 					<div>
 						<AudioFrame src={music}>
 						</AudioFrame>
