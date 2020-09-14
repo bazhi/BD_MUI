@@ -1,0 +1,34 @@
+[
+  {
+	"name": "Dave",
+	"id": 1001,
+	"image": "/heads/01.jpg",
+	"color": "",
+	"description": "王者之风",
+	"brief": "王者之风"
+  },
+  {
+	"name": "Alice",
+	"id": 1002,
+	"image": "/heads/01.jpg",
+	"color": "",
+	"description": "大将之才",
+	"brief": "大将之才"
+  },
+  {
+	"name": "Mark",
+	"id": 1003,
+	"image": "/heads/01.jpg",
+	"color": "",
+	"description": "领导者",
+	"brief": "领导者"
+  },
+  {
+	"name": "Tom",
+	"id": 1004,
+	"image": "/heads/01.jpg",
+	"color": "",
+	"description": "骨干",
+	"brief": "骨干"
+  }
+]

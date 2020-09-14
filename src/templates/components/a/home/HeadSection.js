@@ -6,24 +6,6 @@ import WaveBorder from "shared/components/WaveBorder";
 import QRCode from "qrcode.react";
 
 const styles = (theme) => ({
-	extraLargeButtonLabel: {
-		fontSize: theme.typography.body1.fontSize,
-		[theme.breakpoints.up("sm")]: {
-			fontSize: theme.typography.h6.fontSize,
-		},
-	},
-	extraLargeButton: {
-		paddingTop: theme.spacing(1.5),
-		paddingBottom: theme.spacing(1.5),
-		[theme.breakpoints.up("xs")]: {
-			paddingTop: theme.spacing(1),
-			paddingBottom: theme.spacing(1),
-		},
-		[theme.breakpoints.up("lg")]: {
-			paddingTop: theme.spacing(2),
-			paddingBottom: theme.spacing(2),
-		},
-	},
 	card: {
 		boxShadow: theme.shadows[4],
 		marginLeft: theme.spacing(2),
