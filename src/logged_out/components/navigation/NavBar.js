@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import intl from 'react-intl-universal';
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { AppBar, Button, Hidden, IconButton, Toolbar, Typography, withStyles } from "@material-ui/core";
+import { AppBar, Button, Hidden, IconButton, Toolbar, withStyles } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
@@ -72,6 +72,7 @@ function NavBar(props) {
 			iconPC: <LockOpenIcon className="" />
 		}
 	];
+	
 	return (
 		<div className={classes.root}>
 			<AppBar position="fixed" className={classes.appBar}>

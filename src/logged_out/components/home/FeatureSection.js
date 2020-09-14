@@ -1,4 +1,4 @@
-import React, { Fragment, lazy, Suspense } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, withWidth } from "@material-ui/core";
 import CodeIcon from "@material-ui/icons/Code";
@@ -112,7 +112,7 @@ function FeatureSection(props) {
 					<Grid container spacing={calculateSpacing(width)}>
 						{features.map(element => (
 							<Grid item xs={6} md={4} key={element.headline}>
-								<Lazyload once={true} key={element.headline} debounce={200}>
+								<Lazyload once={false} key={element.headline} debounce={200} height={100} offset={-80}>
 									<FeatureCard
 										Icon={element.icon}
 										color={element.color}

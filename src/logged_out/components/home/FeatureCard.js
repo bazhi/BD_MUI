@@ -41,7 +41,7 @@ function FeatureCard(props) {
 	const {classes, Icon, color, headline, text} = props;
 	return (
 		<Fragment>
-			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={500} unmountOnExit={true}>
+			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={Math.random()*150+350} unmountOnExit={true}>
 				<div>
 					<div
 						className={classes.iconWrapper}
