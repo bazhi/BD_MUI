@@ -112,7 +112,7 @@ function FeatureSection(props) {
 					<Grid container spacing={calculateSpacing(width)}>
 						{features.map(element => (
 							<Grid item xs={6} md={4} key={element.headline}>
-								<Lazyload once={false} key={element.headline} debounce={200} height={100} offset={-80}>
+								<Lazyload once={false} key={element.headline} debounce={200} height={120} offset={-80}>
 									<FeatureCard
 										Icon={element.icon}
 										color={element.color}
