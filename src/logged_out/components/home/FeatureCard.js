@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Typography, withStyles } from "@material-ui/core";
+import { CSSTransition } from "react-transition-group";
 
 const styles = theme => ({
 	iconWrapper: {
@@ -39,25 +40,32 @@ function shadeColor(hex, percent) {
 function FeatureCard(props) {
 	const {classes, Icon, color, headline, text} = props;
 	return (
+		
 		<Fragment>
-			<div
-				// We will set color and fill here, due to some prios complications
-				className={classes.iconWrapper}
-				style={{
-					color: color,
-					backgroundColor: shadeColor(color, 0.5),
-					fill: color
-				}}
-			>
-				{Icon}
-			</div>
-			<Typography variant="h5" paragraph>
-				{headline}
-			</Typography>
-			<Typography variant="body1" color="textSecondary">
-				{text}
-			</Typography>
+			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={300}>
+				<div
+					className={classes.iconWrapper}
+					style={{
+						color: color,
+						backgroundColor: shadeColor(color, 0.5),
+						fill: color
+					}}
+				>
+					{Icon}
+				</div>
+			</CSSTransition>
+			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={300}>
+				<Typography variant="h5" paragraph>
+					{headline}
+				</Typography>
+			</CSSTransition>
+			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={300}>
+				<Typography variant="body1" color="textSecondary">
+					{text}
+				</Typography>
+			</CSSTransition>
 		</Fragment>
+	
 	);
 }
 

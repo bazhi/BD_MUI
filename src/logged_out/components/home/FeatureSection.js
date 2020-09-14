@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, withWidth } from "@material-ui/core";
 import CodeIcon from "@material-ui/icons/Code";
@@ -13,7 +13,6 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import calculateSpacing from "./calculateSpacing";
 import FeatureCard from "./FeatureCard";
 import Lazyload from "react-lazyload";
-import { CSSTransition } from "react-transition-group";
 
 const iconSize = 30;
 
@@ -113,15 +112,13 @@ function FeatureSection(props) {
 					<Grid container spacing={calculateSpacing(width)}>
 						{features.map(element => (
 							<Grid item xs={6} md={4} key={element.headline}>
-								<Lazyload once={true} key={element.headline} debounce={200} >
-									<CSSTransition key={element.headline} in={true} appear={true} classNames="bz-fade" timeout={300}>
-										<FeatureCard
-											Icon={element.icon}
-											color={element.color}
-											headline={element.headline}
-											text={element.text}
-										/>
-									</CSSTransition>
+								<Lazyload once={true} key={element.headline} debounce={200}>
+									<FeatureCard
+										Icon={element.icon}
+										color={element.color}
+										headline={element.headline}
+										text={element.text}
+									/>
 								</Lazyload>
 							</Grid>
 						))}
