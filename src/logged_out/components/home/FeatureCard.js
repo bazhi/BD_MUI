@@ -40,29 +40,26 @@ function shadeColor(hex, percent) {
 function FeatureCard(props) {
 	const {classes, Icon, color, headline, text} = props;
 	return (
-		
 		<Fragment>
-			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={300}>
-				<div
-					className={classes.iconWrapper}
-					style={{
-						color: color,
-						backgroundColor: shadeColor(color, 0.5),
-						fill: color
-					}}
-				>
-					{Icon}
+			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={500} unmountOnExit={true}>
+				<div>
+					<div
+						className={classes.iconWrapper}
+						style={{
+							color: color,
+							backgroundColor: shadeColor(color, 0.5),
+							fill: color
+						}}
+					>
+						{Icon}
+					</div>
+					<Typography variant="h5" paragraph>
+						{headline}
+					</Typography>
+					<Typography variant="body1" color="textSecondary">
+						{text}
+					</Typography>
 				</div>
-			</CSSTransition>
-			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={300}>
-				<Typography variant="h5" paragraph>
-					{headline}
-				</Typography>
-			</CSSTransition>
-			<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={300}>
-				<Typography variant="body1" color="textSecondary">
-					{text}
-				</Typography>
 			</CSSTransition>
 		</Fragment>
 	
