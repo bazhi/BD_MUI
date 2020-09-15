@@ -12,7 +12,6 @@ import MeassageIcon from "@material-ui/icons/Message";
 import CancelIcon from "@material-ui/icons/Cancel";
 import calculateSpacing from "./calculateSpacing";
 import FeatureCard from "./FeatureCard";
-import Lazyload from "react-lazyload";
 
 const iconSize = 30;
 
@@ -112,14 +111,12 @@ function FeatureSection(props) {
 					<Grid container spacing={calculateSpacing(width)}>
 						{features.map(element => (
 							<Grid item xs={6} md={4} key={element.headline}>
-								<Lazyload once={false} key={element.headline} debounce={200} height={120} offset={-80}>
-									<FeatureCard
-										Icon={element.icon}
-										color={element.color}
-										headline={element.headline}
-										text={element.text}
-									/>
-								</Lazyload>
+								<FeatureCard
+									Icon={element.icon}
+									color={element.color}
+									headline={element.headline}
+									text={element.text}
+								/>
 							</Grid>
 						))}
 					</Grid>

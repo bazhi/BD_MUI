@@ -39,7 +39,7 @@ const styles = (theme) => ({
 	wrapper: {
 		position: "relative",
 		backgroundColor: theme.palette.secondary.main,
-		paddingBottom: theme.spacing(2),
+		paddingBottom: theme.spacing(1),
 	},
 	image: {
 		maxWidth: "100%",
@@ -48,8 +48,8 @@ const styles = (theme) => ({
 		boxShadow: theme.shadows[4],
 	},
 	container: {
-		marginTop: theme.spacing(6),
-		marginBottom: theme.spacing(12),
+		marginTop: theme.spacing(0),
+		marginBottom: theme.spacing(0),
 		[theme.breakpoints.down("md")]: {
 			marginBottom: theme.spacing(9),
 		},
@@ -66,7 +66,7 @@ const styles = (theme) => ({
 		},
 	},
 	waveBorder: {
-		paddingTop: theme.spacing(4),
+		paddingTop: theme.spacing(0),
 	},
 });
 
@@ -83,15 +83,11 @@ function HeadSection(props) {
 								<Box justifyContent="space-between" className="row">
 									<Grid item xs={12} md={5}>
 										<Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-											<QRCode value="http://192.168.50.193:8081/t/a">
+											<QRCode value="http://192.168.137.1:8081/t/a">
+												{/*192.168.50.193*/}
 											</QRCode>
 										</Box>
 									</Grid>
-									<Hidden smDown>
-										<Grid item md={4}>
-										
-										</Grid>
-									</Hidden>
 								</Box>
 							</div>
 						</Card>
