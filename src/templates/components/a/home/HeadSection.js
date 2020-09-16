@@ -10,31 +10,11 @@ const styles = (theme) => ({
 		boxShadow: theme.shadows[4],
 		marginLeft: theme.spacing(2),
 		marginRight: theme.spacing(2),
-		[theme.breakpoints.up("xs")]: {
-			paddingTop: theme.spacing(3),
-			paddingBottom: theme.spacing(3),
-		},
-		[theme.breakpoints.up("sm")]: {
-			paddingTop: theme.spacing(5),
-			paddingBottom: theme.spacing(5),
-			paddingLeft: theme.spacing(4),
-			paddingRight: theme.spacing(4),
-		},
-		[theme.breakpoints.up("md")]: {
-			paddingTop: theme.spacing(5.5),
-			paddingBottom: theme.spacing(5.5),
-			paddingLeft: theme.spacing(5),
-			paddingRight: theme.spacing(5),
-		},
-		[theme.breakpoints.up("lg")]: {
-			paddingTop: theme.spacing(6),
-			paddingBottom: theme.spacing(6),
-			paddingLeft: theme.spacing(6),
-			paddingRight: theme.spacing(6),
-		},
-		[theme.breakpoints.down("lg")]: {
-			width: "auto",
-		},
+		width: "auto",
+		paddingTop: theme.spacing(4),
+		paddingBottom: theme.spacing(4),
+		paddingLeft: theme.spacing(2),
+		paddingRight: theme.spacing(2),
 	},
 	wrapper: {
 		position: "relative",
@@ -50,20 +30,6 @@ const styles = (theme) => ({
 	container: {
 		marginTop: theme.spacing(0),
 		marginBottom: theme.spacing(0),
-		[theme.breakpoints.down("md")]: {
-			marginBottom: theme.spacing(9),
-		},
-		[theme.breakpoints.down("sm")]: {
-			marginBottom: theme.spacing(6),
-		},
-		[theme.breakpoints.down("sm")]: {
-			marginBottom: theme.spacing(3),
-		},
-	},
-	containerFix: {
-		[theme.breakpoints.up("md")]: {
-			maxWidth: "none !important",
-		},
 	},
 	waveBorder: {
 		paddingTop: theme.spacing(0),
@@ -79,17 +45,16 @@ function HeadSection(props) {
 				<div className={classNames("container-fluid", classes.container)}>
 					<Box display="flex" justifyContent="center" className="row">
 						<Card className={classes.card}>
-							<div className={classNames(classes.containerFix, "container")}>
-								<Box justifyContent="space-between" className="row">
-									<Grid item xs={12} md={5}>
-										<Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-											<QRCode value="http://192.168.137.1:8081/t/a">
-												{/*192.168.50.193*/}
-											</QRCode>
-										</Box>
-									</Grid>
-								</Box>
-							</div>
+							<Grid container ajustify="space-between" spacing={6}>
+								<Grid item xs={6} md={6}>
+									<QRCode value="http://192.168.137.1:8081/t/a">
+									</QRCode>
+								</Grid>
+								<Grid item xs={6} md={6}>
+									<QRCode value="http://192.168.50.193:8081/t/a">
+									</QRCode>
+								</Grid>
+							</Grid>
 						</Card>
 					</Box>
 				</div>
