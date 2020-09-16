@@ -10,7 +10,7 @@
   {
 	"name": "Alice",
 	"id": 1002,
-	"image": "/heads/01.jpg",
+	"image": "/heads/02.jpg",
 	"color": "",
 	"description": "大将之才",
 	"brief": "大将之才"
@@ -18,7 +18,7 @@
   {
 	"name": "Mark",
 	"id": 1003,
-	"image": "/heads/01.jpg",
+	"image": "/heads/03.jpg",
 	"color": "",
 	"description": "领导者",
 	"brief": "领导者"
@@ -26,7 +26,7 @@
   {
 	"name": "Tom",
 	"id": 1004,
-	"image": "/heads/01.jpg",
+	"image": "/heads/04.jpg",
 	"color": "",
 	"description": "骨干",
 	"brief": "骨干"

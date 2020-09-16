@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, withWidth } from "@material-ui/core";
+import { Grid, withWidth } from "@material-ui/core";
 import CalculateSpacing from "./CalculateSpacing"
 import { CSSTransition } from "react-transition-group";
 import AxiosCache from "shared/components/AxiosCache";
@@ -37,7 +37,7 @@ function FeatureSection(props) {
 						{voteList.map(element => (
 							<Grid item xs={6} md={4} key={element.id}>
 								<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={100} unmountOnExit={true} overflow={"true"}>
-									<div align="center">
+									<div>
 										<VoteItem
 											id={element.id}
 											image={element.image}
@@ -45,6 +45,7 @@ function FeatureSection(props) {
 											name={element.name}
 											description={element.description}
 											brief={element.brief}
+											border={false}
 										/>
 									</div>
 								</CSSTransition>
