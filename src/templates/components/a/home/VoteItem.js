@@ -127,7 +127,7 @@ function VoteItem(props) {
 							<IconButton aria-label={element.tips} key={index} onClick={() => {
 								onClickIcon(index);
 							}}>
-								<Badge badgeContent={element.count} color="primary">
+								<Badge badgeContent={element.count} color="secondary">
 									{
 										element.count === 0 && (<SvgIcon component={element.component} color={"primary"} />)
 									}
