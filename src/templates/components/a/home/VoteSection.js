@@ -35,7 +35,7 @@ function FeatureSection(props) {
 				<div className="container-fluid">
 					<Grid container spacing={CalculateSpacing(width)} alignItems={"center"}>
 						{voteList.map(element => (
-							<Grid item xs={6} md={4} key={element.id}>
+							<Grid item xs={12} md={4} key={element.id}>
 								<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={100} unmountOnExit={true} overflow={"true"}>
 									<div>
 										<VoteItem
