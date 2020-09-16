@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useCallback, useState } from "react";
 import PropTypes from "prop-types";
-import { withStyles, Box } from "@material-ui/core";
+import { Box, withStyles } from "@material-ui/core";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
 import Home from "./home/Home";
@@ -17,11 +17,21 @@ const styles = (theme) => ({
 
 function Main(props) {
 	const {classes} = props;
-
+	
+	const [target, setTarget] = useState();
+	
+	const GetTarget = useCallback(() => {
+		return target;
+	}, [target])
+	
+	const OnTarget = useCallback((target) => {
+		setTarget(target);
+	}, [setTarget]);
+	
 	return (
 		<Box className={classes.wrapper}>
-			<NavBar />
-			<Home />
+			<NavBar target={GetTarget} />
+			<Home onScrollTarget={OnTarget} />
 			<Footer />
 		</Box>
 	);

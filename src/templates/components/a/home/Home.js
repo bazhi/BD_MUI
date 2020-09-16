@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -16,11 +16,17 @@ const styles = (theme) => ({
 });
 
 function Home(props) {
-	const {classes} = props;
+	const {classes, onScrollTarget} = props;
+	const scrollRef = useRef();
+	
+	useEffect(()=>{
+		onScrollTarget(scrollRef.current);
+	},[onScrollTarget, scrollRef])
+	
 	return (
-		<Box className={classNames(classes.wrapper)}>
+		<Box className={classNames(classes.wrapper)} ref={scrollRef}>
 			<HeadSection />
-			<VoteSection/>
+			<VoteSection />
 		</Box>
 	);
 }
@@ -28,6 +34,7 @@ function Home(props) {
 Home.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
+	onScrollTarget: PropTypes.func,
 };
 
 export default withStyles(styles, {withTheme: true})(Home)

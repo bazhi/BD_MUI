@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Box, Card, Grid, Hidden, withStyles, withWidth, } from "@material-ui/core";
+import { Box, Card, Grid, withStyles, withWidth, } from "@material-ui/core";
 import WaveBorder from "shared/components/WaveBorder";
 import QRCode from "qrcode.react";
 
