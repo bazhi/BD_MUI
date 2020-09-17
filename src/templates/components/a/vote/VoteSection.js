@@ -8,7 +8,7 @@ import VoteItem from "./VoteItem";
 const styles = (theme) => ({});
 
 function VoteSection(props) {
-	const {width, classes, userStyle, userData} = props;
+	const {width, userStyle, userData} = props;
 	
 	return (
 		<div style={{backgroundColor: userStyle.background}}>

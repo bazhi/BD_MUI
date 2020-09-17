@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Box, CardContent, Grid, GridListTileBar, SvgIcon, Typography, withStyles } from "@material-ui/core";
+import { CardContent, Grid, GridListTileBar, SvgIcon, Typography, withStyles } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
@@ -33,7 +33,6 @@ function VoteItem(props) {
 		classes,
 		image,
 		name,
-		theme,
 		id,
 		description,
 	} = props;
@@ -55,10 +54,10 @@ function VoteItem(props) {
 	const onClickIcon = useCallback((index) => {
 		list[index].count++;
 		setList(list);
-		setChanged(change+1);
-	},[setList, list, setChanged, change]);
+		setChanged(change + 1);
+	}, [setList, list, setChanged, change]);
 	
-	useEffect(()=>{
+	useEffect(() => {
 		setList([
 			{
 				count: 0,
@@ -82,7 +81,7 @@ function VoteItem(props) {
 				componentOk: Redeem,
 			}
 		])
-	},[setList]);
+	}, [setList]);
 	
 	return (
 		<Card>

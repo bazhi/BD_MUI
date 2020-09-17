@@ -36,7 +36,7 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-	const {classes, theme, userStyle} = props;
+	const {classes, userStyle} = props;
 	
 	return (
 		<Fragment>

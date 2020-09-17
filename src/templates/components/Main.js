@@ -3,8 +3,9 @@ import Routing from "./Routing";
 import { withRouter } from "react-router-dom";
 
 function Main(props) {
+	const searchData = 	new URLSearchParams(props.location.search);
 	return (
-		<Routing />
+		<Routing search={searchData} />
 	);
 }
 

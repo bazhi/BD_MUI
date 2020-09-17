@@ -1,20 +1,30 @@
-import React, { memo } from "react";
-import { Switch } from "react-router-dom";
-import PropsRoute from "shared/components/PropsRoute";
+import React, { Fragment, lazy, memo, Suspense } from "react";
+import { Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import A from "./a";
-import B from "./b";
+const A = lazy(()=>import("./a/Main"));
+const B = lazy(()=>import("./b/Main"));
 
 function Routing(props) {
 	return (
 		<Switch>
-			<PropsRoute path={"/t"} component={A} />
-			<PropsRoute path={"/t/b"} component={B} />
+			<Route path={"/t/a"}>
+				<Suspense fallback={<Fragment/>}>
+					<A search={props.search}/>
+				</Suspense>
+			</Route>
+			<Route path={"/t/b"}>
+				<Suspense fallback={<Fragment/>}>
+					<B search={props.search}/>
+				</Suspense>
+			</Route>
 		</Switch>
 	);
 }
 
-Routing.propTypes = {};
+Routing.propTypes = {
+	search: PropTypes.objectOf(URLSearchParams),
+};
 
 export default memo(Routing);
 

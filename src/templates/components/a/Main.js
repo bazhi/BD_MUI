@@ -24,7 +24,7 @@ let styles = (theme) => ({
 });
 
 function Main(props) {
-	const {classes, theme} = props;
+	const {classes, theme, search} = props;
 	const [scroll, setScroll] = useState(undefined);
 	const [navState, setNavState] = useState(null);
 	
@@ -35,9 +35,9 @@ function Main(props) {
 		}
 	});
 	
-	const LoadData = useCallback(() => {
+	const LoadData = useCallback((id) => {
 		AxiosCache({
-			url: `/data/data01.json`,
+			url: `/data/data${id}.json`,
 			method: 'get'
 		}).then(function (res) {
 			setUserData(res.data);
@@ -55,18 +55,18 @@ function Main(props) {
 	const onNavState = useCallback((newState) =>{
 		setNavState(newState);
 	}, [setNavState])
-	
+
 	useEffect(() => {
 		setScroll(scrollRef.current);
-		LoadData();
-	}, [setScroll, scrollRef, LoadData])
+		LoadData(search.get("id"));
+	}, [setScroll, scrollRef, LoadData, search])
 	
 	return (
 		<Box className={classes.wrapper} style={{backgroundColor:userData.theme.background}}>
 			<NavBar target={GetTarget} />
 			<Box className={classes.body} ref={scrollRef}  style={{backgroundColor:userData.theme.background}}>
 				{navState === NavState.Vote &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Vote userData={userData}/></Suspense>)}
-				{navState === NavState.Rule &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rule/></Suspense>)}
+				{navState === NavState.Rule &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rule userData={userData.rule}/></Suspense>)}
 			</Box>
 			<Footer onNavState={onNavState}/>
 		</Box>
@@ -75,6 +75,7 @@ function Main(props) {
 
 Main.propTypes = {
 	classes: PropTypes.object.isRequired,
+	search: PropTypes.objectOf(URLSearchParams),
 };
 
 export default withStyles(styles, {withTheme: true})(memo(Main));

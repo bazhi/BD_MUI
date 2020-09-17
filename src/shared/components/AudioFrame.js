@@ -52,7 +52,7 @@ class AudioFrame extends React.Component {
 	
 	onTouchDocument(){
 		if(this.autoPlay){
-			setTimeout(this.onAutoPlay, 100);
+			//setTimeout(this.onAutoPlay, 100);
 		}
 	}
 	
