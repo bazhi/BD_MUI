@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { CardContent, Grid, GridListTileBar, SvgIcon, Typography, withStyles } from "@material-ui/core";
+import { Box, CardContent, Grid, GridListTileBar, SvgIcon, Typography, withStyles } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
@@ -33,7 +33,6 @@ function VoteItem(props) {
 		classes,
 		image,
 		name,
-		border,
 		theme,
 		id,
 		description,
@@ -93,7 +92,6 @@ function VoteItem(props) {
 						height: hasMoreWidthThanHeight ? "100%" : "auto",
 						width: hasMoreWidthThanHeight ? "auto" : "100%",
 						display: hasLoaded ? "block" : "none",
-						borderRadius: border ? theme.shape.borderRadius : 0,
 					}}
 					ref={img}
 					className={classes.image}
@@ -150,7 +148,6 @@ VoteItem.propTypes = {
 	theme: PropTypes.object.isRequired,
 	name: PropTypes.string,
 	id: PropTypes.number,
-	border: PropTypes.bool,
 	description: PropTypes.string,
 };
 

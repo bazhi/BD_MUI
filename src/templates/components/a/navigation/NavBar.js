@@ -9,7 +9,7 @@ import HideOnScroll from "shared/components/HideOnScroll";
 const styles = theme => ({
 	appBar: {
 		boxShadow: theme.shadows[6],
-		backgroundColor: theme.palette.common.white
+		backgroundColor: theme.palette.background.topBar
 	},
 	toolbar: {
 		display: "flex",

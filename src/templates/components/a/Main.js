@@ -1,15 +1,16 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import React, { Fragment, lazy, memo, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, withStyles } from "@material-ui/core";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
-import Vote from "templates/components/a/vote/Vote";
-import Rule from "templates/components/a/rule/Rule";
 import {NavState} from "./constants/NavState"
+import AxiosCache from "shared/components/AxiosCache";
 
-const styles = (theme) => ({
+const Vote = lazy(() => import("./vote/Vote"));
+const Rule = lazy(() => import("./rule/Rule"));
+
+let styles = (theme) => ({
 	wrapper: {
-		backgroundColor: theme.palette.common.white,
 		overflowX: "hidden",
 		display: "flex",
 		flexDirection: "column",
@@ -17,17 +18,33 @@ const styles = (theme) => ({
 	},
 	body: {
 		position: "relative",
-		backgroundColor: theme.palette.common.white,
 		flex: 1,
 		overflowY: "auto",
 	}
 });
 
 function Main(props) {
-	const {classes} = props;
-	
+	const {classes, theme} = props;
 	const [scroll, setScroll] = useState(undefined);
 	const [navState, setNavState] = useState(null);
+	
+	const [userData, setUserData] = useState({
+		theme:{
+			background : "#ffffff",
+			wave : "#FFFFFF",
+		}
+	});
+	
+	const LoadData = useCallback(() => {
+		AxiosCache({
+			url: `/data/data01.json`,
+			method: 'get'
+		}).then(function (res) {
+			setUserData(res.data);
+		}).catch(function (error) {
+			console.log(error);
+		});
+	}, [setUserData]);
 	
 	const scrollRef = useRef();
 	
@@ -41,14 +58,15 @@ function Main(props) {
 	
 	useEffect(() => {
 		setScroll(scrollRef.current);
-	}, [setScroll, scrollRef])
+		LoadData();
+	}, [setScroll, scrollRef, LoadData])
 	
 	return (
-		<Box className={classes.wrapper}>
+		<Box className={classes.wrapper} style={{backgroundColor:userData.theme.background}}>
 			<NavBar target={GetTarget} />
-			<Box className={classes.body} ref={scrollRef}>
-				{navState === NavState.Vote &&(<Vote/>)}
-				{navState === NavState.Rule &&(<Rule/>)}
+			<Box className={classes.body} ref={scrollRef}  style={{backgroundColor:userData.theme.background}}>
+				{navState === NavState.Vote &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Vote userData={userData}/></Suspense>)}
+				{navState === NavState.Rule &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rule/></Suspense>)}
 			</Box>
 			<Footer onNavState={onNavState}/>
 		</Box>

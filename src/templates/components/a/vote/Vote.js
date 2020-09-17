@@ -7,10 +7,11 @@ import VoteSection from "./VoteSection";
 const styles = (theme) => ({});
 
 function Vote(props) {
+	const {userData} = props;
 	return (
 		<div>
-			<HeadSection />
-			<VoteSection />
+			<HeadSection userStyle={userData.theme}/>
+			<VoteSection userStyle={userData.theme} userData={userData}/>
 		</div>
 	);
 }
@@ -18,6 +19,7 @@ function Vote(props) {
 Vote.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
+	userData : PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, {withTheme: true})(Vote)

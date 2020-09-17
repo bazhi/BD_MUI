@@ -18,7 +18,6 @@ const styles = (theme) => ({
 	},
 	wrapper: {
 		position: "relative",
-		backgroundColor: theme.palette.secondary.main,
 		paddingBottom: theme.spacing(1),
 	},
 	image: {
@@ -37,11 +36,11 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-	const {classes, theme} = props;
+	const {classes, theme, userStyle} = props;
 	
 	return (
 		<Fragment>
-			<div className={classNames("lg-p-top", classes.wrapper)}>
+			<div className={classNames("lg-p-top", classes.wrapper)} style={{backgroundColor: userStyle.wave}}>
 				<div className={classNames("container-fluid", classes.container)}>
 					<Box display="flex" justifyContent="center" className="row">
 						<Card className={classes.card}>
@@ -59,15 +58,16 @@ function HeadSection(props) {
 					</Box>
 				</div>
 			</div>
-			<WaveBorder upperColor={theme.palette.secondary.main} lowerColor="#FFFFFF" className={classes.waveBorder} animationNegativeDelay={2} />
+			<WaveBorder upperColor={userStyle.wave} lowerColor={userStyle.background} className={classes.waveBorder} animationNegativeDelay={2} />
 		</Fragment>
 	);
 }
 
 HeadSection.propTypes = {
-	classes: PropTypes.object,
+	classes: PropTypes.object.isRequired,
 	width: PropTypes.string,
-	theme: PropTypes.object,
+	theme: PropTypes.object.isRequired,
+	userStyle: PropTypes.object.isRequired,
 };
 
 export default withWidth()(

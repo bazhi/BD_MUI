@@ -1,14 +1,25 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
-const styles = (theme) => ({});
+const styles = (theme) => ({
+	wrapper: {
+		position: "relative",
+		backgroundColor: theme.palette.background.default,
+		paddingBottom: theme.spacing(1),
+	},
+});
 
 function Rule(props) {
+	const {classes, theme} = props
+	
 	return (
-		<div>
-		
-		</div>
+		<Fragment>
+			<div className={classNames("lg-p-top", classes.wrapper)}>
+				1111
+			</div>
+		</Fragment>
 	);
 }
 

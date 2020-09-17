@@ -6,7 +6,7 @@ import LanguageSelector from "shared/components/LanguageSelector";
 const styles = theme => ({
 	appBar: {
 		boxShadow: theme.shadows[6],
-		backgroundColor: theme.palette.common.white
+		backgroundColor: theme.palette.background.default
 	},
 	toolbar: {
 		display: "flex",

@@ -1,40 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Grid, withWidth } from "@material-ui/core";
+import { Grid, withStyles, withWidth } from "@material-ui/core";
 import CalculateSpacing from "./CalculateSpacing"
 import { CSSTransition } from "react-transition-group";
-import AxiosCache from "shared/components/AxiosCache";
 import VoteItem from "./VoteItem";
 
-function FeatureSection(props) {
-	const {width} = props;
-	
-	const [voteList, setVoteList] = useState([]);
-	
-	const LoadVoteList = useCallback(() => {
-		AxiosCache({
-			url: `/data/VoteList.json`,
-			method: 'get'
-		}).then(function (res) {
-			setVoteList(res.data);
-		}).catch(function (error) {
-			console.log(error);
-		});
-	}, [setVoteList]);
-	
-	useEffect(() => {
-		setTimeout(LoadVoteList, 500);
-	}, [LoadVoteList]);
+const styles = (theme) => ({});
+
+function VoteSection(props) {
+	const {width, classes, userStyle, userData} = props;
 	
 	return (
-		<div style={{backgroundColor: "#FFFFFF"}}>
+		<div style={{backgroundColor: userStyle.background}}>
 			<div className="container-fluid container-gap">
 				{/*<Typography variant="h3" align="center" className="lg-mg-bottom">*/}
 				{/*	Vote Center*/}
 				{/*</Typography>*/}
 				<div className="container-fluid">
 					<Grid container spacing={CalculateSpacing(width)} alignItems={"center"}>
-						{voteList.map(element => (
+						{userData && userData.list && userData.list.map(element => (
 							<Grid item xs={12} sm={6} md={4} key={element.id}>
 								<CSSTransition in={true} appear={true} classNames="bz-fade" timeout={100} unmountOnExit={true} overflow={"true"}>
 									<div>
@@ -45,7 +29,6 @@ function FeatureSection(props) {
 											name={element.name}
 											description={element.description}
 											brief={element.brief}
-											border={false}
 										/>
 									</div>
 								</CSSTransition>
@@ -58,8 +41,12 @@ function FeatureSection(props) {
 	);
 }
 
-FeatureSection.propTypes = {
-	width: PropTypes.string.isRequired
+VoteSection.propTypes = {
+	classes: PropTypes.object,
+	theme: PropTypes.object,
+	width: PropTypes.string.isRequired,
+	userStyle: PropTypes.object.isRequired,
+	userData: PropTypes.object.isRequired,
 };
 
-export default withWidth()(FeatureSection);
+export default withWidth()(withStyles(styles, {withTheme: true})(VoteSection));

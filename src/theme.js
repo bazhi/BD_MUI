@@ -6,7 +6,6 @@ const secondary = "#917ce0";
 const link = "#582efc"
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
-const background = "#f5f5f5";
 const warningLight = "rgba(253, 200, 69, .3)";
 const warningMain = "rgba(253, 200, 69, .5)";
 const warningDark = "rgba(253, 200, 69, .7)";
@@ -39,20 +38,15 @@ const theme = createMuiTheme({
 			main: warningMain,
 			dark: warningDark
 		},
-		// Used to shift a color's luminance by approximately
-		// two indexes within its tonal palette.
-		// E.g., shift from Red 500 to Red 300 or Red 700.
 		tonalOffset: 0.2,
 		background: {
-			default: background
+			default:  "#FFFFFF",
+			wave : secondary,
+			topBar : "#FFFFFF",
+			bottomBar : "#FFFFFF",
 		},
 	},
 	breakpoints: {
-		// Define custom breakpoint values.
-		// These will apply to Material-UI components that use responsive
-		// breakpoints, such as `Grid` and `Hidden`. You can also use the
-		// theme breakpoint functions `up`, `down`, and `between` to create
-		// media queries for these breakpoints
 		values: {
 			xl,
 			lg,
