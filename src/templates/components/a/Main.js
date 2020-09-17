@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, withStyles } from "@material-ui/core";
 import NavBar from "./navigation/NavBar";
@@ -11,27 +11,37 @@ const styles = (theme) => ({
 		overflowX: "hidden",
 		display: "flex",
 		flexDirection: "column",
-		height: "100vh",
+		height: window.innerHeight,
 	},
+	body: {
+		position: "relative",
+		backgroundColor: theme.palette.common.white,
+		flex: 1,
+		overflowY: "auto",
+	}
 });
 
 function Main(props) {
 	const {classes} = props;
 	
-	const [target, setTarget] = useState();
+	const [scroll, setScroll] = useState(undefined);
+	
+	const scrollRef = useRef();
 	
 	const GetTarget = useCallback(() => {
-		return target;
-	}, [target])
+		return scroll;
+	}, [scroll])
 	
-	const OnTarget = useCallback((target) => {
-		setTarget(target);
-	}, [setTarget]);
+	useEffect(() => {
+		setScroll(scrollRef.current);
+	}, [setScroll, scrollRef])
 	
 	return (
 		<Box className={classes.wrapper}>
 			<NavBar target={GetTarget} />
-			<Home onScrollTarget={OnTarget} />
+			<Box className={classes.body} ref={scrollRef}>
+				<Home />
+			</Box>
 			<Footer />
 		</Box>
 	);
