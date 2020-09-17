@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import { Box, withStyles } from "@material-ui/core";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
-import Home from "./home/Home";
+import Vote from "templates/components/a/vote/Vote";
+import Rule from "templates/components/a/rule/Rule";
+import {NavState} from "./constants/NavState"
 
 const styles = (theme) => ({
 	wrapper: {
@@ -25,12 +27,17 @@ function Main(props) {
 	const {classes} = props;
 	
 	const [scroll, setScroll] = useState(undefined);
+	const [navState, setNavState] = useState(null);
 	
 	const scrollRef = useRef();
 	
 	const GetTarget = useCallback(() => {
 		return scroll;
 	}, [scroll])
+	
+	const onNavState = useCallback((newState) =>{
+		setNavState(newState);
+	}, [setNavState])
 	
 	useEffect(() => {
 		setScroll(scrollRef.current);
@@ -40,9 +47,10 @@ function Main(props) {
 		<Box className={classes.wrapper}>
 			<NavBar target={GetTarget} />
 			<Box className={classes.body} ref={scrollRef}>
-				<Home />
+				{navState === NavState.Vote &&(<Vote/>)}
+				{navState === NavState.Rule &&(<Rule/>)}
 			</Box>
-			<Footer />
+			<Footer onNavState={onNavState}/>
 		</Box>
 	);
 }

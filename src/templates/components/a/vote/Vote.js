@@ -6,7 +6,7 @@ import VoteSection from "./VoteSection";
 
 const styles = (theme) => ({});
 
-function Home(props) {
+function Vote(props) {
 	return (
 		<div>
 			<HeadSection />
@@ -15,9 +15,9 @@ function Home(props) {
 	);
 }
 
-Home.propTypes = {
+Vote.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true})(Home)
+export default withStyles(styles, {withTheme: true})(Vote)

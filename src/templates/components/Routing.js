@@ -2,14 +2,14 @@ import React, { memo } from "react";
 import { Switch } from "react-router-dom";
 import PropsRoute from "shared/components/PropsRoute";
 
-import HomeA from "./a";
-import HomeB from "./b";
+import A from "./a";
+import B from "./b";
 
 function Routing(props) {
 	return (
 		<Switch>
-			<PropsRoute path={"/t"} component={HomeA} />
-			<PropsRoute path={"/t/b"} component={HomeB} />
+			<PropsRoute path={"/t"} component={A} />
+			<PropsRoute path={"/t/b"} component={B} />
 		</Switch>
 	);
 }
