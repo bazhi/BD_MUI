@@ -37,6 +37,9 @@ function Main(props) {
 	});
 	
 	const LoadData = useCallback((id) => {
+		if(!id){
+			id = "01";
+		}
 		AxiosCache({
 			url: `/data/data${id}.json`,
 			method: 'get'

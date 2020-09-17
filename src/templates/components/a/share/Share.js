@@ -31,6 +31,9 @@ const styles = (theme) => ({
 function Share(props) {
 	const {classes} = props
 	
+	const QRCodeUrl = `http://${process.env.REACT_APP_HOST}:8081/t/a?id=01`;
+	const QRCodeUrl2 = `http://${process.env.REACT_APP_HOST2}:8081/t/a?id=01`;
+	
 	return (
 		<Fragment>
 			<div className={classNames("lg-p-top", classes.wrapper)}>
@@ -39,11 +42,11 @@ function Share(props) {
 						<Card className={classes.card}>
 							<Grid container ajustify="space-between" spacing={3}>
 								<Grid item xs={6} md={6}>
-									<QRCode value="http://192.168.137.1:8081/t/a?id=01">
+									<QRCode value={QRCodeUrl}>
 									</QRCode>
 								</Grid>
 								<Grid item xs={6} md={6}>
-									<QRCode value="http://192.168.50.193:8081/t/a?id=01">
+									<QRCode value={QRCodeUrl2}>
 									</QRCode>
 								</Grid>
 							</Grid>
