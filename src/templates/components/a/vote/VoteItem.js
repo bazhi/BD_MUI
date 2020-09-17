@@ -52,9 +52,11 @@ function VoteItem(props) {
 	}, [img, setHasLoaded, setHasMoreWidthThanHeight]);
 	
 	const onClickIcon = useCallback((index) => {
-		list[index].count++;
-		setList(list);
-		setChanged(change + 1);
+		if(list[index].count !== undefined){
+			list[index].count++;
+			setList(list);
+			setChanged(change + 1);
+		}
 	}, [setList, list, setChanged, change]);
 	
 	useEffect(() => {
@@ -124,14 +126,16 @@ function VoteItem(props) {
 							<IconButton aria-label={element.tips} key={index} onClick={() => {
 								onClickIcon(index);
 							}}>
-								<Badge badgeContent={element.count} color="secondary">
-									{
-										element.count === 0 && (<SvgIcon component={element.component} color={"primary"} />)
-									}
-									{
-										element.count > 0 && (<SvgIcon component={element.componentOk} color={"primary"} />)
-									}
-								</Badge>
+								{
+									<Badge badgeContent={element.count} color="secondary">
+										{
+											(element.count === 0 || element.count === undefined) && (<SvgIcon component={element.component} color={"primary"} />)
+										}
+										{
+											element.count > 0 && (<SvgIcon component={element.componentOk} color={"primary"} />)
+										}
+									</Badge>
+								}
 							</IconButton>
 						))
 					}
