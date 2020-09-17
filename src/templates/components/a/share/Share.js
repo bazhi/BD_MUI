@@ -1,8 +1,8 @@
+import { Box, Card, Grid, withStyles } from "@material-ui/core";
+import QRCode from "qrcode.react";
 import React, { Fragment } from "react";
-import { Box, withStyles } from "@material-ui/core";
-import PropTypes from "prop-types";
 import classNames from "classnames";
-import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -28,26 +28,26 @@ const styles = (theme) => ({
 	}
 });
 
-function Rule(props) {
-	const {classes, userData} = props
+function Share(props) {
+	const {classes} = props
 	
 	return (
 		<Fragment>
 			<div className={classNames("lg-p-top", classes.wrapper)}>
 				<div className={classNames("container-fluid", classes.container)}>
 					<Box display="flex" justifyContent="center" className="column">
-						<Box className={classes.card}>
-							<Typography variant="h5" align="center">
-								规则说明
-							</Typography>
-							{
-								userData && userData.map((element, index) => {
-									return (<div className={classes.item} key={index}>
-										{element}
-									</div>)
-								})
-							}
-						</Box>
+						<Card className={classes.card}>
+							<Grid container ajustify="space-between" spacing={3}>
+								<Grid item xs={6} md={6}>
+									<QRCode value="http://192.168.137.1:8081/t/a?id=01">
+									</QRCode>
+								</Grid>
+								<Grid item xs={6} md={6}>
+									<QRCode value="http://192.168.50.193:8081/t/a?id=01">
+									</QRCode>
+								</Grid>
+							</Grid>
+						</Card>
 					</Box>
 				</div>
 			</div>
@@ -55,10 +55,9 @@ function Rule(props) {
 	);
 }
 
-Rule.propTypes = {
+Share.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
-	userData: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles, {withTheme: true})(Rule)
+export default withStyles(styles, {withTheme: true})(Share)

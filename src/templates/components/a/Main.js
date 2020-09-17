@@ -8,6 +8,7 @@ import AxiosCache from "shared/components/AxiosCache";
 
 const Vote = lazy(() => import("./vote/Vote"));
 const Rule = lazy(() => import("./rule/Rule"));
+const Share = lazy(() => import("./share/Share"));
 
 let styles = (theme) => ({
 	wrapper: {
@@ -67,6 +68,7 @@ function Main(props) {
 			<Box className={classes.body} ref={scrollRef}  style={{backgroundColor:userData.theme.background}}>
 				{navState === NavState.Vote &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Vote userData={userData}/></Suspense>)}
 				{navState === NavState.Rule &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rule userData={userData.rule}/></Suspense>)}
+				{navState === NavState.Share &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Share userData={userData.rule}/></Suspense>)}
 			</Box>
 			<Footer onNavState={onNavState}/>
 		</Box>

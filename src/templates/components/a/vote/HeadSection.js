@@ -43,18 +43,7 @@ function HeadSection(props) {
 			<div className={classNames("lg-p-top", classes.wrapper)} style={{backgroundColor: userStyle.wave}}>
 				<div className={classNames("container-fluid", classes.container)}>
 					<Box display="flex" justifyContent="center" className="row">
-						<Card className={classes.card}>
-							<Grid container ajustify="space-between" spacing={6}>
-								<Grid item xs={6} md={6}>
-									<QRCode value="http://192.168.137.1:8081/t/a">
-									</QRCode>
-								</Grid>
-								<Grid item xs={6} md={6}>
-									<QRCode value="http://192.168.50.193:8081/t/a">
-									</QRCode>
-								</Grid>
-							</Grid>
-						</Card>
+		
 					</Box>
 				</div>
 			</div>
