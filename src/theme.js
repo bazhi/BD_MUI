@@ -41,7 +41,7 @@ const theme = createMuiTheme({
 		tonalOffset: 0.2,
 		background: {
 			default:  "#FFFFFF",
-			wave : secondary,
+			wave : "#FFFFFF",
 			topBar : "#FFFFFF",
 			bottomBar : "#FFFFFF",
 		},

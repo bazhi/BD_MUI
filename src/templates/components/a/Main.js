@@ -30,8 +30,8 @@ function Main(props) {
 	
 	const [userData, setUserData] = useState({
 		theme:{
-			background : "#ffffff",
-			wave : "#FFFFFF",
+			background : theme.palette.background.default,
+			wave : theme.palette.background.wave,
 		}
 	});
 	
