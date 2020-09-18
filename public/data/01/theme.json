@@ -1,0 +1,25 @@
+{
+  "wave": "#e84442",
+  "default": {
+	"bg": "#ffaf33",
+	"font": "#000000"
+  },
+  "container": {
+	"bg": "#ffaf33",
+	"font": "#000000"
+  },
+  "table": {
+	"head": {
+	  "bg": "#ffaf33",
+	  "font": "#000000"
+	},
+	"body": {
+	  "bg": "#ffaf33",
+	  "font": "#000000"
+	}
+  },
+  "paper": {
+	"bg": "#ffaf33",
+	"font": "#000000"
+  }
+}

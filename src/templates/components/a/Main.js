@@ -26,30 +26,22 @@ let styles = (theme) => ({
 });
 
 function Main(props) {
-	const {classes, theme, search} = props;
+	const {classes, search} = props;
 	const [scroll, setScroll] = useState(undefined);
 	const [navState, setNavState] = useState(null);
 	
-	const [userData, setUserData] = useState({
-		theme:{
-			background : theme.palette.background.default,
-			wave : theme.palette.background.wave,
-		}
-	});
+	const [userTheme, setUserTheme] = useState(null);
 	
 	const LoadData = useCallback((id) => {
-		if(!id){
-			id = "01";
-		}
 		AxiosCache({
-			url: `/data/data${id}.json`,
+			url: `/data/${id}/theme.json`,
 			method: 'get'
 		}).then(function (res) {
-			setUserData(res.data);
+			setUserTheme(res.data);
 		}).catch(function (error) {
 			console.log(error);
 		});
-	}, [setUserData]);
+	}, [setUserTheme]);
 	
 	const scrollRef = useRef();
 	
@@ -61,22 +53,29 @@ function Main(props) {
 		setNavState(newState);
 	}, [setNavState])
 
+	let ActionID = search.get("id");
+	if(!ActionID){
+		ActionID = "01";
+	}
 	useEffect(() => {
 		setScroll(scrollRef.current);
-		LoadData(search.get("id"));
-	}, [setScroll, scrollRef, LoadData, search])
+		LoadData(ActionID);
+	}, [setScroll, scrollRef, LoadData, ActionID])
 	
 	return (
-		<Box className={classes.wrapper} style={{backgroundColor:userData.theme.background}}>
-			<NavBar target={GetTarget} />
-			<Box className={classes.body} ref={scrollRef}  style={{backgroundColor:userData.theme.background}}>
-				{navState === NavState.Vote &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Vote userData={userData}/></Suspense>)}
-				{navState === NavState.Rule &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rule userData={userData.rule}/></Suspense>)}
-				{navState === NavState.Rank &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rank userData={userData}/></Suspense>)}
-				{navState === NavState.Share &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Share userData={userData.rule}/></Suspense>)}
-			</Box>
-			<Footer onNavState={onNavState}/>
-		</Box>
+		<div>
+			{userTheme && (<Box className={classes.wrapper} style={{backgroundColor:userTheme.default.bg}}>
+					<NavBar target={GetTarget} />
+					<Box className={classes.body} ref={scrollRef}  style={{backgroundColor:userTheme.default.bg}}>
+						{navState === NavState.Vote &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Vote userTheme={userTheme} actionID={ActionID}/></Suspense>)}
+						{navState === NavState.Rule &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rule userTheme={userTheme} actionID={ActionID}/></Suspense>)}
+						{navState === NavState.Rank &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Rank userTheme={userTheme} actionID={ActionID}/></Suspense>)}
+						{navState === NavState.Share &&(<Suspense fallback={<Fragment>Loading</Fragment>}><Share userTheme={userTheme} actionID={ActionID}/></Suspense>)}
+					</Box>
+					<Footer onNavState={onNavState}/>
+				</Box>)
+			}
+		</div>
 	);
 }
 

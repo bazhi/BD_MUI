@@ -1,5 +1,5 @@
 import { Box, withStyles } from "@material-ui/core";
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
+import AxiosCache from "shared/components/AxiosCache";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -21,46 +22,87 @@ const styles = (theme) => ({
 	},
 	item: {
 		paddingTop: theme.spacing(1),
+	},
+	table: {
+		maxWidth: 800,
 	}
 });
 
+const StyledTableCell = withStyles((theme) => ({
+	head: {
+		backgroundColor: theme.palette.common.black,
+		color: theme.palette.common.white,
+	},
+	body: {
+		fontSize: 14,
+	},
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+	root: {
+		'&:nth-of-type(odd)': {
+			backgroundColor: theme.palette.action.hover,
+		},
+	},
+}))(TableRow);
+
 function Rank(props) {
-	const {classes, userData} = props
+	const {classes, actionID, userTheme} = props
+	
+	const [userData, setUserData] = useState(null);
+	
+	const LoadData = useCallback((id) => {
+		AxiosCache({
+			url: `/data/${id}/rank.json`,
+			method: 'get'
+		}).then(function (res) {
+			setUserData(res.data);
+		}).catch(function (error) {
+			console.log(error);
+		});
+	}, [setUserData]);
+	
+	useEffect(() => {
+		LoadData(actionID);
+	}, [LoadData, actionID]);
 	
 	return (
 		<Fragment>
-			<div className={classNames("lg-p-top", classes.wrapper)}>
-				<div className={classNames("container-fluid", classes.container)}>
-					<Box display="flex" justifyContent="center" className="column">
-						<TableContainer component={Paper}>
-							<Table className={classes.table} aria-label="customized table">
-								<TableHead>
-									<TableRow>
-										<TableCell>Name</TableCell>
-										<TableCell align="right">Brief</TableCell>
-										<TableCell align="right">Fat&nbsp;(g)</TableCell>
-										<TableCell align="right">Carbs&nbsp;(g)</TableCell>
-										<TableCell align="right">Protein&nbsp;(g)</TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{userData && userData.list.map((row) => (
-										<TableRow  key={row.name}>
-											<TableCell component="th" scope="row">
-												{row.name}
-											</TableCell>
-											<TableCell align="right">{row.brief}</TableCell>
-											<TableCell align="right">{row.fat}</TableCell>
-											<TableCell align="right">{row.carbs}</TableCell>
-											<TableCell align="right">{row.protein}</TableCell>
-										</TableRow >
-									))}
-								</TableBody>
-							</Table>
-						</TableContainer>
-					</Box>
+			{userData && (
+				<div className={classNames("lg-p-top", classes.wrapper)}>
+					<div className={classNames("container-fluid", classes.container)}>
+						<Box display="flex" justifyContent="center" className="column">
+							<TableContainer component={Paper} className={classes.table}>
+								<Table aria-label="customized table" align={"center"}>
+									<TableHead>
+										<TableRow>
+											<StyledTableCell>名称</StyledTableCell>
+											<StyledTableCell align="right">排名</StyledTableCell>
+											<StyledTableCell align="right">简介</StyledTableCell>
+											<StyledTableCell align="right">赞</StyledTableCell>
+											<StyledTableCell align="right">票数</StyledTableCell>
+										
+										</TableRow>
+									</TableHead>
+									<TableBody>
+										{userData.list && userData.list.map((row) => (
+											<StyledTableRow key={row.name}>
+												<StyledTableCell component="th" scope="row">
+													{row.name}
+												</StyledTableCell>
+												<StyledTableCell align="right">{row.brief}</StyledTableCell>
+												<StyledTableCell align="right">{row.fat}</StyledTableCell>
+												<StyledTableCell align="right">{row.carbs}</StyledTableCell>
+												<StyledTableCell align="right">{row.protein}</StyledTableCell>
+											</StyledTableRow>
+										))}
+									</TableBody>
+								</Table>
+							</TableContainer>
+						</Box>
+					</div>
 				</div>
-			</div>
+			)}
 		</Fragment>
 	);
 }
@@ -68,7 +110,8 @@ function Rank(props) {
 Rank.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
-	userData: PropTypes.array.isRequired,
+	actionID: PropTypes.string.isRequired,
+	userTheme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, {withTheme: true})(Rank)

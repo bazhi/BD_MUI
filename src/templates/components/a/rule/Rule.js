@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Box, withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Typography from "@material-ui/core/Typography";
+import AxiosCache from "shared/components/AxiosCache";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -29,28 +30,47 @@ const styles = (theme) => ({
 });
 
 function Rule(props) {
-	const {classes, userData} = props
+	const {classes, actionID, userTheme} = props
+	
+	const [userRule, setUserRule] = useState(null);
+	
+	const LoadData = useCallback((id) => {
+		AxiosCache({
+			url: `/data/${id}/rule.json`,
+			method: 'get'
+		}).then(function (res) {
+			setUserRule(res.data);
+		}).catch(function (error) {
+			console.log(error);
+		});
+	}, [setUserRule]);
+	
+	useEffect(() => {
+		LoadData(actionID);
+	}, [LoadData, actionID]);
 	
 	return (
 		<Fragment>
-			<div className={classNames("lg-p-top", classes.wrapper)}>
-				<div className={classNames("container-fluid", classes.container)}>
-					<Box display="flex" justifyContent="center" className="column">
-						<Box className={classes.card}>
-							<Typography variant="h5" align="center">
-								规则说明
-							</Typography>
-							{
-								userData && userData.map((element, index) => {
-									return (<div className={classes.item} key={index}>
-										{element}
-									</div>)
-								})
-							}
+			{userRule && (
+				<div className={classNames("lg-p-top", classes.wrapper)}>
+					<div className={classNames("container-fluid", classes.container)}>
+						<Box display="flex" justifyContent="center" className="column">
+							<Box className={classes.card}>
+								<Typography variant="h5" align="center">
+									{userRule.title}
+								</Typography>
+								{
+									userRule && userRule.list && userRule.list.map((element, index) => {
+										return (<div className={classes.item} key={index}>
+											{element}
+										</div>)
+									})
+								}
+							</Box>
 						</Box>
-					</Box>
+					</div>
 				</div>
-			</div>
+			)}
 		</Fragment>
 	);
 }
@@ -58,7 +78,8 @@ function Rule(props) {
 Rule.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
-	userData: PropTypes.array.isRequired,
+	userTheme: PropTypes.object.isRequired,
+	actionID: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, {withTheme: true})(Rule)

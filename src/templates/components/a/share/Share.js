@@ -61,6 +61,8 @@ function Share(props) {
 Share.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
+	userTheme: PropTypes.object.isRequired,
+	actionID: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, {withTheme: true})(Share)
