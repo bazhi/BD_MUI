@@ -40,6 +40,13 @@ function Main(props) {
 	
 	const [userTheme, setUserTheme] = useState(null);
 	
+	const onClickImg = useCallback(() => {
+		setEntered(true);
+		setTimeout(()=>{
+			setScroll(scrollRef.current);
+		}, 100);
+	}, [setEntered, setScroll, scrollRef])
+	
 	const LoadData = useCallback((id) => {
 		AxiosCache({
 			url: `/data/${id}/theme.json`,
@@ -47,13 +54,12 @@ function Main(props) {
 		}).then(function (res) {
 			setUserTheme(res.data);
 			if(!res.data.src){
-				setEntered(true)
+				onClickImg();
 			}
-			setScroll(scrollRef.current);
 		}).catch(function (error) {
 			console.log(error);
 		});
-	}, [setUserTheme, setScroll,setEntered]);
+	}, [setUserTheme, onClickImg]);
 	
 	const GetTarget = useCallback(() => {
 		return scroll;
@@ -62,10 +68,6 @@ function Main(props) {
 	const onNavState = useCallback((newState) => {
 		setNavState(newState);
 	}, [setNavState])
-	
-	const onClickImg = useCallback(() => {
-		setEntered(true);
-	}, [setEntered])
 	
 	let ActionID = search.get("id");
 	if (!ActionID) {
