@@ -39,7 +39,6 @@ const theme = createMuiTheme({
 			topBar : "#FFFFFF",
 			bottomBar : "#FFFFFF",
 		},
-		title:"#eaf1f1",
 		style:{
 			default:{
 				backgroundColor:"#f38802",
