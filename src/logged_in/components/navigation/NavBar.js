@@ -98,10 +98,6 @@ const styles = (theme) => ({
 	mobileItemSelected: {
 		backgroundColor: `${theme.palette.primary.main} !important`,
 	},
-	brandText: {
-		fontFamily: "'Baloo Bhaijaan', cursive",
-		fontWeight: 400,
-	},
 	username: {
 		paddingLeft: 0,
 		paddingRight: theme.spacing(2),

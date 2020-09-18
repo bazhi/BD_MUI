@@ -14,12 +14,12 @@ const styles = (theme) => ({
 });
 
 function VoteSection(props) {
-	const {classes, width, userTheme, userData} = props;
+	const {classes, width, theme, userData} = props;
 	
 	return (
-		<div style={{backgroundColor: userTheme.default.background}}>
+		<div >
 			<div className="container-fluid container-gap">
-				<Typography variant="h3" align="center" className={classes.title} style={{color:userTheme.default.color}}>
+				<Typography variant="h3" align="center" className={classes.title} >
 					候选列表
 				</Typography>
 				<div className="container-fluid">
@@ -51,7 +51,6 @@ VoteSection.propTypes = {
 	classes: PropTypes.object,
 	theme: PropTypes.object,
 	width: PropTypes.string.isRequired,
-	userTheme: PropTypes.object.isRequired,
 	userData: PropTypes.object.isRequired,
 };
 

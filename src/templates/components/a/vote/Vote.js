@@ -8,7 +8,7 @@ import {AxiosNoCache} from "shared/components/AxiosCache";
 const styles = (theme) => ({});
 
 function Vote(props) {
-	const {actionID, userTheme} = props;
+	const {actionID} = props;
 	
 	const [userData, setUserData] = useState(null);
 	
@@ -29,10 +29,10 @@ function Vote(props) {
 	
 	return (
 		<div>
-			<HeadSection userTheme={userTheme}/>
+			<HeadSection/>
 			{
 				userData && (
-					<VoteSection userTheme={userTheme} userData={userData}/>
+					<VoteSection userData={userData}/>
 				)
 			}
 		</div>

@@ -27,11 +27,6 @@ const styles = theme => ({
 			paddingBottom: theme.spacing(10)
 		}
 	},
-	brandText: {
-		fontFamily: "'Baloo Bhaijaan', cursive",
-		fontWeight: 400,
-		color: theme.palette.common.white
-	},
 	footerLinks: {
 		marginTop: theme.spacing(2.5),
 		marginBot: theme.spacing(1.5),

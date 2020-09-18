@@ -30,7 +30,7 @@ const styles = (theme) => ({
 });
 
 function Rule(props) {
-	const {classes, actionID, userTheme} = props
+	const {classes, actionID, theme} = props
 	
 	const [userRule, setUserRule] = useState(null);
 	
@@ -55,10 +55,7 @@ function Rule(props) {
 				<div className={classNames("lg-p-top", classes.wrapper)}>
 					<div className={classNames("container-fluid", classes.container)}>
 						<Box display="flex" justifyContent="center" className="column">
-							<Box className={classes.card} style={{
-								backgroundColor:userTheme.container.bg,
-								color:userTheme.container.color
-							}}>
+							<Box className={classes.card}  style={theme.palette.style.light}>
 								<Typography variant="h5" align="center">
 									{userRule.title}
 								</Typography>
@@ -81,7 +78,6 @@ function Rule(props) {
 Rule.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
-	userTheme: PropTypes.object.isRequired,
 	actionID: PropTypes.string.isRequired,
 };
 

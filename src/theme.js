@@ -1,16 +1,8 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
 
 // colors
-const primary = "#b3294e";
-const secondary = "#917ce0";
-const link = "#582efc"
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
-const warningLight = "rgba(253, 200, 69, .3)";
-const warningMain = "rgba(253, 200, 69, .5)";
-const warningDark = "rgba(253, 200, 69, .7)";
-
-// const Test = "#3c3f41";
 
 // border
 const borderWidth = 2;
@@ -28,25 +20,44 @@ const spacing = 8;
 
 const theme = createMuiTheme({
 	palette: {
-		primary: {main: primary},
-		secondary: {main: secondary},
-		link: {main: link},
+		primary: {main: "#b3294e"},
+		secondary: {main: "#917ce0"},
+		link: {main: "#582efc"},
 		common: {
 			black,
 			darkBlack
 		},
 		warning: {
-			light: warningLight,
-			main: warningMain,
-			dark: warningDark
+			light: "rgba(253, 200, 69, .3)",
+			main: "rgba(253, 200, 69, .5)",
+			dark: "rgba(253, 200, 69, .7)"
 		},
 		tonalOffset: 0.2,
 		background: {
-			default:  "#FFFFFF",
-			wave : "#FFFFFF",
+			default:  "#f38802",
+			wave : "#e30b0b",
 			topBar : "#FFFFFF",
 			bottomBar : "#FFFFFF",
 		},
+		title:"#eaf1f1",
+		style:{
+			default:{
+				backgroundColor:"#f38802",
+				color:"#FFFFFF"
+			},
+			light:{
+				backgroundColor:"#FFFFFF",
+				color:"#000000"
+			},
+			dark:{
+				backgroundColor:"#000000",
+				color:"#FFFFFFFF"
+			},
+			card: {
+				backgroundColor:"#fffff0",
+				color:"#434343"
+			}
+		}
 	},
 	breakpoints: {
 		values: {

@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import { AirplanemodeActive, Favorite, FavoriteBorderOutlined, Redeem, ThumbUp, ThumbUpOutlined } from "@material-ui/icons";
 import Badge from "@material-ui/core/Badge";
+import theme from "theme";
 
 const styles = {
 	imageContainer: {
@@ -94,32 +95,23 @@ function VoteItem(props) {
 						width: hasMoreWidthThanHeight ? "auto" : "100%",
 						display: hasLoaded ? "block" : "none",
 					}}
-					ref={img}
-					className={classes.image}
-					onLoad={onLoad}
-					src={image}
-					alt=""
+					ref={img} className={classes.image} onLoad={onLoad} src={image} alt=""
 				/>
 				{id && (
 					<GridListTileBar
-						subtitle={"ID: " + id}
-						titlePosition={"top"}
-						className={classes.titleBar}
+						subtitle={"ID: " + id} titlePosition={"top"} className={classes.titleBar}
 					/>
 				)}
 			</div>
-			<CardContent>
+			<CardContent style={theme.palette.style.card}>
 				{name && (
-					<Typography variant="h5">
-						{name}
-					</Typography>
+					<Typography variant="h5">{name}</Typography>
 				)}
-				{description && (<Typography variant="caption" color="textSecondary">
-						{description}
-					</Typography>
+				{description && (
+					<Typography variant="caption" >{description}</Typography>
 				)}
 			</CardContent>
-			<CardActions disableSpacing>
+			<CardActions disableSpacing style={theme.palette.style.card}>
 				<Grid container>
 					{
 						change && list.map((element, index) => (

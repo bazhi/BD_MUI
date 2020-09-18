@@ -24,7 +24,7 @@ let styles = (theme) => ({
 		overflowY: "auto",
 	},
 	img: {
-		width: window.innerWidth,
+		width: 900,
 		height: "auto",
 		maxHeight: "100%",
 		maxWidth: "100%",
@@ -32,13 +32,13 @@ let styles = (theme) => ({
 });
 
 function Main(props) {
-	const {classes, search} = props;
+	const {classes, search, theme} = props;
 	const [scroll, setScroll] = useState(undefined);
 	const [navState, setNavState] = useState(null);
 	const [entered, setEntered] = useState(false);
 	const scrollRef = useRef();
 	
-	const [userTheme, setUserTheme] = useState(null);
+	const [themeLoaded, setThemeLoaded] = useState(null);
 	
 	const onClickImg = useCallback(() => {
 		setEntered(true);
@@ -52,14 +52,14 @@ function Main(props) {
 			url: `/data/${id}/theme.json`,
 			method: 'get'
 		}).then(function (res) {
-			setUserTheme(res.data);
 			if(!res.data.src){
 				onClickImg();
 			}
+			setThemeLoaded(true);
 		}).catch(function (error) {
 			console.log(error);
 		});
-	}, [setUserTheme, onClickImg]);
+	}, [setThemeLoaded, onClickImg, theme]);
 	
 	const GetTarget = useCallback(() => {
 		return scroll;
@@ -79,19 +79,19 @@ function Main(props) {
 	
 	return (
 		<Fragment>
-			{userTheme && !entered && (
-				<div>
-					<img src={userTheme.src} className={classes.img} onClick={onClickImg} alt={""} />
+			{themeLoaded && !entered && (
+				<div align={"center"}>
+					<img src={"/img/bg/01.jpg"} className={classes.img} onClick={onClickImg} alt={""} />
 				</div>
 			)}
-			{userTheme && entered && (
-				<Box className={classes.wrapper} style={{backgroundColor: userTheme.default.bg}}>
+			{themeLoaded && entered && (
+				<Box className={classes.wrapper} style={theme.palette.style.default}>
 					<NavBar target={GetTarget} />
-					<Box className={classes.body} ref={scrollRef} style={{backgroundColor: userTheme.default.bg}}>
-						{navState === NavState.Vote && (<Suspense fallback={<Fragment>Loading</Fragment>}><Vote userTheme={userTheme} actionID={ActionID} /></Suspense>)}
-						{navState === NavState.Rule && (<Suspense fallback={<Fragment>Loading</Fragment>}><Rule userTheme={userTheme} actionID={ActionID} /></Suspense>)}
-						{navState === NavState.Rank && (<Suspense fallback={<Fragment>Loading</Fragment>}><Rank userTheme={userTheme} actionID={ActionID} /></Suspense>)}
-						{navState === NavState.Share && (<Suspense fallback={<Fragment>Loading</Fragment>}><Share userTheme={userTheme} actionID={ActionID} /></Suspense>)}
+					<Box className={classes.body} ref={scrollRef}>
+						{navState === NavState.Vote && (<Suspense fallback={<Fragment>Loading</Fragment>}><Vote actionID={ActionID} /></Suspense>)}
+						{navState === NavState.Rule && (<Suspense fallback={<Fragment>Loading</Fragment>}><Rule actionID={ActionID} /></Suspense>)}
+						{navState === NavState.Rank && (<Suspense fallback={<Fragment>Loading</Fragment>}><Rank actionID={ActionID} /></Suspense>)}
+						{navState === NavState.Share && (<Suspense fallback={<Fragment>Loading</Fragment>}><Share actionID={ActionID} /></Suspense>)}
 					</Box>
 					<Footer onNavState={onNavState} />
 				</Box>

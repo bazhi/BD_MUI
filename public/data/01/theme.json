@@ -1,7 +1,9 @@
 {
+  "primary":"#b3294e",
+  "secondary": "#917ce0",
   "wave": "#e84442",
   "default": {
-	"bg": "#ffaf33",
+	"bg": "#f19640",
 	"color": "#FFFFFF"
   },
   "container": {
@@ -10,17 +12,16 @@
   },
   "table": {
 	"head": {
-	  "bg": "#ffaf33",
+	  "bg": "#EEEEEE",
 	  "color": "#000000"
 	},
 	"body": {
-	  "bg": "#ffaf33",
+	  "bg": "#EEEEEE",
 	  "color": "#000000"
 	}
   },
   "paper": {
-	"bg": "#ffaf33",
+	"bg": "#EEEEEE",
 	"color": "#000000"
-  },
-  "src": "/img/bg/01.jpg"
+  }
 }

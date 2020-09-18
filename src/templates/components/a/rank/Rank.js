@@ -55,7 +55,7 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 function Rank(props) {
-	const {classes, actionID, userTheme} = props
+	const {classes, actionID, theme} = props
 	
 	const [userData, setUserData] = useState(null);
 	
@@ -96,7 +96,7 @@ function Rank(props) {
 			{userData && (
 				<div className={classNames("lg-p-top", classes.wrapper)}>
 					<div className={classNames("container-fluid", classes.container)}>
-						<Typography variant="h3" align="center" style={{color: userTheme.default.color}}>
+						<Typography variant="h3" align="center">
 							{userData.title}
 						</Typography>
 						<Box display="flex" justifyContent="center" className="column">
@@ -142,7 +142,6 @@ Rank.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
 	actionID: PropTypes.string.isRequired,
-	userTheme: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, {withTheme: true})(Rank)
