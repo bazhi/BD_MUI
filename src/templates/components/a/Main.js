@@ -29,6 +29,7 @@ function Main(props) {
 	const {classes, search} = props;
 	const [scroll, setScroll] = useState(undefined);
 	const [navState, setNavState] = useState(null);
+	const scrollRef = useRef();
 	
 	const [userTheme, setUserTheme] = useState(null);
 	
@@ -38,12 +39,11 @@ function Main(props) {
 			method: 'get'
 		}).then(function (res) {
 			setUserTheme(res.data);
+			setScroll(scrollRef.current);
 		}).catch(function (error) {
 			console.log(error);
 		});
-	}, [setUserTheme]);
-	
-	const scrollRef = useRef();
+	}, [setUserTheme, setScroll]);
 	
 	const GetTarget = useCallback(() => {
 		return scroll;
@@ -58,12 +58,11 @@ function Main(props) {
 		ActionID = "01";
 	}
 	useEffect(() => {
-		setScroll(scrollRef.current);
 		LoadData(ActionID);
 	}, [setScroll, scrollRef, LoadData, ActionID])
 	
 	return (
-		<div>
+		<Fragment>
 			{userTheme && (<Box className={classes.wrapper} style={{backgroundColor:userTheme.default.bg}}>
 					<NavBar target={GetTarget} />
 					<Box className={classes.body} ref={scrollRef}  style={{backgroundColor:userTheme.default.bg}}>
@@ -75,7 +74,7 @@ function Main(props) {
 					<Footer onNavState={onNavState}/>
 				</Box>)
 			}
-		</div>
+		</Fragment>
 	);
 }
 
