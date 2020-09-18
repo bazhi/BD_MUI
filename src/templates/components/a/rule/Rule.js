@@ -55,7 +55,10 @@ function Rule(props) {
 				<div className={classNames("lg-p-top", classes.wrapper)}>
 					<div className={classNames("container-fluid", classes.container)}>
 						<Box display="flex" justifyContent="center" className="column">
-							<Box className={classes.card}>
+							<Box className={classes.card} style={{
+								backgroundColor:userTheme.container.bg,
+								color:userTheme.container.color
+							}}>
 								<Typography variant="h5" align="center">
 									{userRule.title}
 								</Typography>

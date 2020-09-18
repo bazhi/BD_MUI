@@ -19,7 +19,7 @@ function VoteSection(props) {
 	return (
 		<div style={{backgroundColor: userTheme.default.background}}>
 			<div className="container-fluid container-gap">
-				<Typography variant="h3" align="center" className={classes.title}>
+				<Typography variant="h3" align="center" className={classes.title} style={{color:userTheme.default.color}}>
 					候选列表
 				</Typography>
 				<div className="container-fluid">

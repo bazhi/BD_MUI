@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import AxiosCache from "shared/components/AxiosCache";
+import Typography from "@material-ui/core/Typography";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -25,7 +26,8 @@ const styles = (theme) => ({
 	},
 	table: {
 		maxWidth: 800,
-	}
+		marginTop: theme.spacing(4),
+	},
 });
 
 const StyledTableCell = withStyles((theme) => ({
@@ -71,6 +73,9 @@ function Rank(props) {
 			{userData && (
 				<div className={classNames("lg-p-top", classes.wrapper)}>
 					<div className={classNames("container-fluid", classes.container)}>
+						<Typography variant="h3" align="center" style={{color:userTheme.default.color}}>
+							{userData.title}
+						</Typography>
 						<Box display="flex" justifyContent="center" className="column">
 							<TableContainer component={Paper} className={classes.table}>
 								<Table aria-label="customized table" align={"center"}>

@@ -29,10 +29,10 @@ const styles = (theme) => ({
 });
 
 function Share(props) {
-	const {classes} = props
+	const {classes, actionID} = props
 	
-	const QRCodeUrl = `http://${process.env.REACT_APP_HOST}:8081/t/a?id=01`;
-	const QRCodeUrl2 = `http://${process.env.REACT_APP_HOST2}:8081/t/a?id=01`;
+	const QRCodeUrl = `http://${process.env.REACT_APP_HOST}:8081/t/a?id=${actionID}`;
+	const QRCodeUrl2 = `http://${process.env.REACT_APP_HOST2}:8081/t/a?id=${actionID}`;
 	
 	return (
 		<Fragment>

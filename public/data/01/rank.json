@@ -4,24 +4,24 @@
 	{
 	  "name": "Dave",
 	  "id": 1001,
-	  "image": "/heads/01.jpg",
+	  "image": "/heads/01.jpg"
 	},
 	{
 	  "name": "Alice",
 	  "id": 1002,
-	  "image": "/heads/02.jpg",
+	  "image": "/heads/02.jpg"
 
 	},
 	{
 	  "name": "Mark",
 	  "id": 1003,
-	  "image": "/heads/03.jpg",
+	  "image": "/heads/03.jpg"
 
 	},
 	{
 	  "name": "Tom",
 	  "id": 1004,
-	  "image": "/heads/04.jpg",
+	  "image": "/heads/04.jpg"
 	}
   ]
 }
