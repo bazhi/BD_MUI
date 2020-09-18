@@ -55,7 +55,7 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 function Rank(props) {
-	const {classes, actionID, theme} = props
+	const {classes, actionID} = props
 	
 	const [userData, setUserData] = useState(null);
 	

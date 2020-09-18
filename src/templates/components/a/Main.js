@@ -52,14 +52,11 @@ function Main(props) {
 			url: `/data/${id}/theme.json`,
 			method: 'get'
 		}).then(function (res) {
-			if(!res.data.src){
-				onClickImg();
-			}
 			setThemeLoaded(true);
 		}).catch(function (error) {
 			console.log(error);
 		});
-	}, [setThemeLoaded, onClickImg, theme]);
+	}, [setThemeLoaded, onClickImg]);
 	
 	const GetTarget = useCallback(() => {
 		return scroll;

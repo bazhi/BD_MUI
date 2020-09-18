@@ -14,7 +14,7 @@ const styles = (theme) => ({
 });
 
 function VoteSection(props) {
-	const {classes, width, theme, userData} = props;
+	const {classes, width, userData} = props;
 	
 	return (
 		<div >
