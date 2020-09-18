@@ -56,7 +56,7 @@ function Main(props) {
 		}).catch(function (error) {
 			console.log(error);
 		});
-	}, [setThemeLoaded, onClickImg]);
+	}, [setThemeLoaded]);
 	
 	const GetTarget = useCallback(() => {
 		return scroll;
