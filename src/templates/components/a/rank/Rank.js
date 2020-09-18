@@ -9,15 +9,13 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import AxiosCache from "shared/components/AxiosCache";
+import {AxiosNoCache} from "shared/components/AxiosCache";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Badge from "@material-ui/core/Badge";
 
 const StyledBadge = withStyles((theme) => ({
-	badge: {
-
-	},
+	badge: {},
 }))(Badge);
 
 const styles = (theme) => ({
@@ -34,7 +32,7 @@ const styles = (theme) => ({
 	},
 	table: {
 		maxWidth: 800,
-		marginTop: theme.spacing(4),
+		marginTop: theme.spacing(2),
 	},
 });
 
@@ -62,13 +60,13 @@ function Rank(props) {
 	const [userData, setUserData] = useState(null);
 	
 	const LoadData = useCallback((id) => {
-		AxiosCache({
+		AxiosNoCache({
 			url: `/data/${id}/rank.json`,
 			method: 'get'
 		}).then(function (res) {
 			let data = res.data;
-			if(data.list){
-				data.list.sort(function (a, b){
+			if (data.list) {
+				data.list.sort(function (a, b) {
 					return (b.vote + b.favour * data.favourScore) - (a.vote + a.favour * data.favourScore);
 				});
 			}
@@ -82,12 +80,12 @@ function Rank(props) {
 		LoadData(actionID);
 	}, [LoadData, actionID]);
 	
-	const GetRankColor = useCallback((index)=>{
-		if(index === 0){
+	const GetRankColor = useCallback((index) => {
+		if (index === 0) {
 			return "primary";
-		}else if(index === 1){
+		} else if (index === 1) {
 			return "secondary"
-		}else if(index === 2){
+		} else if (index === 2) {
 			return "error";
 		}
 		return "default";
@@ -103,7 +101,7 @@ function Rank(props) {
 						</Typography>
 						<Box display="flex" justifyContent="center" className="column">
 							<TableContainer component={Paper} className={classes.table}>
-								<Table aria-label="customized table" align={"center"}  >
+								<Table aria-label="customized table" align={"center"}>
 									<TableHead>
 										<TableRow>
 											<StyledTableCell align="center">排名</StyledTableCell>
@@ -118,7 +116,7 @@ function Rank(props) {
 										{userData.list && userData.list.map((row, index) => (
 											<StyledTableRow key={index}>
 												<StyledTableCell align="center" component="th" scope="row">
-													<StyledBadge badgeContent={index+1} color={GetRankColor(index)} anchorOrigin={{vertical: 'top', horizontal: 'left'}}>
+													<StyledBadge badgeContent={index + 1} color={GetRankColor(index)} anchorOrigin={{vertical: 'top', horizontal: 'left'}}>
 														<Avatar alt="Remy Sharp" src={row.image} />
 													</StyledBadge>
 												</StyledTableCell>

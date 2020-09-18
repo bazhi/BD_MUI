@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import HeadSection from "./HeadSection"
 import VoteSection from "./VoteSection";
-import AxiosCache from "shared/components/AxiosCache";
+import {AxiosNoCache} from "shared/components/AxiosCache";
 
 const styles = (theme) => ({});
 
@@ -13,7 +13,7 @@ function Vote(props) {
 	const [userData, setUserData] = useState(null);
 	
 	const LoadData = useCallback((id) => {
-		AxiosCache({
+		AxiosNoCache({
 			url: `/data/${id}/vote.json`,
 			method: 'get'
 		}).then(function (res) {

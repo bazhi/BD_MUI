@@ -12,7 +12,7 @@ import * as ETypes from "shared/components/Events/EventTypes"
 import * as URL from "shared/constants/Url"
 
 import SUPPORT_LOCALES from "shared/components/SupportLocales"
-import AxiosCache from "shared/components/AxiosCache";
+import {AxiosCache} from "shared/components/AxiosCache";
 
 import 'shared/css/transition.css'
 

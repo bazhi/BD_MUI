@@ -3,7 +3,7 @@ import { Box, withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Typography from "@material-ui/core/Typography";
-import AxiosCache from "shared/components/AxiosCache";
+import {AxiosCache} from "shared/components/AxiosCache";
 
 const styles = (theme) => ({
 	wrapper: {

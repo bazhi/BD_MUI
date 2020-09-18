@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import intl from 'react-intl-universal';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Typography, withStyles } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ColoredButton from "../../../shared/components/ColoredButton";
+import ColoredButton from "shared/components/ColoredButton";
 import lodash from "lodash";
-import SUPPORT_LOCALES from "../../../shared/components/SupportLocales";
+import SUPPORT_LOCALES from "shared/components/SupportLocales";
 
-import AxiosCache from "../../../shared/components/AxiosCache"
+import {AxiosCache} from "shared/components/AxiosCache"
 
 const styles = theme => ({
 	termsConditionsItem: {

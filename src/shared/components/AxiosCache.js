@@ -6,8 +6,14 @@ const cache = setupCache({
 	maxAge: Config.MaxAge
 })
 
-const AxiosCache = axios.create({
+const noCache = setupCache({
+	maxAge: Config.NoAge
+})
+
+export const AxiosCache = axios.create({
 	adapter: cache.adapter
 })
 
-export default AxiosCache;
+export const AxiosNoCache = axios.create({
+	adapter: noCache.adapter
+})

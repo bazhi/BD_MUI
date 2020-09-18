@@ -4,7 +4,7 @@ import { Box, withStyles } from "@material-ui/core";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
 import {NavState} from "./constants/NavState"
-import AxiosCache from "shared/components/AxiosCache";
+import {AxiosCache} from "shared/components/AxiosCache";
 
 const Vote = lazy(() => import("./vote/Vote"));
 const Rule = lazy(() => import("./rule/Rule"));
