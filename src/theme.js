@@ -8,6 +8,7 @@ const bgColor = "#ee9f4f";
 
 // border
 const borderWidth = 2;
+const borderHeight = 2;
 const borderColor = "rgba(0, 0, 0, 0.13)";
 
 // breakpoints
@@ -97,7 +98,7 @@ const theme = createMuiTheme({
 		MuiDivider: {
 			root: {
 				backgroundColor: borderColor,
-				height: borderWidth
+				height: borderHeight
 			}
 		},
 		MuiPrivateNotchedOutline: {
