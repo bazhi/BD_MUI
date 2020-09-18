@@ -59,7 +59,7 @@ const theme = createMuiTheme({
 				color:"#434343"
 			},
 			container:{
-				backgroundColor:"#FFFFFF",
+				backgroundColor:"#FFFFFF66",
 				color:"#0e0b0b"
 			}
 		}
