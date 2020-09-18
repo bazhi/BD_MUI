@@ -1,27 +1,286 @@
 {
   "title": "投票排行",
+  "favourScore": 5,
   "list": [
 	{
 	  "name": "Dave",
 	  "id": 1001,
-	  "image": "/heads/01.jpg"
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
 	},
 	{
 	  "name": "Alice",
 	  "id": 1002,
-	  "image": "/heads/02.jpg"
-
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
 	},
 	{
 	  "name": "Mark",
 	  "id": 1003,
-	  "image": "/heads/03.jpg"
-
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
 	},
 	{
 	  "name": "Tom",
 	  "id": 1004,
-	  "image": "/heads/04.jpg"
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
+	},
+	{
+	  "name": "Dave",
+	  "id": 1001,
+	  "image": "/heads/01.jpg",
+	  "favour": 100,
+	  "vote": 200
+	},
+	{
+	  "name": "Alice",
+	  "id": 1002,
+	  "image": "/heads/02.jpg",
+	  "favour": 200,
+	  "vote": 300
+	},
+	{
+	  "name": "Mark",
+	  "id": 1003,
+	  "image": "/heads/03.jpg",
+	  "favour": 400,
+	  "vote": 500
+	},
+	{
+	  "name": "Tom",
+	  "id": 1004,
+	  "image": "/heads/04.jpg",
+	  "favour": 700,
+	  "vote": 800
 	}
   ]
 }
