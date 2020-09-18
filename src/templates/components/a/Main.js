@@ -35,17 +35,15 @@ function Main(props) {
 	const {classes, search, theme} = props;
 	const [scroll, setScroll] = useState(undefined);
 	const [navState, setNavState] = useState(null);
-	const [entered, setEntered] = useState(false);
 	const scrollRef = useRef();
 	
 	const [themeLoaded, setThemeLoaded] = useState(null);
 	
-	const onClickImg = useCallback(() => {
-		setEntered(true);
+	const onLoadEnd = useCallback(() => {
 		setTimeout(()=>{
 			setScroll(scrollRef.current);
 		}, 100);
-	}, [setEntered, setScroll, scrollRef])
+	}, [setScroll, scrollRef])
 	
 	const LoadData = useCallback((id) => {
 		AxiosCache({
@@ -53,10 +51,11 @@ function Main(props) {
 			method: 'get'
 		}).then(function (res) {
 			setThemeLoaded(true);
+			onLoadEnd();
 		}).catch(function (error) {
 			console.log(error);
 		});
-	}, [setThemeLoaded]);
+	}, [setThemeLoaded, onLoadEnd]);
 	
 	const GetTarget = useCallback(() => {
 		return scroll;
@@ -76,12 +75,7 @@ function Main(props) {
 	
 	return (
 		<Fragment>
-			{themeLoaded && !entered && (
-				<div align={"center"}>
-					<img src={"/img/bg/01.jpg"} className={classes.img} onClick={onClickImg} alt={""} />
-				</div>
-			)}
-			{themeLoaded && entered && (
+			{themeLoaded && (
 				<Box className={classes.wrapper} style={theme.palette.style.default}>
 					<NavBar target={GetTarget} />
 					<Box className={classes.body} ref={scrollRef}>

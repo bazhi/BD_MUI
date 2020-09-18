@@ -4,6 +4,8 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
 
+const bgColor = "#ee9f4f";
+
 // border
 const borderWidth = 2;
 const borderColor = "rgba(0, 0, 0, 0.13)";
@@ -34,14 +36,14 @@ const theme = createMuiTheme({
 		},
 		tonalOffset: 0.2,
 		background: {
-			default:  "#f38802",
-			wave : "#e30b0b",
+			default:  bgColor,
+			wave : "#ff5200",
 			topBar : "#FFFFFF",
 			bottomBar : "#FFFFFF",
 		},
 		style:{
 			default:{
-				backgroundColor:"#f38802",
+				backgroundColor:bgColor,
 				color:"#FFFFFF"
 			},
 			light:{
@@ -53,7 +55,7 @@ const theme = createMuiTheme({
 				color:"#FFFFFF"
 			},
 			card: {
-				backgroundColor:"#fffff0",
+				backgroundColor:"#EEEEEE",
 				color:"#434343"
 			},
 			container:{
