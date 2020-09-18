@@ -26,6 +26,9 @@ const styles = (theme) => ({
 	},
 	item: {
 		paddingTop: theme.spacing(1),
+	},
+	title: {
+		paddingBottom: theme.spacing(2),
 	}
 });
 
@@ -54,9 +57,9 @@ function Rule(props) {
 			{userRule && (
 				<div className={classNames("lg-p-top", classes.wrapper)}>
 					<div className={classNames("container-fluid", classes.container)}>
-						<Box display="flex" justifyContent="center" className="column">
-							<Box className={classes.card}  style={theme.palette.style.light}>
-								<Typography variant="h5" align="center">
+						<Box display="flex" justifyContent="center" className="column" >
+							<Box className={classes.card}  style={theme.palette.style.container}>
+								<Typography variant="h5" align="center" className={classes.title}>
 									{userRule.title}
 								</Typography>
 								{

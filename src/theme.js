@@ -51,11 +51,15 @@ const theme = createMuiTheme({
 			},
 			dark:{
 				backgroundColor:"#000000",
-				color:"#FFFFFFFF"
+				color:"#FFFFFF"
 			},
 			card: {
 				backgroundColor:"#fffff0",
 				color:"#434343"
+			},
+			container:{
+				backgroundColor:"#FFFFFF",
+				color:"#0e0b0b"
 			}
 		}
 	},
