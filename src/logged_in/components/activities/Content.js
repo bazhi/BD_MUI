@@ -7,6 +7,7 @@ import GridList from "@material-ui/core/GridList";
 import Storage from "shared/storage/local"
 import * as Key from "shared/constants/Keyword"
 import {AxiosCache} from "shared/components/AxiosCache";
+import * as ModalState from "./ModalState"
 
 const styles = {
 	dBlock: {display: "block"},
@@ -19,7 +20,7 @@ const styles = {
 function Content(props) {
 	const {
 		pushMessageToSnackbar,
-		openAddModal,
+		openModal,
 		classes,
 	} = props;
 	const [page, setPage] = useState(0);
@@ -68,8 +69,8 @@ function Content(props) {
 	}, [setDeleteId]);
 
 	const onEditClick = useCallback((post) => {
-		console.log(post.id);
-	}, []);
+		openModal(ModalState.Edit, post);
+	}, [openModal]);
 
 	const handleChangePage = useCallback((event, page) => {
 		setPage(page);
@@ -109,7 +110,9 @@ function Content(props) {
 				<Paper>
 					<Toolbar className={classes.toolbar}>
 						<Typography variant="h6">Your Posts</Typography>
-						<Button variant="contained" color="secondary" onClick={openAddModal} disableElevation>
+						<Button variant="contained" color="secondary" onClick={()=>{
+							openModal(ModalState.Add);
+						}} disableElevation>
 							Add
 						</Button>
 					</Toolbar>
@@ -151,7 +154,7 @@ function Content(props) {
 }
 
 Content.propTypes = {
-	openAddModal: PropTypes.func.isRequired,
+	openModal: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired,
 	pushMessageToSnackbar: PropTypes.func,
 };

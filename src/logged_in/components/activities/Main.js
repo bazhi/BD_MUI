@@ -1,38 +1,52 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Content from "logged_in/components/activities/Content";
-import Add from "logged_in/components/activities/Add";
+import Edit from "logged_in/components/activities/Edit";
 import { Activity as Page } from "logged_in/constants/TabPage";
+import * as ModalState from "./ModalState"
 
 function Main(props) {
 	const {selectPage, pushMessageToSnackbar} = props;
-	const [bAddModalOpen, setAddModalOpen] = useState(false);
+	const [modalState, setModalState] = useState(ModalState.Content);
+	const [editData, setEditData] = useState(null);
 	
-	const OpenAddModal = useCallback(() => {
-		setAddModalOpen(true);
-	}, [setAddModalOpen]);
+	const OpenModal = useCallback((state, data) => {
+		setEditData(data);
+		setModalState(state);
+	}, [setModalState]);
 	
-	const CloseAddModal = useCallback(() => {
-		setAddModalOpen(false);
-	}, [setAddModalOpen]);
+	const CloseModal = useCallback(() => {
+		setModalState(ModalState.Content);
+	}, [setModalState]);
 	
 	useEffect(()=>{
 		if(selectPage){
 			selectPage(Page);
 		}
 	}, [selectPage]);
-	
-	if (bAddModalOpen) {
-		return <Add
-			onClose={CloseAddModal}
-			pushMessageToSnackbar={pushMessageToSnackbar}
-		/>
-	}else{
-		return <Content
-			openAddModal={OpenAddModal}
-			pushMessageToSnackbar={pushMessageToSnackbar}
-		/>
+
+	switch (modalState){
+		case ModalState.Content:
+			return <Content
+				openModal={OpenModal}
+				pushMessageToSnackbar={pushMessageToSnackbar}
+			/>
+			break;
+		case ModalState.Add:
+			return <Edit
+				onClose={CloseModal}
+				pushMessageToSnackbar={pushMessageToSnackbar}
+			/>
+			break;
+		case ModalState.Edit:
+			return <Edit
+				data={editData}
+				onClose={CloseModal}
+				pushMessageToSnackbar={pushMessageToSnackbar}
+			/>
+			break;
 	}
+	return <div></div>
 }
 
 Main.propTypes = {
