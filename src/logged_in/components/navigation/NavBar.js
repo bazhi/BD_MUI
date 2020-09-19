@@ -14,7 +14,6 @@ import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "shared/components/NavigationDrawer";
-import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 import LanguageSelector from "shared/components/LanguageSelector";
 import storage from "shared/storage/local";
 import * as Key from "shared/constants/Keyword"
@@ -219,7 +218,7 @@ function NavBar(props) {
 						)}
 						<MessagePopperButton messages={messages} />
 						<ListItem disableGutters className={classNames(classes.iconListItem, classes.smBordered)}>
-							<Avatar alt="profile picture" src={profilePicture} className={classNames(classes.accountAvatar)} />
+							<Avatar alt="profile picture" src={"img/activities/profilePicture.jpg"} className={classNames(classes.accountAvatar)} />
 							{isWidthUp("sm", width) && (
 								<ListItemText
 									className={classes.username}

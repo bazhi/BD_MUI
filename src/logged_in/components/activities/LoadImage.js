@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -8,29 +8,17 @@ import SelfAligningImage from "shared/components/SelfAligningImage";
 
 function LoadImage(props) {
 	const {item, onDelete, onEdit} = props;
-	const [src, setSrc] = useState("");
-	
-	const dynLoadImage = useCallback(() => {
-		item.importImage.then((mod) => {
-			setSrc(mod.default);
-		});
-	}, [item.importImage, setSrc]);
-	
-	useEffect(() => {
-		dynLoadImage();
-	}, [dynLoadImage]);
-	
+
 	return (
 		<SelfAligningImage
-			src={src}
+			src={item.image}
 			title={item.name}
-			id={""+item.id}
-			timeStamp={item.timestamp}
+			id={"" + item.id}
 			options={[
 				{
 					name: "Edit",
 					onClick: onEdit,
-					icon: <EditIcon />,
+					icon: <EditIcon/>,
 				},
 				{
 					name: "Delete",

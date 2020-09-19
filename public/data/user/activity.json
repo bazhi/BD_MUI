@@ -1,0 +1,52 @@
+[
+  {
+    "id" : 10001,
+    "name": "金地之星",
+    "image": "/img/activities/image1.jpg"
+  },
+  {
+    "id" : 10002,
+    "name": "十佳青年",
+    "image": "/img/activities/image2.jpg"
+  },
+  {
+    "id" : 10003,
+    "name": "最佳新人",
+    "image": "/img/activities/image3.jpg"
+  },
+  {
+    "id" : 10004,
+    "name": "优秀新员工",
+    "image": "/img/activities/image4.jpg"
+  },
+  {
+    "id" : 10005,
+    "name": "优秀员工评选",
+    "image": "/img/activities/image5.jpg"
+  },
+  {
+    "id" : 10006,
+    "name": "世界足球先生",
+    "image": "/img/activities/image6.jpg"
+  },
+  {
+    "id" : 10007,
+    "name": "最佳11人",
+    "image": "/img/activities/image7.jpg"
+  },
+  {
+    "id" : 10008,
+    "name": "历史最伟大的运动员",
+    "image": "/img/activities/image8.jpg"
+  },
+  {
+    "id" : 10009,
+    "name": "最佳影片",
+    "image": "/img/activities/image9.jpg"
+  },
+  {
+    "id" : 10010,
+    "name": "最佳导演",
+    "image": "/img/activities/image10.jpg"
+  }
+]

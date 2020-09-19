@@ -1,12 +1,11 @@
-import React, { Fragment, lazy, memo, Suspense, useCallback, useEffect, useState } from "react";
+import React, {Fragment, lazy, memo, Suspense, useCallback, useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { withStyles } from "@material-ui/core";
+import {withStyles} from "@material-ui/core";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "shared/components/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "shared/functions/smoothScrollTop";
-import persons from "../dummy_data/persons";
 import intl from 'shared/components/IntlHelper';
 import * as Pages from "../constants/TabPage"
 
@@ -36,25 +35,6 @@ function Main(props) {
 	const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
 	const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 	
-	const fetchRandomTargets = useCallback(() => {
-		const targets = [];
-		for (let i = 0; i < 35; i += 1) {
-			const randomPerson = persons[Math.floor(Math.random() * persons.length)];
-			const target = {
-				id: i,
-				number1: Math.floor(Math.random() * 251),
-				number2: Math.floor(Math.random() * 251),
-				number3: Math.floor(Math.random() * 251),
-				number4: Math.floor(Math.random() * 251),
-				name: randomPerson.name,
-				profilePicUrl: randomPerson.profilePicUrl,
-				isActivated: Math.round(Math.random()) ? true : false,
-			};
-			targets.push(target);
-		}
-		setTargets(targets);
-	}, [setTargets]);
-	
 	const openAddBalanceDialog = useCallback(() => {
 		setIsAddBalanceDialogOpen(true);
 	}, [setIsAddBalanceDialogOpen]);
@@ -69,7 +49,7 @@ function Main(props) {
 		});
 		setIsAddBalanceDialogOpen(false);
 	}, [pushMessageToSnackbar, setIsAddBalanceDialogOpen]);
-	
+
 	const fetchRandomStatistics = useCallback(() => {
 		const statistics = {profit: [], views: []};
 		const iterations = 300;
@@ -151,28 +131,6 @@ function Main(props) {
 		setTransactions(transactions);
 	}, [setTransactions]);
 	
-	const fetchRandomMessages = useCallback(() => {
-		const messages = [];
-		const iterations = persons.length;
-		const oneDaySeconds = 60 * 60 * 24;
-		let curUnix = Math.round(
-			new Date().getTime() / 1000 - iterations * oneDaySeconds
-		);
-		for (let i = 0; i < iterations; i += 1) {
-			const person = persons[i];
-			const message = {
-				id: i,
-				profilePicUrl: person.profilePicUrl,
-				date: curUnix,
-				text: "fetch random messages.",
-			};
-			curUnix += oneDaySeconds;
-			messages.push(message);
-		}
-		messages.reverse();
-		setMessages(messages);
-	}, [setMessages]);
-	
 	const toggleAccountActivation = useCallback(() => {
 		if (pushMessageToSnackbar) {
 			if (isAccountActivated) {
@@ -202,15 +160,11 @@ function Main(props) {
 	);
 	
 	useEffect(() => {
-		fetchRandomTargets();
 		fetchRandomStatistics();
 		fetchRandomTransactions();
-		fetchRandomMessages();
 	}, [
-		fetchRandomTargets,
 		fetchRandomStatistics,
 		fetchRandomTransactions,
-		fetchRandomMessages,
 	]);
 	
 	return (

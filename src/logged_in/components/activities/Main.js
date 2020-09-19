@@ -1,23 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import PostContent from "logged_in/components/activities/Content";
+import Content from "logged_in/components/activities/Content";
 import Add from "logged_in/components/activities/Add";
 import { Activity as Page } from "logged_in/constants/TabPage";
 
 function Main(props) {
-	const {
-		selectPage,
-		pushMessageToSnackbar,
-	} = props;
-	const [isAddPostPaperOpen, setIsAddPostPaperOpen] = useState(false);
+	const {selectPage, pushMessageToSnackbar} = props;
+	const [bAddModalOpen, setAddModalOpen] = useState(false);
 	
-	const openAddPostModal = useCallback(() => {
-		setIsAddPostPaperOpen(true);
-	}, [setIsAddPostPaperOpen]);
+	const OpenAddModal = useCallback(() => {
+		setAddModalOpen(true);
+	}, [setAddModalOpen]);
 	
-	const closeAddPostModal = useCallback(() => {
-		setIsAddPostPaperOpen(false);
-	}, [setIsAddPostPaperOpen]);
+	const CloseAddModal = useCallback(() => {
+		setAddModalOpen(false);
+	}, [setAddModalOpen]);
 	
 	useEffect(()=>{
 		if(selectPage){
@@ -25,14 +22,14 @@ function Main(props) {
 		}
 	}, [selectPage]);
 	
-	if (isAddPostPaperOpen) {
+	if (bAddModalOpen) {
 		return <Add
-			onClose={closeAddPostModal}
+			onClose={CloseAddModal}
 			pushMessageToSnackbar={pushMessageToSnackbar}
 		/>
 	}else{
-		return <PostContent
-			openAddPostModal={openAddPostModal}
+		return <Content
+			openAddModal={OpenAddModal}
 			pushMessageToSnackbar={pushMessageToSnackbar}
 		/>
 	}

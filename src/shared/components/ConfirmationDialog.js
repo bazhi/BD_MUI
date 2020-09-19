@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import ButtonCircularProgress from "./ButtonCircularProgress";
 
 function ConfirmationDialog(props) {
-	const {open, onClose, loading, title, content, onConfirm} = props;
+	const {open, onClose, loading, title, content, onConfirm,data} = props;
 	return (
 		<Dialog
 			open={open}
@@ -22,7 +22,9 @@ function ConfirmationDialog(props) {
 				</Button>
 				<Button
 					color="secondary"
-					onClick={onConfirm}
+					onClick={()=>{
+						onConfirm(data);
+					}}
 					variant="contained"
 					disabled={loading}
 				>
@@ -39,7 +41,8 @@ ConfirmationDialog.propTypes = {
 	loading: PropTypes.bool,
 	title: PropTypes.string,
 	content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-	onConfirm: PropTypes.func
+	onConfirm: PropTypes.func,
+	data: PropTypes.any,
 };
 
 export default ConfirmationDialog;
