@@ -47,7 +47,7 @@ const styles = (theme) => ({
 function Routing(props) {
 	const {
 		classes,
-		pushMessageToSnackbar,
+		showMessage,
 		posts,
 		transactions,
 		toggleAccountActivation,
@@ -57,7 +57,6 @@ function Routing(props) {
 		setPosts,
 		isAccountActivated,
 		selectPage,
-		openAddBalanceDialog,
 	} = props;
 	return (
 		<div className={classes.wrapper}>
@@ -65,7 +64,7 @@ function Routing(props) {
 				<PropsRoute
 					path={Pages.Activity.Path}
 					component={Activity}
-					pushMessageToSnackbar={pushMessageToSnackbar}
+					pushMessageToSnackbar={showMessage}
 					posts={posts}
 					setPosts={setPosts}
 					selectPage={selectPage}
@@ -74,15 +73,14 @@ function Routing(props) {
 					path={Pages.Subscription.Path}
 					component={Subscription}
 					transactions={transactions}
-					pushMessageToSnackbar={pushMessageToSnackbar}
+					pushMessageToSnackbar={showMessage}
 					selectPage={selectPage}
-					openAddBalanceDialog={openAddBalanceDialog}
 				/>
 				<PropsRoute
 					path={Pages.Dashboard.Path}
 					component={Dashboard}
 					toggleAccountActivation={toggleAccountActivation}
-					pushMessageToSnackbar={pushMessageToSnackbar}
+					pushMessageToSnackbar={showMessage}
 					statistics={statistics}
 					targets={targets}
 					setTargets={setTargets}
@@ -96,7 +94,7 @@ function Routing(props) {
 
 Routing.propTypes = {
 	classes: PropTypes.object.isRequired,
-	pushMessageToSnackbar: PropTypes.func,
+	showMessage: PropTypes.func,
 	setTargets: PropTypes.func.isRequired,
 	transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
 	toggleAccountActivation: PropTypes.func,
@@ -104,7 +102,6 @@ Routing.propTypes = {
 	targets: PropTypes.arrayOf(PropTypes.object).isRequired,
 	isAccountActivated: PropTypes.bool.isRequired,
 	selectPage: PropTypes.func.isRequired,
-	openAddBalanceDialog: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, {withTheme: true})(memo(Routing));

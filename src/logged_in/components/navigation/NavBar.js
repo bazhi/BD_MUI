@@ -12,7 +12,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
-import Balance from "./Balance";
 import NavigationDrawer from "shared/components/NavigationDrawer";
 import LanguageSelector from "shared/components/LanguageSelector";
 import storage from "shared/storage/local";
@@ -112,7 +111,7 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
-	const {selectedTab, messages, classes, width, openAddBalanceDialog} = props;
+	const {selectedTab, messages, classes, width} = props;
 	// Will be use to make website more accessible by screen readers
 	const links = useRef([]);
 	const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -211,11 +210,6 @@ function NavBar(props) {
 					</Box>
 					<Box display="flex" justifyContent="flex-end" alignItems="center" width="100%">
 						<LanguageSelector className={""} />
-						{isWidthUp("sm", width) && (
-							<Box ml={1} mr={2}>
-								<Balance balance={2573} openAddBalanceDialog={openAddBalanceDialog} />
-							</Box>
-						)}
 						<MessagePopperButton messages={messages} />
 						<ListItem disableGutters className={classNames(classes.iconListItem, classes.smBordered)}>
 							<Avatar alt="profile picture" src={"img/activities/profilePicture.jpg"} className={classNames(classes.accountAvatar)} />
@@ -291,7 +285,6 @@ NavBar.propTypes = {
 	selectedTab: PropTypes.string.isRequired,
 	width: PropTypes.string.isRequired,
 	classes: PropTypes.object.isRequired,
-	openAddBalanceDialog: PropTypes.func.isRequired,
 };
 
 export default withWidth()(withStyles(styles, {withTheme: true})(NavBar));

@@ -15,7 +15,6 @@ function Subscription(props) {
 	const {
 		transactions,
 		classes,
-		openAddBalanceDialog,
 		selectPage
 	} = props;
 	
@@ -28,7 +27,6 @@ function Subscription(props) {
 	return (
 		<Paper>
 			<List disablePadding>
-				<SubscriptionInfo openAddBalanceDialog={openAddBalanceDialog} />
 				<Divider className={classes.divider} />
 				<SubscriptionTable transactions={transactions} />
 			</List>
@@ -40,7 +38,6 @@ Subscription.propTypes = {
 	classes: PropTypes.object.isRequired,
 	transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
 	selectPage: PropTypes.func.isRequired,
-	openAddBalanceDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Subscription);

@@ -9,8 +9,6 @@ import smoothScrollTop from "shared/functions/smoothScrollTop";
 import intl from 'shared/components/IntlHelper';
 import * as Pages from "../constants/TabPage"
 
-const AddBalanceDialog = lazy(() => import("./subscription/AddBalanceDialog"));
-
 const styles = (theme) => ({
 	main: {
 		marginLeft: theme.spacing(9),
@@ -32,23 +30,13 @@ function Main(props) {
 	const [targets, setTargets] = useState([]);
 	const [messages, setMessages] = useState([]);
 	const [isAccountActivated, setIsAccountActivated] = useState(false);
-	const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
-	const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
-	
-	const openAddBalanceDialog = useCallback(() => {
-		setIsAddBalanceDialogOpen(true);
-	}, [setIsAddBalanceDialogOpen]);
-	
-	const closeAddBalanceDialog = useCallback(() => {
-		setIsAddBalanceDialogOpen(false);
-	}, [setIsAddBalanceDialogOpen]);
+	const [showMessage, setShowMessage] = useState(null);
 	
 	const onPaymentSuccess = useCallback(() => {
-		pushMessageToSnackbar({
+		showMessage({
 			text: "Your balance has been updated.",
 		});
-		setIsAddBalanceDialogOpen(false);
-	}, [pushMessageToSnackbar, setIsAddBalanceDialogOpen]);
+	}, [showMessage]);
 
 	const fetchRandomStatistics = useCallback(() => {
 		const statistics = {profit: [], views: []};
@@ -132,19 +120,19 @@ function Main(props) {
 	}, [setTransactions]);
 	
 	const toggleAccountActivation = useCallback(() => {
-		if (pushMessageToSnackbar) {
+		if (showMessage) {
 			if (isAccountActivated) {
-				pushMessageToSnackbar({
+				showMessage({
 					text: "Your account is now deactivated.",
 				});
 			} else {
-				pushMessageToSnackbar({
+				showMessage({
 					text: "Your account is now activated.",
 				});
 			}
 		}
 		setIsAccountActivated(!isAccountActivated);
-	}, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
+	}, [showMessage, isAccountActivated, setIsAccountActivated]);
 	
 	const selectPage = useCallback((PageInfo) => {
 		smoothScrollTop();
@@ -154,9 +142,9 @@ function Main(props) {
 	
 	const getPushMessageFromChild = useCallback(
 		(pushMessage) => {
-			setPushMessageToSnackbar(() => pushMessage);
+			setShowMessage(() => pushMessage);
 		},
-		[setPushMessageToSnackbar]
+		[setShowMessage]
 	);
 	
 	useEffect(() => {
@@ -169,21 +157,9 @@ function Main(props) {
 	
 	return (
 		<Fragment>
-			<Suspense fallback={<Fragment></Fragment>}>
-				{
-					isAddBalanceDialogOpen && (
-						<AddBalanceDialog
-							open={isAddBalanceDialogOpen}
-							onClose={closeAddBalanceDialog}
-							onSuccess={onPaymentSuccess}
-						/>
-					)
-				}
-			</Suspense>
 			<NavBar
 				selectedTab={selectedTab}
 				messages={messages}
-				openAddBalanceDialog={openAddBalanceDialog}
 			/>
 			<ConsecutiveSnackbarMessages
 				getPushMessageFromChild={getPushMessageFromChild}
@@ -192,12 +168,11 @@ function Main(props) {
 				<Routing
 					isAccountActivated={isAccountActivated}
 					toggleAccountActivation={toggleAccountActivation}
-					pushMessageToSnackbar={pushMessageToSnackbar}
+					showMessage={showMessage}
 					transactions={transactions}
 					statistics={statistics}
 					targets={targets}
 					selectPage={selectPage}
-					openAddBalanceDialog={openAddBalanceDialog}
 					setTargets={setTargets}
 				/>
 			</main>

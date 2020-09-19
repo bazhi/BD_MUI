@@ -7,7 +7,7 @@ import AddOptions from "logged_in/components/activities/AddOptions";
 
 function Edit(props) {
     const {
-        pushMessageToSnackbar,
+        showMessage,
         onClose,
     } = props;
 
@@ -26,12 +26,12 @@ function Edit(props) {
     const onDrop = useCallback(
         (acceptedFiles, rejectedFiles) => {
             if (acceptedFiles.length + rejectedFiles.length > 1) {
-                pushMessageToSnackbar({
+                showMessage({
                     isErrorMessage: true,
                     text: "You cannot upload more than one file at once",
                 });
             } else if (acceptedFiles.length === 0) {
-                pushMessageToSnackbar({
+                showMessage({
                     isErrorMessage: true,
                     text: "The file you wanted to upload isn't an image",
                 });
@@ -42,7 +42,7 @@ function Edit(props) {
                 setCropperFile(file);
             }
         },
-        [pushMessageToSnackbar, setCropperFile]
+        [showMessage, setCropperFile]
     );
 
     const onCropperClose = useCallback(() => {
@@ -67,12 +67,12 @@ function Edit(props) {
     const handleUpload = useCallback(() => {
         setLoading(true);
         setTimeout(() => {
-            pushMessageToSnackbar({
+            showMessage({
                 text: "Your post has been uploaded",
             });
             onClose();
         }, 1500);
-    }, [setLoading, onClose, pushMessageToSnackbar]);
+    }, [setLoading, onClose, showMessage]);
 
     return (
         <Fragment>
@@ -114,7 +114,7 @@ function Edit(props) {
 }
 
 Edit.propTypes = {
-    pushMessageToSnackbar: PropTypes.func,
+    showMessage: PropTypes.func,
     onClose: PropTypes.func,
     data: PropTypes.object,
 };
