@@ -1,9 +1,10 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, {Fragment, useCallback, useState} from "react";
 import PropTypes from "prop-types";
-import { Box, Button } from "@material-ui/core";
+import {Box, Button} from "@material-ui/core";
 import ActionPaper from "shared/components/ActionPaper";
 import ButtonCircularProgress from "shared/components/ButtonCircularProgress";
 import AddOptions from "logged_in/components/activities/AddOptions";
+import PaletteEdit from "./PaletteEdit";
 
 function Edit(props) {
     const {
@@ -80,16 +81,19 @@ function Edit(props) {
                 helpPadding
                 maxWidth="md"
                 content={
-                    <AddOptions
-                        files={files}
-                        onDrop={onDrop}
-                        deleteItem={deleteItem}
-                        uploadAt={uploadAt}
-                        onChangeUploadAt={setUploadAt}
-                        onCrop={onCrop}
-                        cropperFile={cropperFile}
-                        onCropperClose={onCropperClose}
-                    />
+                    <div>
+                        <AddOptions
+                            files={files}
+                            onDrop={onDrop}
+                            deleteItem={deleteItem}
+                            uploadAt={uploadAt}
+                            onChangeUploadAt={setUploadAt}
+                            onCrop={onCrop}
+                            cropperFile={cropperFile}
+                            onCropperClose={onCropperClose}
+                        />
+                        <PaletteEdit/>
+                    </div>
                 }
                 actions={
                     <Fragment>

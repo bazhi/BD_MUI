@@ -31,20 +31,17 @@ function Main(props) {
 				openModal={OpenModal}
 				pushMessageToSnackbar={pushMessageToSnackbar}
 			/>
-			break;
 		case ModalState.Add:
 			return <Edit
 				onClose={CloseModal}
 				showMessage={pushMessageToSnackbar}
 			/>
-			break;
 		case ModalState.Edit:
 			return <Edit
 				data={editData}
 				onClose={CloseModal}
 				showMessage={pushMessageToSnackbar}
 			/>
-			break;
 		default:
 			break;
 	}
