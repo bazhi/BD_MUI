@@ -11,7 +11,7 @@ import Paper from "@material-ui/core/Paper";
 const styles = (theme) => ({
 	colorBox: {
 		height: 24,
-		maxWidth:100,
+		maxWidth: 100,
 		marginRight: 20,
 	},
 	themePaper: {
@@ -19,6 +19,11 @@ const styles = (theme) => ({
 		marginBottom: 10,
 		marginTop: 10,
 		marginRight: 10,
+		backgroundColor:"#EEEEEE",
+	},
+	gridItem:{
+		marginTop: 1,
+		backgroundColor:"#FFFFFF",
 	}
 });
 
@@ -94,11 +99,11 @@ function PaletteEdit(props) {
 			</Typography>
 			<Paper elevation={3}>
 				<Box className={classes.themePaper}>
-					<Grid container spacing={1} >
+					<Grid container spacing={1}>
 						{
 							paletteArray.map((item, index) => {
 								return (
-									<Grid item container lg={6} md={6} sm={12} xs={12} key={index} justify={"space-between"}>
+									<Grid item container lg={6} md={6} sm={12} xs={12} key={index} justify={"space-between"} className={classes.gridItem}>
 										<Typography noWrap={true} display="inline">
 											{item.key}
 										</Typography>
@@ -114,7 +119,7 @@ function PaletteEdit(props) {
 									</Grid>
 								);
 							})
-						}
+						     }
 						<Popover onClose={handleClose} open={bDisplayColorPicker} anchorEl={anchorEl}
 						         anchorOrigin={{
 							         vertical: 'bottom',
@@ -129,7 +134,7 @@ function PaletteEdit(props) {
 						</Popover>
 					</Grid>
 				</Box>
-				
+			
 			</Paper>
 		</Box>
 	)
