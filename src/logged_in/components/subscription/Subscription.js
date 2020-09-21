@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Divider, List, Paper, withStyles } from "@material-ui/core";
 import SubscriptionTable from "./SubscriptionTable";
-import SubscriptionInfo from "./SubscriptionInfo";
 import { Subscription as TabSubscription } from "logged_in/constants/TabPage";
 
 const styles = {
@@ -18,8 +17,8 @@ function Subscription(props) {
 		selectPage
 	} = props;
 	
-	useEffect(()=>{
-		if(selectPage){
+	useEffect(() => {
+		if (selectPage) {
 			selectPage(TabSubscription);
 		}
 	}, [selectPage]);

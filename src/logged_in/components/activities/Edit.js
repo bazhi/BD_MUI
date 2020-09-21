@@ -82,6 +82,7 @@ function Edit(props) {
                 maxWidth="md"
                 content={
                     <div>
+                        <PaletteEdit/>
                         <AddOptions
                             files={files}
                             onDrop={onDrop}
@@ -92,7 +93,6 @@ function Edit(props) {
                             cropperFile={cropperFile}
                             onCropperClose={onCropperClose}
                         />
-                        <PaletteEdit/>
                     </div>
                 }
                 actions={
