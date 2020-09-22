@@ -9,13 +9,12 @@ import theme from "theme";
 const styles = {
 	button: {
 		borderWidth: 1,
-		borderColor: "rgba(0, 0, 0, 0.23)",
+		borderColor: "rgb(34,34,34)",
 		borderTopLeftRadius: 0,
 		borderBottomLeftRadius: 0
 	},
 	fullHeight: {
 		height: theme.spacing(8),
-		// height: "100%",
 	}
 };
 
@@ -66,7 +65,7 @@ Dropzone.propTypes = {
 	accept: PropTypes.string,
 	fullHeight: PropTypes.bool,
 	style: PropTypes.object,
-	children: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
+	// children: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
 };
 
 export default withStyles(styles, {withTheme: true})(Dropzone);

@@ -4,6 +4,7 @@ import { Box, FormControl, IconButton, List, ListItem, ListItemSecondaryAction, 
 import CloseIcon from "@material-ui/icons/Close";
 import Bordered from "shared/components/Bordered";
 import ImageCropperDialog from "shared/components/ImageCropperDialog";
+import ImageUpload from "shared/components/ImageUpload";
 
 const Dropzone = lazy(() => import("shared/components/Dropzone"));
 const EmojiTextArea  = lazy(() => import("shared/components/EmojiTextArea"));
@@ -212,6 +213,10 @@ function AddOptions(props) {
 							</FormControl>
 						</ListItem>
 					))}
+					
+					<ImageUpload>
+					
+					</ImageUpload>
 				</Bordered>
 			</List>
 		</Fragment>
