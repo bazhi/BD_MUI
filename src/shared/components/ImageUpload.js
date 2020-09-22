@@ -3,11 +3,14 @@ import { Typography, withStyles } from "@material-ui/core";
 import Dropzone from "shared/components/Dropzone";
 import PropTypes from "prop-types";
 import ImageCropperDialog from "shared/components/ImageCropperDialog";
+import Paper from "@material-ui/core/Paper";
 
-const styles = theme => ({});
+const styles = theme => ({
+
+});
 
 function ImageUpload(props) {
-	const {width, height} = props;
+	const {width, name, classes} = props;
 	
 	const [imageFile, setImageFile] = useState(null);
 	const [cropperFile, setCropperFile] = useState(null);
@@ -35,7 +38,7 @@ function ImageUpload(props) {
 	}, []);
 	
 	return (
-		<Fragment>
+		<Paper variant="outlined" >
 			<ImageCropperDialog
 				open={!!cropperFile}
 				src={cropperFile ? cropperFile.preview : ""}
@@ -44,24 +47,25 @@ function ImageUpload(props) {
 				aspectRatio={1}
 			/>
 			<Dropzone onDrop={onDrop} accept="image/png, image/jpeg" style={{
-				width: width ? width : 200,
-				height: height ? height : 200,
+				width: width ? width : 100,
+				height: width ? width : 100,
 			}}>
 				{
 					imageFile && (<img
 						alt="uploaded item"
 						src={imageFile.preview}
+						border={1}
 					/>)
 				}
 				{
 					!imageFile && (
 						<Typography>
-							上传
+							{name}
 						</Typography>
 					)
 				}
 			</Dropzone>
-		</Fragment>
+		</Paper>
 	);
 }
 
@@ -69,7 +73,7 @@ ImageUpload.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
 	width: PropTypes.number,
-	height: PropTypes.number,
+	name: PropTypes.string,
 }
 
 export default withStyles(styles, {withTheme: true})(ImageUpload);
