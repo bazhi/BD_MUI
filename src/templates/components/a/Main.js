@@ -47,7 +47,7 @@ function Main(props) {
 	
 	const LoadData = useCallback((id) => {
 		AxiosCache({
-			url: `/data/${id}/theme.json`,
+			url: `/data/${id}/palette.json`,
 			method: 'get'
 		}).then(function (res) {
 			setThemeLoaded(true);

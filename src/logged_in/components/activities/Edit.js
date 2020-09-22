@@ -10,6 +10,7 @@ function Edit(props) {
     const {
         showMessage,
         onClose,
+        data,
     } = props;
 
     const [files, setFiles] = useState([]);
@@ -82,7 +83,9 @@ function Edit(props) {
                 maxWidth="md"
                 content={
                     <div>
-                        <PaletteEdit/>
+                        {
+                            data && <PaletteEdit/>
+                        }
                         <AddOptions
                             files={files}
                             onDrop={onDrop}

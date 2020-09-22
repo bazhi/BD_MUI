@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Grid, withStyles } from "@material-ui/core";
 import palette from "../../../palette"
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Popover from "@material-ui/core/Popover";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
+import { AxiosCache } from "shared/components/AxiosCache";
 
 const styles = (theme) => ({
 	colorBox: {
@@ -22,7 +23,7 @@ const styles = (theme) => ({
 		backgroundColor:"#EEEEEE",
 	},
 	gridItem:{
-		marginTop: 1,
+		marginTop: 2,
 		backgroundColor:"#FFFFFF",
 	}
 });
@@ -53,7 +54,7 @@ function ToArray(Obj, Arr, parentKey) {
 }
 
 function PaletteEdit(props) {
-	const {classes} = props;
+	const {classes, id} = props;
 	const [paletteArray, setPaletteArray] = useState([]);
 	const [bDisplayColorPicker, setDisplayColorPicker] = useState(false);
 	const [colorIndex, setColorIndex] = useState(null);
@@ -86,11 +87,35 @@ function PaletteEdit(props) {
 		ChangeColor(colorIndex, GetColorHex(color));
 	}, [ChangeColor, colorIndex]);
 	
+	const handleOnSave = useCallback(() => {
+		let jsonObject = {}
+		paletteArray.forEach(function (item, index, arr){
+			jsonObject[item.key] = item.color;
+		})
+		console.log(jsonObject);
+	}, [paletteArray]);
+	
 	useEffect(() => {
-		let Arr = [];
-		ToArray(palette, Arr, "");
-		setPaletteArray(Arr);
-	}, [setPaletteArray])
+		
+		AxiosCache({
+			url: `/data/${id}/palette.json`,
+			method: 'get'
+		}).then(function (res) {
+			let data = res.data;
+			let Arr = [];
+			ToArray(palette, Arr, "");
+			Arr.forEach(function (item, index,arr ){
+				if (data[item.key]){
+					item.color = data[item.key];
+				}
+			})
+			setPaletteArray(Arr);
+		}).catch(function (error) {
+			let Arr = [];
+			ToArray(palette, Arr, "");
+			setPaletteArray(Arr);
+		});
+	}, [id, setPaletteArray])
 	
 	return (
 		<Box md={2}>
@@ -119,7 +144,12 @@ function PaletteEdit(props) {
 									</Grid>
 								);
 							})
-						     }
+						}
+						<Grid item container sm={12} xs={12} justify={"center"} className={classes.gridItem}>
+							<Button onClick={handleOnSave} variant="contained" color="secondary">
+								Save
+							</Button>
+						</Grid>
 						<Popover onClose={handleClose} open={bDisplayColorPicker} anchorEl={anchorEl}
 						         anchorOrigin={{
 							         vertical: 'bottom',
@@ -134,8 +164,9 @@ function PaletteEdit(props) {
 						</Popover>
 					</Grid>
 				</Box>
-			
+
 			</Paper>
+
 		</Box>
 	)
 }
@@ -143,7 +174,7 @@ function PaletteEdit(props) {
 PaletteEdit.propTypes = {
 	classes: PropTypes.object,
 	theme: PropTypes.object,
-	data: PropTypes.object,
+	id: PropTypes.number,
 };
 
 export default withStyles(styles, {withTheme: true})(PaletteEdit);

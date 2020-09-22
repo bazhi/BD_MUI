@@ -69,6 +69,20 @@ const styles = (theme) => ({
 });
 
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
+const inputs = [
+	{
+		label: "Option 1",
+	},
+	{
+		label: "Option 2",
+	},
+	{
+		label: "Option 3",
+	},
+	{
+		label: "Option 4",
+	},
+];
 
 function AddOptions(props) {
 	const {
@@ -82,33 +96,14 @@ function AddOptions(props) {
 		uploadAt,
 		onChangeUploadAt,
 	} = props;
-	const [option1, setOption1] = useState("None");
-	const [option2, setOption2] = useState("None");
-	const [option3, setOption3] = useState("None");
-	const [option4, setOption4] = useState("None");
-	
+	const [options, setOptions] = useState(["None","None","None","None"]);
 	const handleChange = useCallback(
-		(event) => {
+		(event, index) => {
 			const {name, value} = event.target;
-			switch (name) {
-				case "option1":
-					setOption1(value);
-					break;
-				case "option2":
-					setOption2(value);
-					break;
-				case "option3":
-					setOption3(value);
-					break;
-				case "option4":
-					setOption4(value);
-					break;
-				default:
-					throw new Error("No branch selected in switch-statement.");
-			}
-		},
-		[setOption1, setOption2, setOption3, setOption4]
-	);
+			let list = options.slice(0);
+			list[index] = value;
+			setOptions(list);
+		}, [options]);
 	
 	const printFile = useCallback(() => {
 		if (files[0]) {
@@ -139,36 +134,10 @@ function AddOptions(props) {
 		);
 	}, [onDrop, files, classes, deleteItem]);
 	
-	const inputs = useCallback(
-		[
-			{
-				state: option1,
-				label: "Option 1",
-				stateName: "option1",
-			},
-			{
-				state: option2,
-				label: "Option 2",
-				stateName: "option2",
-			},
-			{
-				state: option3,
-				label: "Option 3",
-				stateName: "option3",
-			},
-			{
-				state: option4,
-				label: "Option 4",
-				stateName: "option4",
-			},
-		],
-		[option1, option2, option3, option4]
-	);
-	
 	return (
 		<Fragment>
 			<ImageCropperDialog
-				open={cropperFile ? true : false}
+				open={!!cropperFile}
 				src={cropperFile ? cropperFile.preview : ""}
 				onCrop={onCrop}
 				onClose={onCropperClose}
@@ -178,7 +147,7 @@ function AddOptions(props) {
 				Upload Image
 			</Typography>
 			<Box mb={2}>
-				<Suspense fallback={<Fragment></Fragment>}>
+				<Suspense fallback={<Fragment/>}>
 					<EmojiTextArea
 						inputClassName={classes.emojiTextArea}
 						maxCharacters={2200}
@@ -197,7 +166,7 @@ function AddOptions(props) {
 							<Typography variant="body2">Upload at</Typography>
 						</ListItemText>
 						<ListItemSecondaryAction>
-							<Suspense fallback={<Fragment></Fragment>}>
+							<Suspense fallback={<Fragment/>}>
 								<DateTimePicker
 									value={uploadAt}
 									format="yyyy/MM/dd hh:mm a"
@@ -207,24 +176,26 @@ function AddOptions(props) {
 							</Suspense>
 						</ListItemSecondaryAction>
 					</ListItem>
-					{inputs.map((element, index) => (
+					{options.map((element, index) => (
 						<ListItem
 							className="listItemLeftPadding"
 							disableGutters
-							divider={index !== inputs.length - 1}
+							divider={index !== options.length - 1}
 							key={index}
 						>
 							<ListItemText>
-								<Typography variant="body2">{element.label}</Typography>
+								<Typography variant="body2">{inputs[index].label}</Typography>
 							</ListItemText>
 							<FormControl variant="outlined">
 								<ListItemSecondaryAction>
 									<Select
-										value={element.state}
-										onChange={handleChange}
+										value={element}
+										onChange={(event => {
+											handleChange(event, index);
+										})}
 										input={
 											<OutlinedInput
-												name={element.stateName}
+												name={element}
 												labelWidth={0}
 												className={classes.numberInput}
 												classes={{input: classes.numberInputInput}}
