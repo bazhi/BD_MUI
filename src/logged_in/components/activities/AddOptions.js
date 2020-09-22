@@ -105,7 +105,7 @@ function AddOptions(props) {
 			setOptions(list);
 		}, [options]);
 	
-	const printFile = useCallback(() => {
+	const showFile = useCallback(() => {
 		if (files[0]) {
 			return (
 				<div className={classes.imgWrapper}>
@@ -113,7 +113,6 @@ function AddOptions(props) {
 						alt="uploaded item"
 						src={files[0].preview}
 						className={classes.img}
-						// style={{height: 148}}
 					/>
 					<div className={classes.floatButtonWrapper}>
 						<IconButton onClick={deleteItem}>
@@ -151,7 +150,7 @@ function AddOptions(props) {
 					<EmojiTextArea
 						inputClassName={classes.emojiTextArea}
 						maxCharacters={2200}
-						topContent={printFile()}
+						topContent={showFile()}
 						emojiSet="google"
 					/>
 				</Suspense>

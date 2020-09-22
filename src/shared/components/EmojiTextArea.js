@@ -114,11 +114,6 @@ function EmojiTextarea(props) {
 	return (
 		<Fragment>
 			<Grid spacing={1}  container justify={"flex-end"}>
-				{topContent && (
-					<Grid item xs={12} sm={12} lg={12} >
-						{topContent}
-					</Grid>
-				)}
 				<Grid item xs={12} sm={12} lg={12} className={classes.relative}>
 					<TextField fullWidth multiline variant="outlined" rows={6} onInput={handleTextFieldChange} value={value} placeholder={placeholder}
 					           InputProps={{
@@ -137,6 +132,11 @@ function EmojiTextarea(props) {
 						</IconButton>
 					</div>
 				</Grid>
+				{topContent && (
+					<Grid item xs={12} sm={12} lg={6} >
+						{topContent}
+					</Grid>
+				)}
 			</Grid>
 			{maxCharacters && (
 				<FormHelperText error={characters >= maxCharacters}>
