@@ -18,8 +18,8 @@ const styles = theme => ({
 		marginBottom:10,
 	},
 	divider:{
-		marginBottom:10,
-		marginTop: 10,
+		marginBottom:4,
+		marginTop: 4,
 	}
 });
 

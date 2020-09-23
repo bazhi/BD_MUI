@@ -4,6 +4,7 @@ import { Box, List, ListItem, ListItemSecondaryAction, ListItemText, Typography,
 import Bordered from "shared/components/Bordered";
 import EditUserInfo from "shared/components/EditUserInfo";
 import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 
 const DateTimePicker = lazy(() => import("shared/components/DateTimePicker"));
 
@@ -149,11 +150,15 @@ function AddOptions(props) {
 				选项
 			</Typography>
 			<Box mb={2}>
-				{
-					items.map((element, index) => (
-						<EditUserInfo id={index} />
-					))
-				}
+				<Grid container spacing={1}>
+					{
+						items.map((element, index) => (
+							<Grid item xl={12} key={index}>
+								<EditUserInfo id={index} />
+							</Grid>
+						))
+					}
+				</Grid>
 			</Box>
 		</Fragment>
 	);
