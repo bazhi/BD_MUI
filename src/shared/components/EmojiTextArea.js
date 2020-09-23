@@ -57,7 +57,6 @@ function EmojiTextarea(props) {
 	const {
 		theme,
 		classes,
-		topContent,
 		placeholder,
 		maxCharacters,
 		emojiSet,
@@ -132,11 +131,6 @@ function EmojiTextarea(props) {
 						</IconButton>
 					</div>
 				</Grid>
-				{topContent && (
-					<Grid item xs={12} sm={12} lg={6} >
-						{topContent}
-					</Grid>
-				)}
 			</Grid>
 			{maxCharacters && (
 				<FormHelperText error={characters >= maxCharacters}>
@@ -162,7 +156,6 @@ EmojiTextarea.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
 	emojiSet: PropTypes.string.isRequired,
-	topContent: PropTypes.element,
 	placeholder: PropTypes.string,
 	maxCharacters: PropTypes.number,
 	onChange: PropTypes.func,

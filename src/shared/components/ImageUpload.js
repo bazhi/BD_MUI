@@ -1,13 +1,11 @@
 import React, { Fragment, useCallback, useState } from "react";
-import { Typography, withStyles } from "@material-ui/core";
+import { Box, Typography, withStyles } from "@material-ui/core";
 import Dropzone from "shared/components/Dropzone";
 import PropTypes from "prop-types";
 import ImageCropperDialog from "shared/components/ImageCropperDialog";
-import Paper from "@material-ui/core/Paper";
+import Container from "@material-ui/core/Container";
 
-const styles = theme => ({
-
-});
+const styles = theme => ({});
 
 function ImageUpload(props) {
 	const {width, name, classes} = props;
@@ -38,7 +36,7 @@ function ImageUpload(props) {
 	}, []);
 	
 	return (
-		<Paper variant="outlined" >
+		<Container >
 			<ImageCropperDialog
 				open={!!cropperFile}
 				src={cropperFile ? cropperFile.preview : ""}
@@ -51,21 +49,13 @@ function ImageUpload(props) {
 				height: width ? width : 100,
 			}}>
 				{
-					imageFile && (<img
-						alt="uploaded item"
-						src={imageFile.preview}
-						border={1}
-					/>)
+					imageFile && (<img alt="uploaded item" src={imageFile.preview} border={1} width={width ? width : 100}/>)
 				}
 				{
-					!imageFile && (
-						<Typography>
-							{name}
-						</Typography>
-					)
+					!imageFile && (<Typography>{name}</Typography>)
 				}
 			</Dropzone>
-		</Paper>
+		</Container >
 	);
 }
 

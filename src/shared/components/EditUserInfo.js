@@ -19,27 +19,26 @@ const styles = theme => ({
 	},
 	divider:{
 		marginBottom:10,
+		marginTop: 10,
 	}
 });
 
-
-
 function EditUserInfo(props) {
-	const {classes} = props;
+	const {classes, id} = props;
 	
 	return (
 		<Paper variant="outlined">
 			<Box className={classes.fragment}>
-				<Typography variant={"body1"}>
-					0001
+				<Typography variant={"caption"} color={"secondary"}>
+					ID:{id}
 				</Typography>
 				<Divider className={classes.divider}/>
 				<Grid container spacing={3}  direction="row">
-					<Grid item xl={4}>
+					<Grid item xl={6}>
 						<ImageUpload width={CellHeight} name={"上传头像"}>
 						</ImageUpload>
 					</Grid>
-					<Grid item xl={4}>
+					<Grid item xl={6}>
 						<Box className={classes.content}>
 							<Grid container spacing={1}  direction="column" justify={"space-between"}>
 								<Grid item>
@@ -54,20 +53,9 @@ function EditUserInfo(props) {
 							</Grid>
 						</Box>
 					</Grid>
-					<Grid item xl={4}>
-						<Box className={classes.content}>
-							<Grid container spacing={1}  direction="column" justify={"space-between"}>
-					
-								<Grid item>
-									<TextField label="Title2" variant="outlined" size="small"/>
-								</Grid>
-								<Grid item>
-									<TextField label="Description1" variant="outlined" size="small"/>
-								</Grid>
-							</Grid>
-						</Box>
-					</Grid>
 				</Grid>
+				<Divider className={classes.divider}/>
+				<TextField label="Description" multiline variant="outlined" size="small" rows={3} fullWidth/>
 			</Box>
 		</Paper>
 	);
@@ -76,6 +64,7 @@ function EditUserInfo(props) {
 EditUserInfo.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
+	id:PropTypes.number.isRequired,
 }
 
 export default withStyles(styles, {withTheme: true})(EditUserInfo);

@@ -11,6 +11,9 @@ const styles = theme => ({
 	},
 	fullWidth: {
 		width: "100%"
+	},
+	paper:{
+		overflowY:"hidden",
 	}
 });
 
@@ -30,9 +33,7 @@ function ActionPaper(props) {
 			<Paper style={{maxWidth: theme.breakpoints.values[maxWidth]}}>
 				{title && <DialogTitle>{title}</DialogTitle>}
 				{content && (
-					<DialogContent
-						classes={helpPadding ? {root: classes.helpPadding} : null}
-					>
+					<DialogContent  className={classes.paper} classes={helpPadding ? {root: classes.helpPadding} : null}>
 						{content}
 					</DialogContent>
 				)}

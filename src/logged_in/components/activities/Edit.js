@@ -12,59 +12,8 @@ function Edit(props) {
         onClose,
         data,
     } = props;
-
-    const [files, setFiles] = useState([]);
-    const [uploadAt, setUploadAt] = useState(new Date());
+    
     const [loading, setLoading] = useState(false);
-    const [cropperFile, setCropperFile] = useState(null);
-
-    const acceptDrop = useCallback(
-        (file) => {
-            setFiles([file]);
-        },
-        [setFiles]
-    );
-
-    const onDrop = useCallback(
-        (acceptedFiles, rejectedFiles) => {
-            if (acceptedFiles.length + rejectedFiles.length > 1) {
-                showMessage({
-                    isErrorMessage: true,
-                    text: "You cannot upload more than one file at once",
-                });
-            } else if (acceptedFiles.length === 0) {
-                showMessage({
-                    isErrorMessage: true,
-                    text: "The file you wanted to upload isn't an image",
-                });
-            } else if (acceptedFiles.length === 1) {
-                const file = acceptedFiles[0];
-                file.preview = URL.createObjectURL(file);
-                file.key = new Date().getTime();
-                setCropperFile(file);
-            }
-        },
-        [showMessage, setCropperFile]
-    );
-
-    const onCropperClose = useCallback(() => {
-        setCropperFile(null);
-    }, [setCropperFile]);
-
-    const deleteItem = useCallback(() => {
-        setCropperFile(null);
-        setFiles([]);
-    }, [setCropperFile, setFiles]);
-
-    const onCrop = useCallback(
-        (dataUrl) => {
-            const file = {...cropperFile};
-            file.preview = dataUrl;
-            acceptDrop(file);
-            setCropperFile(null);
-        },
-        [acceptDrop, cropperFile, setCropperFile]
-    );
 
     const handleUpload = useCallback(() => {
         setLoading(true);
@@ -77,46 +26,35 @@ function Edit(props) {
     }, [setLoading, onClose, showMessage]);
 
     return (
-        <Fragment>
-            <ActionPaper
-                helpPadding
-                maxWidth="md"
-                content={
-                    <div>
-                        {
-                            data && <PaletteEdit/>
-                        }
-                        <AddOptions
-                            files={files}
-                            onDrop={onDrop}
-                            deleteItem={deleteItem}
-                            uploadAt={uploadAt}
-                            onChangeUploadAt={setUploadAt}
-                            onCrop={onCrop}
-                            cropperFile={cropperFile}
-                            onCropperClose={onCropperClose}
-                        />
-                    </div>
-                }
-                actions={
-                    <Fragment>
-                        <Box mr={1}>
-                            <Button onClick={onClose} disabled={loading}>
-                                Back
-                            </Button>
-                        </Box>
-                        <Button
-                            onClick={handleUpload}
-                            variant="contained"
-                            color="secondary"
-                            disabled={files.length === 0 || loading}
-                        >
-                            Upload {loading && <ButtonCircularProgress />}
+        <ActionPaper
+            helpPadding
+            maxWidth="md"
+            content={
+                <div>
+                    {
+                        data && <PaletteEdit/>
+                    }
+                    <AddOptions />
+                </div>
+            }
+            actions={
+                <Fragment>
+                    <Box mr={1}>
+                        <Button onClick={onClose} disabled={loading}>
+                            Back
                         </Button>
-                    </Fragment>
-                }
-            />
-        </Fragment>
+                    </Box>
+                    <Button
+                        onClick={handleUpload}
+                        variant="contained"
+                        color="secondary"
+                        disabled={loading}
+                    >
+                        Upload {loading && <ButtonCircularProgress />}
+                    </Button>
+                </Fragment>
+            }
+        />
     );
 }
 

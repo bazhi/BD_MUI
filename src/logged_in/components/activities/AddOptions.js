@@ -1,15 +1,11 @@
-import React, { Fragment, lazy, Suspense, useCallback, useState } from "react";
+import React, { Fragment, lazy, Suspense, useCallback, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Box, FormControl, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, MenuItem, OutlinedInput, Select, Typography, withStyles, } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import { Box, List, ListItem, ListItemSecondaryAction, ListItemText, Typography, withStyles, } from "@material-ui/core";
 import Bordered from "shared/components/Bordered";
-import ImageCropperDialog from "shared/components/ImageCropperDialog";
-import ImageUpload from "shared/components/ImageUpload";
 import EditUserInfo from "shared/components/EditUserInfo";
+import TextField from "@material-ui/core/TextField";
 
-const Dropzone = lazy(() => import("shared/components/Dropzone"));
-const EmojiTextArea  = lazy(() => import("shared/components/EmojiTextArea"));
-const DateTimePicker  = lazy(() => import("shared/components/DateTimePicker"));
+const DateTimePicker = lazy(() => import("shared/components/DateTimePicker"));
 
 const styles = (theme) => ({
 	floatButtonWrapper: {
@@ -70,155 +66,95 @@ const styles = (theme) => ({
 	},
 });
 
-const inputOptions = ["None", "Slow", "Normal", "Fast"];
-const inputs = [
+const timeInputs = [
 	{
-		label: "Option 1",
+		label: "开始时间:"
 	},
 	{
-		label: "Option 2",
-	},
-	{
-		label: "Option 3",
-	},
-	{
-		label: "Option 4",
-	},
+		label: "结束时间:"
+	}
 ];
 
 function AddOptions(props) {
 	const {
 		classes,
-		files,
-		deleteItem,
-		onDrop,
-		cropperFile,
-		onCrop,
-		onCropperClose,
-		uploadAt,
-		onChangeUploadAt,
 	} = props;
-	const [options, setOptions] = useState(["None","None","None","None"]);
-	const handleChange = useCallback(
-		(event, index) => {
-			const {name, value} = event.target;
-			let list = options.slice(0);
-			list[index] = value;
-			setOptions(list);
-		}, [options]);
+	const [timeArray, setTimeArray] = useState([new Date(), new Date()]);
+	const [items, setItems] = useState([{}, {}, {}, {}, {}]);
+	const refTitle = useRef();
+	const refInformation = useRef();
 	
-	const showFile = useCallback(() => {
-		if (files[0]) {
-			return (
-				<div className={classes.imgWrapper}>
-					<img
-						alt="uploaded item"
-						src={files[0].preview}
-						className={classes.img}
-					/>
-					<div className={classes.floatButtonWrapper}>
-						<IconButton onClick={deleteItem}>
-							<CloseIcon />
-						</IconButton>
-					</div>
-				</div>
-			);
+	const handleChangeTime = useCallback((date, index) => {
+		let array = timeArray.slice(0);
+		array[index] = date;
+		if (array[1] < array[0]) {
+			if (0 === index) {
+				array[1] = array[0];
+			} else {
+				array[0] = array[1];
+			}
 		}
-		return (
-			<Suspense fallback={<Fragment />}>
-				<Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
-			        <span className={classes.uploadText}>
-			          Click / Drop file here
-			        </span>
-				</Dropzone>
-			</Suspense>
-		);
-	}, [onDrop, files, classes, deleteItem]);
+		setTimeArray(array);
+	}, [timeArray]);
 	
 	return (
 		<Fragment>
-			<ImageCropperDialog
-				open={!!cropperFile}
-				src={cropperFile ? cropperFile.preview : ""}
-				onCrop={onCrop}
-				onClose={onCropperClose}
-				aspectRatio={3 / 2}
-			/>
 			<Typography paragraph variant="h6">
-				Upload Image
+				主题名称
 			</Typography>
 			<Box mb={2}>
-				<Suspense fallback={<Fragment/>}>
-					<EmojiTextArea
-						inputClassName={classes.emojiTextArea}
-						maxCharacters={2200}
-						topContent={showFile()}
-						emojiSet="google"
-					/>
-				</Suspense>
+				<TextField ref={refTitle} fullWidth variant="outlined" placeholder={"description"} inputProps={{
+					'maxLength': '50',
+					'minLength': '5',
+				}} />
 			</Box>
 			<Typography paragraph variant="h6">
-				Options
+				主题信息
 			</Typography>
-			<List disablePadding>
-				<Bordered disableVerticalPadding disableBorderRadius>
-					<ListItem divider disableGutters className="listItemLeftPadding">
-						<ListItemText>
-							<Typography variant="body2">Upload at</Typography>
-						</ListItemText>
-						<ListItemSecondaryAction>
-							<Suspense fallback={<Fragment/>}>
-								<DateTimePicker
-									value={uploadAt}
-									format="yyyy/MM/dd hh:mm a"
-									onChange={onChangeUploadAt}
-									disablePast
-								/>
-							</Suspense>
-						</ListItemSecondaryAction>
-					</ListItem>
-					{options.map((element, index) => (
-						<ListItem
-							className="listItemLeftPadding"
-							disableGutters
-							divider={index !== options.length - 1}
-							key={index}
-						>
-							<ListItemText>
-								<Typography variant="body2">{inputs[index].label}</Typography>
-							</ListItemText>
-							<FormControl variant="outlined">
+			<Box mb={2}>
+				<TextField ref={refInformation} fullWidth multiline variant="outlined" rows={6} placeholder={"description"} inputProps={{
+					'maxLength': '2000',
+					'minLength': '10',
+				}} />
+			</Box>
+			<Typography paragraph variant="h6">
+				时间
+			</Typography>
+			<Box mb={2}>
+				<List disablePadding>
+					<Bordered disableVerticalPadding disableBorderRadius>
+						{timeInputs.map((element, index) => (
+							<ListItem divider={index !== timeInputs.length - 1} disableGutters className="listItemLeftPadding" key={index}>
+								<ListItemText>
+									<Typography variant="body2">{element.label}</Typography>
+								</ListItemText>
 								<ListItemSecondaryAction>
-									<Select
-										value={element}
-										onChange={(event => {
-											handleChange(event, index);
-										})}
-										input={
-											<OutlinedInput
-												name={element}
-												labelWidth={0}
-												className={classes.numberInput}
-												classes={{input: classes.numberInputInput}}
-											/>
-										}
-										MenuProps={{disableScrollLock: true}}
-									>
-										{inputOptions.map((innerElement) => (
-											<MenuItem value={innerElement} key={innerElement}>
-												{innerElement}
-											</MenuItem>
-										))}
-									</Select>
+									<Suspense fallback={<Fragment />}>
+										<DateTimePicker
+											value={timeArray[index]}
+											format="yyyy/MM/dd hh:mm a"
+											onChange={(date) => {
+												handleChangeTime(date, index);
+											}}
+											disablePast
+										/>
+									</Suspense>
 								</ListItemSecondaryAction>
-							</FormControl>
-						</ListItem>
-					))}
-				</Bordered>
-			</List>
-			<EditUserInfo>
-			
-			</EditUserInfo>
+							</ListItem>
+						))}
+					</Bordered>
+				</List>
+			</Box>
+			<Typography paragraph variant="h6">
+				选项
+			</Typography>
+			<Box mb={2}>
+				{
+					items.map((element, index) => (
+						<EditUserInfo id={index} />
+					))
+				}
+			</Box>
 		</Fragment>
 	);
 }
@@ -226,16 +162,7 @@ function AddOptions(props) {
 AddOptions.propTypes = {
 	onEmojiTextareaChange: PropTypes.func,
 	classes: PropTypes.object,
-	cropperFile: PropTypes.object,
-	onCrop: PropTypes.func,
-	onCropperClose: PropTypes.func,
-	files: PropTypes.arrayOf(PropTypes.object).isRequired,
-	deleteItem: PropTypes.func,
-	onDrop: PropTypes.func,
 	value: PropTypes.string,
-	characters: PropTypes.number,
-	uploadAt: PropTypes.instanceOf(Date),
-	onChangeUploadAt: PropTypes.func,
 };
 
 export default withStyles(styles, {withTheme: true})(AddOptions);
