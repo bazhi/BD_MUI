@@ -50,7 +50,7 @@ function Edit(props) {
                         color="secondary"
                         disabled={loading}
                     >
-                        Upload {loading && <ButtonCircularProgress />}
+                        Upload {loading && <ButtonCircularProgress/>}
                     </Button>
                 </Fragment>
             }

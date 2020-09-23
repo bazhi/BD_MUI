@@ -77,9 +77,7 @@ const timeInputs = [
 ];
 
 function AddOptions(props) {
-	const {
-		classes,
-	} = props;
+	const {classes} = props;
 	const [timeArray, setTimeArray] = useState([new Date(), new Date()]);
 	const [items, setItems] = useState([{}, {}, {}, {}, {}]);
 	const refTitle = useRef();
@@ -119,7 +117,7 @@ function AddOptions(props) {
 				}} />
 			</Box>
 			<Typography paragraph variant="h6">
-				时间
+				有效时间
 			</Typography>
 			<Box mb={2}>
 				<List disablePadding>
@@ -165,7 +163,6 @@ function AddOptions(props) {
 }
 
 AddOptions.propTypes = {
-	onEmojiTextareaChange: PropTypes.func,
 	classes: PropTypes.object,
 	value: PropTypes.string,
 };
