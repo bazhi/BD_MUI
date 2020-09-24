@@ -1,6 +1,6 @@
-import React, { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Box, Divider, Grid, Input, Typography, withStyles } from "@material-ui/core";
+import { Box, Grid, Typography, withStyles } from "@material-ui/core";
 import ImageUpload from "shared/components/ImageUpload";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
@@ -12,17 +12,17 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 const CellHeight = 150;
 
 const styles = theme => ({
-	content:{
-		height:CellHeight,
+	size :{
+		maxWidth:300,
 	},
-	fragment:{
-		marginTop:10,
-		marginLeft:10,
-		marginRight:10,
-		marginBottom:10,
+	fragment: {
+		marginTop: 10,
+		marginLeft: 10,
+		marginRight: 10,
+		marginBottom: 10,
 	},
-	divider:{
-		marginBottom:4,
+	divider: {
+		marginBottom: 4,
 		marginTop: 4,
 	}
 });
@@ -31,48 +31,52 @@ function EditUserInfo(props) {
 	const {classes, id} = props;
 	
 	return (
-		<Paper variant="outlined">
+		<Paper variant="outlined" className={classes.size}>
 			<Box className={classes.fragment}>
-				<Typography variant={"caption"} color={"secondary"}>
-					ID:{id}
-				</Typography>
-				<Divider className={classes.divider}/>
-				<Grid container spacing={3}  direction="row">
-					<Grid item xl={3}>
-						<ImageUpload width={CellHeight} name={"上传头像"}>
-						</ImageUpload>
-					</Grid>
-					<Grid item xl={3}>
-						<Box className={classes.content}>
-							<Grid container spacing={1}  direction="column" justify={"space-between"}>
-								<Grid item>
-									<TextField label="Name" variant="outlined" size="small"/>
-								</Grid>
-								<Grid item>
-									<TextField label="Title" variant="outlined" size="small"/>
-								</Grid>
-								<Grid item>
-									<TextField label="Description" variant="outlined" size="small"/>
-								</Grid>
+				<Grid container spacing={1} direction="column">
+					<Grid item>
+						<Grid container spacing={1} direction="row" alignItems={"center"}>
+							<Grid item>
+								<ImageUpload width={CellHeight} name={"上传头像"}>
+								</ImageUpload>
 							</Grid>
-						</Box>
-					</Grid>
-					<Grid item xl={6}>
-						<Grid item>
-							<TextField label="Description" multiline variant="outlined" size="small" rows={6} fullWidth/>
 						</Grid>
 					</Grid>
-				</Grid>
-				<Divider className={classes.divider}/>
-				<Grid container justify={"flex-end"}>
-					<ButtonGroup size="small">
-						<Button>
-							<Delete color="primary"/>
-						</Button>
-						<Button>
-							<AddBox color="secondary"/>
-						</Button>
-					</ButtonGroup>
+					<Grid item>
+						<Grid container spacing={1} direction="column" justify={"space-between"}>
+							<Grid item>
+								<TextField label="Name" variant="outlined" size="small" fullWidth />
+							</Grid>
+							<Grid item>
+								<TextField label="Title" variant="outlined" size="small" fullWidth />
+							</Grid>
+							<Grid item>
+								<TextField label="Description" variant="outlined" size="small" fullWidth />
+							</Grid>
+							<Grid item>
+								<TextField label="Description" multiline variant="outlined" size="small" rows={4} fullWidth />
+							</Grid>
+						</Grid>
+					</Grid>
+					<Grid item>
+						<Grid container spacing={1} direction="row" justify={"space-between"}>
+							<Grid item>
+								<Typography variant={"caption"} color={"secondary"}>
+									ID:{id}
+								</Typography>
+							</Grid>
+							<Grid item>
+								<ButtonGroup size="small">
+									<Button>
+										<Delete color="primary" />
+									</Button>
+									<Button>
+										<AddBox color="secondary" />
+									</Button>
+								</ButtonGroup>
+							</Grid>
+						</Grid>
+					</Grid>
 				</Grid>
 			</Box>
 		</Paper>
@@ -82,7 +86,7 @@ function EditUserInfo(props) {
 EditUserInfo.propTypes = {
 	theme: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
-	id:PropTypes.number.isRequired,
+	id: PropTypes.number.isRequired,
 }
 
 export default withStyles(styles, {withTheme: true})(EditUserInfo);
